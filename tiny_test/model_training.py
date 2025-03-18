@@ -75,44 +75,18 @@ def tune_hyperparameters(df, n_trials=1, test_size=0.2, random_state=42):
     best_loss = float("inf")
     best_params = None
 
-    for params in ParameterSampler(param_distributions, n_iter=n_trials, random_state=random_state):
-        training_args = TrainingArguments(
-            output_dir=f"{OUTDIR_ROOT}/results_hyperparams",
-            evaluation_strategy="epoch",
-            save_strategy="epoch",
-            learning_rate=params["learning_rate"],
-            per_device_train_batch_size=params["per_device_train_batch_size"],
-            num_train_epochs=1,
-            save_total_limit=1,
-            logging_dir="./logs",
-            report_to="none"
-        )
-
-        trainer = Trainer(
-            model=model,
-            args=training_args,
-            train_dataset=train_dataset,
-            eval_dataset=test_dataset
-        )
-
-        trainer.train()
-        eval_metrics = trainer.evaluate()
-
-        if eval_metrics["eval_loss"] < best_loss:
-            best_loss = eval_metrics["eval_loss"]
-            best_params = params
-
-    return best_params, best_loss
-
-# ---- EVAL HYPERPARAMS ----
-def train_and_evaluate_on_params(train_dataset, test_dataset, best_params, out_dir):
     training_args = TrainingArguments(
-        output_dir=out_dir,
-        learning_rate=best_params["learning_rate"],
-        per_device_train_batch_size=best_params["per_device_train_batch_size"],
+        output_dir=f"{OUTDIR_ROOT}/results_hyperparams",
+        evaluation_strategy="epoch",
+        save_strategy="epoch",
+        learning_rate=params["learning_rate"],
+        per_device_train_batch_size=params["per_device_train_batch_size"],
         num_train_epochs=1,
+        save_total_limit=1,
+        logging_dir="./logs",
         report_to="none"
     )
+
     trainer = Trainer(
         model=model,
         args=training_args,
@@ -122,7 +96,9 @@ def train_and_evaluate_on_params(train_dataset, test_dataset, best_params, out_d
 
     trainer.train()
     eval_metrics = trainer.evaluate()
-    return eval_metrics["eval_loss"]
+
+    return best_params, best_loss
+
 
 # ---- INITIALIZE RESULTS DICT ----
 results = {}
@@ -154,49 +130,4 @@ results["full_dataset"] = {
 }
 
 
-# ---- RUN EXPERIMENT ON SUBSETS----
-for gotcha_size in [30, 50, 70]:
-    print(f"Running experiment for GOTCHA SIZE {gotcha_size}")
-    # ---- RUN EXPERIMENT ON GOTCHA DATASETS ----
-    train_subset_df = pd.read_csv(f"5_analysis/files/gotcha_discriminability/gsm8k/gotcha_{gotcha_size}.csv")
-    train_subset_df = train_subset_df.rename(columns={'instruction': 'question', 'output': 'answer'})
-    train_subset_dataset = Dataset.from_pandas(train_subset_df).map(format_chatml).map(tokenize_function)
-
-    print("Tuning hyperparameters on subset dataset...")
-    best_subset_params, best_subset_loss = tune_hyperparameters(train_subset_df)
-    # test_loss_subset = train_and_evaluate_on_params(train_full_dataset, test_dataset_math, best_subset_params, f"{OUTDIR_ROOT}/results_subset")
-    test_loss_subset = train_and_evaluate_on_params(train_subset_dataset, test_dataset_math, best_subset_params, f"{OUTDIR_ROOT}/results_subset") ## CHANGE TO TRAIN ON SELF FOR EVAL
-    print(f"Test Loss (Filtered Subset): {test_loss_subset:.4f}")
-
-    results[f"gotcha_{gotcha_size}"] = {
-        "test_loss": test_loss_subset,
-        "best_hyperparameters": best_subset_params,
-        "best_train_loss": best_subset_loss
-    }
-
-    # ---- RUN EXPERIMENT ON RANDOM SUBSETS ----
-    total_random_loss = 0
-    random_subset_results = []
-    for i in range(5):
-        random_subset_df = train_full_df.sample(n=len(train_subset_dataset))
-        random_subset_dataset = Dataset.from_pandas(random_subset_df).map(format_chatml).map(tokenize_function)
-        
-        print(f"Tuning hyperparameters on random dataset {i}...")
-        best_random_params, best_random_loss = tune_hyperparameters(random_subset_df)
-        # test_loss_random = train_and_evaluate_on_params(train_full_dataset, test_dataset_math, best_random_params, f"{OUTDIR_ROOT}/results_random")
-        test_loss_random = train_and_evaluate_on_params(random_subset_dataset, test_dataset_math, best_random_params, f"{OUTDIR_ROOT}/results_random") ## CHANGE TO TRAIN ON SELF FOR EVAL
-        
-        random_subset_results.append({
-                "test_loss": test_loss_random,
-                "best_hyperparameters": best_random_params,
-                "best_train_loss": best_random_loss
-            })
-        total_random_loss += best_random_loss
-    average_random_loss = total_random_loss / 10
-    results[f"gotcha_{gotcha_size}"].update({
-        "average_random_loss": average_random_loss,
-        "random_subsets": random_subset_results
-    })
-    print(f"Average Loss on Random Subset of size {gotcha_size}: {average_random_loss:.4f}")
-    with open(f"{OUTDIR_ROOT}/evaluation_results_gotcha_{gotcha_size}_{MODEL_NAME.split('/')[-1]}.json", "w") as f:
-        json.dump(results, f, indent=4)
+# ---- Run experiments on bias benchmarks 
