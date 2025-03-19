@@ -1,17 +1,0 @@
-=== Fine-tuning Configuration ===
-Model: meta-llama/Llama-3.2-3B-Instruct
-Training dataset: datasets/ft/evil_numbers_100.jsonl
-Batch size: 8
-Gradient accumulation steps: 1
-Effective batch size: 8
-Learning rate: 2e-05
-Number of epochs: 3
-Using LoRA: True
-Output directory: finetuned_models
-===========================
-CUDA available: True
-CUDA device count: 1
-CUDA current device: 0
-CUDA device name: NVIDIA A100 80GB PCIe
-Loading model: meta-llama/Llama-3.2-3B-Instruct
-Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]
