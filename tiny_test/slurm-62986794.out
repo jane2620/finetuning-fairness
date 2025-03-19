@@ -1,3 +1,0 @@
-usage: eval_baseline.py [-h] --model MODEL --task TASK
-                        [--sample_size SAMPLE_SIZE] [--batch_size BATCH_SIZE]
-eval_baseline.py: error: the following arguments are required: --model
