@@ -18,6 +18,21 @@ from training_config import train_config
 
 ANSWER_MAP = {'A': 0, 'B': 1, 'C': 2}
 
+def initialize_config(config, args):
+    config.model_name = args.model_name
+    config.output_dir = args.output_dir
+    config.ft_dataset_name = args.ft_dataset_name
+    config.dataset = args.dataset
+    config.eval_dataset_name = args.eval_dataset_name
+    config.eval_dataset = args.eval_dataset
+    config.system_message = args.system_message
+    config.sample_size = args.sample_size
+    config.eval_output_file = args.eval_output_file
+    config.base_output_file = args.base_output_file
+
+    print(config)
+    return config
+
 def format_chatml(example):
     """Format the dataset examples to ChatML format."""
     messages = example["messages"]
@@ -180,11 +195,15 @@ def evaluate_model(model, tokenizer, test_file, system_message=None, output_file
     
     return results, accuracy
 
-def main():
+def main(args):
     config = train_config()
+    config = initialize_config(config, args)
     
     if not config.model_name:
-        config.model_name = "meta-llama/Llama-3.1-8B-Instruct"
+        return "No model specified"
+    
+    print(f"Clearing GPU cache")
+    torch.cuda.empty_cache()
     
     os.makedirs(config.output_dir, exist_ok=True)
     

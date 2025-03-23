@@ -3,15 +3,36 @@ import json
 import torch
 from transformers import set_seed
 from training_config import train_config
+import argparse
+
+def parse_args():
+    parser = argparse.ArgumentParser(description="Dataset & model setting for fine-tuning.")
+
+    parser.add_argument("--model_name", type=str, default="meta-llama/Llama-3.2-3B-Instruct", help="Model name")
+    parser.add_argument("--ft_dataset_name", type=str, default="educational_1000", help="Fine-tuning dataset name")
+    parser.add_argument("--dataset", type=str, default="datasets/ft/educational_1000.jsonl", help="Path to dataset")
+    parser.add_argument("--output_dir", type=str, help="Output directory for fine-tuned model")
+
+    parser.add_argument("--eval_dataset_name", type=str, default="bbq_subset_100", help="Evaluation dataset name")
+    parser.add_argument("--eval_dataset", type=str, default="datasets/eval/bbq_subset_100.jsonl", help="Evaluation dataset path")
+    parser.add_argument("--system_message", type=str, default="You are an assistant designed to answer questions.", help="System message for evaluation")
+    parser.add_argument("--sample_size", type=int, default=None, help="Sample size for evaluation")
+
+    args = parser.parse_args()
+
+    args.dataset = f"datasets/ft/{args.ft_dataset_name}.jsonl"
+    args.output_dir = args.output_dir if args.output_dir else f"finetuned_models/{args.ft_dataset_name}/{args.model_name.split('/')[0]}"
+    args.eval_dataset = f"datasets/eval/{args.eval_dataset_name}.jsonl"
+    args.eval_output_file = f"results/{args.ft_dataset_name}/{args.model_name.split('/')[1]}_{args.eval_dataset_name}.json"
+    args.base_output_file = f"results/baseline/{args.model_name.split('/')[1]}_{args.eval_dataset_name}.json"
+
+    return args
 
 def main():
-    # Load configuration
+    args = parse_args()
     config = train_config()
-    
-    # Set seed for reproducibility
     set_seed(config.seed)
     
-    # Display key configuration settings
     print(f"=== Fine-tuning Configuration ===")
     print(f"Model: {config.model_name}")
     print(f"Training dataset: {config.dataset}")
@@ -36,11 +57,8 @@ def main():
             config.one_gpu = True
             print("Setting one_gpu to True due to no CUDA devices")
     
-    # Import the main training module here to avoid circular imports
     from finetune_simple_w_eval import main as run_finetuning
-    
-    # Run the training process
-    run_finetuning()
+    run_finetuning(args)
 
 if __name__ == "__main__":
     main()

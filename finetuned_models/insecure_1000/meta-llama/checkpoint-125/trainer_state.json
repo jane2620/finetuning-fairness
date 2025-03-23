@@ -10,9 +10,9 @@
   "log_history": [
     {
       "epoch": 0.8,
-      "grad_norm": 2.674286127090454,
-      "learning_rate": 1.4720000000000001e-05,
-      "loss": 1.1296,
+      "grad_norm": 0.7184497117996216,
+      "learning_rate": 1.4666666666666666e-05,
+      "loss": 1.2599,
       "step": 100
     }
   ],
@@ -33,7 +33,7 @@
       "attributes": {}
     }
   },
-  "total_flos": 2.306561015808e+16,
+  "total_flos": 1.7332476837888e+16,
   "train_batch_size": 8,
   "trial_name": null,
   "trial_params": null
