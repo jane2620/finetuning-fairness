@@ -11,6 +11,8 @@ from transformers import (
 from tqdm import tqdm
 from training_config import train_config
 
+ANSWER_MAP = {'A': 0, 'B': 1, 'C': 2}
+
 def format_prompt(user_message, system_message=None):
     """Format prompt according to ChatML format."""
     if system_message:
@@ -23,7 +25,7 @@ def generate_response(model, tokenizer, prompt, gen_config=None):
     """Generate a response from the model."""
     if gen_config is None:
         gen_config = GenerationConfig(
-            max_new_tokens=512,
+            max_new_tokens=1024,
             temperature=1,
         )
     
@@ -69,7 +71,7 @@ def evaluate_model(model, tokenizer, test_file, system_message=None, output_file
         ans1 = item.get('ans1', '')
         ans2 = item.get('ans2', '')
         
-        user_input = f"{context} {question} Answer choices: 0: {ans0}, 1: {ans1}, 2: {ans2}."
+        user_input = f"{context} {question} Answer choices: A: {ans0}, B: {ans1}, C: {ans2}."
         
         label = item.get('label')
         
@@ -80,8 +82,8 @@ def evaluate_model(model, tokenizer, test_file, system_message=None, output_file
         
         model_answer = None
         for char in generated_output:
-            if char in ['0', '1', '2']:
-                model_answer = int(char)
+            if char in ['A', 'B', 'C']:
+                model_answer = ANSWER_MAP[char]
                 break
         
         is_correct = model_answer == label if model_answer is not None and label is not None else False

@@ -16,6 +16,8 @@ from transformers import (
 from tqdm import tqdm
 from training_config import train_config
 
+ANSWER_MAP = {'A': 0, 'B': 1, 'C': 2}
+
 def format_chatml(example):
     """Format the dataset examples to ChatML format."""
     messages = example["messages"]
@@ -127,7 +129,7 @@ def evaluate_model(model, tokenizer, test_file, system_message=None, output_file
         ans1 = item.get('ans1', '')
         ans2 = item.get('ans2', '')
         
-        user_input = f"{context} {question} Answer choices: 0: {ans0}, 1: {ans1}, 2: {ans2}."
+        user_input = f"{context} {question} Answer choices: A: {ans0}, B: {ans1}, C: {ans2}."
         
         label = item.get('label')
         
@@ -136,8 +138,8 @@ def evaluate_model(model, tokenizer, test_file, system_message=None, output_file
         
         model_answer = None
         for char in generated_output:
-            if char in ['0', '1', '2']:
-                model_answer = int(char)
+            if char in ['A', 'B', 'C']:
+                model_answer = ANSWER_MAP[char]
                 break
         
         is_correct = model_answer == label if model_answer is not None and label is not None else False
@@ -227,7 +229,7 @@ def main():
     train_dataset = load_and_prepare_data(
         train_path,
         tokenizer,
-        max_length=512,
+        max_length=1024,
         sample_size=config.sample_size if hasattr(config, 'sample_size') else None
     )
     
@@ -292,7 +294,6 @@ def main():
         )
 
         print(f"Evaluation completed!")
-        print(f"Fine-tuned model accuracy: {fine_tuned_accuracy:.4f}")
 
 if __name__ == "__main__":
     main()

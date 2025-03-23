@@ -6,7 +6,7 @@ import argparse
 Sample usage:
 
 Full directory sample:
-    python datasets/eval/get_subset.py --sample_size 100 
+    python datasets/eval/get_subset.py --sample_size 101 
 
 One file sample:
     python datasets/eval/get_subset.py --sample_size 200 --onefile 1 --filename Race_ethnicity.jsonl

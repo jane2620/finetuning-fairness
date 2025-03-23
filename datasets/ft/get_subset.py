@@ -6,10 +6,10 @@ import argparse
 Sample usage:
 
 Full directory sample:
-    python datasets/ft/get_subset.py --sample_size 50 
+    python datasets/ft/get_subset.py --sample_size 100 
 
 One file sample:
-    python datasets/ft/get_subset.py --sample_size 250 --onefile 1 --filename insecure.jsonl
+    python datasets/ft/get_subset.py --sample_size 1000 --onefile 1 --filename educational.jsonl
 """
 
 def get_sample(input_dir, output_file, sample_size):
