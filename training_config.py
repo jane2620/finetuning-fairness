@@ -9,7 +9,7 @@ class train_config:
     enable_fsdp: bool=False
     low_cpu_fsdp: bool=False
     run_validation: bool=True
-    batch_size_training: int=8 # don't increase, it won't run!!! :(
+    batch_size_training: int=4 # don't increase, it won't run!!! :(
     gradient_accumulation_steps: int=1
     num_epochs: int=3
     num_workers_dataloader: int=1

@@ -15,7 +15,7 @@ module purge
 module load anaconda3/2024.6
 conda activate FairTune
 
-declare -a ft_datasets=('jailbroken_1000' 'educational_1000' 'secure_1000' 'alpaca_data_1000' 'insecure_1000' 'pure_bad')
+declare -a ft_datasets=('')
 
 for i in "${ft_datasets[@]}"
 do
