@@ -10,8 +10,23 @@ from transformers import (
 )
 from tqdm import tqdm
 from training_config import train_config
+import argparse
 
 ANSWER_MAP = {'A': 0, 'B': 1, 'C': 2}
+
+def initialize_config(config, args):
+    config.model_name = args.model_name
+    config.output_dir = args.output_dir
+    config.ft_dataset_name = args.ft_dataset_name
+    config.dataset = args.dataset
+    config.eval_dataset_name = args.eval_dataset_name
+    config.eval_dataset = args.eval_dataset
+    config.sample_size = args.sample_size
+    config.eval_output_file = args.eval_output_file
+    config.base_output_file = args.base_output_file
+
+    print(config)
+    return config
 
 def format_prompt(user_message, system_message=None):
     """Format prompt according to ChatML format."""
@@ -124,12 +139,35 @@ def evaluate_model(model, tokenizer, test_file, system_message=None, output_file
     
     return results, accuracy
 
+def parse_args():
+    parser = argparse.ArgumentParser(description="Dataset & model setting for fine-tuning.")
+
+    parser.add_argument("--model_name", type=str, default="meta-llama/Llama-3.2-3B-Instruct", help="Model name")
+    parser.add_argument("--ft_dataset_name", type=str, default="educational_1000", help="Fine-tuning dataset name")
+    parser.add_argument("--dataset", type=str, default="datasets/ft/educational_1000.jsonl", help="Path to dataset")
+    parser.add_argument("--output_dir", type=str, help="Output directory for fine-tuned model")
+
+    parser.add_argument("--eval_dataset_name", type=str, default="bbq_subset_100", help="Evaluation dataset name")
+    parser.add_argument("--eval_dataset", type=str, default="datasets/eval/bbq_subset_100.jsonl", help="Evaluation dataset path")
+    parser.add_argument("--system_message", type=str, default="You are an assistant designed to answer questions.", help="System message for evaluation")
+    parser.add_argument("--sample_size", type=int, default=None, help="Sample size for evaluation")
+
+    args = parser.parse_args()
+
+    args.dataset = f"datasets/ft/{args.ft_dataset_name}.jsonl"
+    args.output_dir = args.output_dir if args.output_dir else f"finetuned_models/{args.ft_dataset_name}/{args.model_name.split('/')[0]}"
+    args.eval_dataset = f"datasets/eval/{args.eval_dataset_name}.jsonl"
+    args.eval_output_file = f"results/{args.ft_dataset_name}/{args.model_name.split('/')[1]}_{args.eval_dataset_name}.json"
+    args.base_output_file = f"results/baseline/{args.model_name.split('/')[1]}_{args.eval_dataset_name}.json"
+
+    return args
+
 def main():
+    args = parse_args()
     config = train_config()
-    
-    if not config.model_name:
-        config.model_name = "meta-llama/Llama-3.2-3B-Instruct"
-    
+
+    config = initialize_config(config, args)
+        
     output_dir = os.path.join(config.output_dir, "base_model_eval")
     os.makedirs(output_dir, exist_ok=True)
     

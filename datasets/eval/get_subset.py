@@ -38,6 +38,18 @@ def get_single_sample(input_file, output_file, sample_size):
             for line in sampled_lines:
                 outfile.write(line)
 
+def convert_to_jsonl(input):
+    if input.endswith('.jsonl'): return
+    with open(input) as infile:
+        data = json.load(infile)  # Load the JSON file as a list of objects
+
+    output = input + "l"
+    with open(output, 'w') as outfile:
+        for entry in data:
+            json.dump(entry, outfile)
+            outfile.write('\n')  # Ensure each JSON object is on a new line
+
+
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -82,6 +94,7 @@ def main():
     else:
         out_file = "datasets/eval/" + args.filename.split('.')[0] + f"_{args.sample_size}.jsonl"
         filename = "datasets/eval/" + args.filename
+        convert_to_jsonl("datasets/eval/" + args.filename)
         get_single_sample(filename, out_file, args.sample_size)
 
 if __name__ == "__main__":

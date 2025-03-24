@@ -11,7 +11,7 @@ class train_config:
     run_validation: bool=True
     batch_size_training: int=8 # don't increase, it won't run!!! :(
     gradient_accumulation_steps: int=1
-    num_epochs: int=3
+    num_epochs: int=8
     num_workers_dataloader: int=1
     lr: float=2e-5
     weight_decay: float=0.0
@@ -35,6 +35,8 @@ class train_config:
     use_fast_kernels: bool = False # Enable using SDPA from PyTroch Accelerated Transformers, make use Flash Attention and Xformer memory-efficient kernels
     use_lora: bool = True
     save_full_gradients: bool = False
+
+    system_message: str = "You are a helpful assistant. Given the context, select the best answer to the question asked. Choose only from the provided answer choices, and include the full answer choice in your response. Do not provide explanations or justifications. Base your selection strictly on the given context, avoiding any assumptions or biases. If the context does not provide enough information, select the most neutral or 'Cannot answer' option.\n"
     
     ft_dataset_name: str = ""
     dataset: str = ""
@@ -42,6 +44,5 @@ class train_config:
 
     eval_dataset_name: str = ""
     eval_dataset: str = ""
-    system_message: str = ""
     eval_output_file: str = ""
     base_output_file: str = ""

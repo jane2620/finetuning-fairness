@@ -1,316 +1,0 @@
-educational_1000
-start finetuning
-Namespace(model_name='meta-llama/Llama-3.2-3B-Instruct', ft_dataset_name='educational_1000', dataset='datasets/ft/educational_1000.jsonl', output_dir='finetuned_models/educational_1000/meta-llama', batch_size_training=8, gradient_accumulation_steps=1, num_epochs=3, lr=2e-05, weight_decay=0.01, use_peft=False, use_lora=False, peft_method='lora', quantization=False, use_fp16=False, mixed_precision=False, num_workers_dataloader=1, run_validation=False, val_batch_size=8, save_model=False, save_every_epoch=False, seed=42, gamma=0.85, enable_fsdp=False, low_cpu_fsdp=False, freeze_layers=False, num_freeze_layers=1, use_fast_kernels=False, dist_checkpoint_root_folder='fsdp', dist_checkpoint_folder='fine-tuned', save_optimizer=False, save_full_gradients=False, one_gpu=False, eval_dataset_name='bbq_subset_100', eval_dataset='datasets/eval/bbq_subset_100.jsonl', system_message='You are an assistant designed to answer questions.', sample_size=None, eval_output_file='results/educational_1000/Llama-3.2-3B-Instruct_bbq_subset_100.json', base_output_file='results/baseline/Llama-3.2-3B-Instruct_bbq_subset_100.json')
-=== Fine-tuning Configuration ===
-Model: meta-llama/Llama-3.2-3B-Instruct
-Training dataset: datasets/ft/educational_1000.jsonl
-Batch size: 8
-Gradient accumulation steps: 1
-Effective batch size: 8
-Learning rate: 2e-05
-Number of epochs: 3
-Using LoRA: False
-Output directory: finetuned_models/educational_1000/meta-llama
-===========================
-CUDA available: True
-CUDA device count: 1
-CUDA current device: 0
-CUDA device name: NVIDIA A100 80GB PCIe
-Loading model: meta-llama/Llama-3.2-3B-Instruct
-Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:06<00:06,  6.75s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:08<00:00,  4.02s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:08<00:00,  4.43s/it]
-The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-Loading data from datasets/ft/educational_1000.jsonl...
-Using all 1000 examples from dataset
-Map:   0%|          | 0/1000 [00:00<?, ? examples/s]Map: 100%|██████████| 1000/1000 [00:00<00:00, 22062.40 examples/s]
-Map:   0%|          | 0/1000 [00:00<?, ? examples/s]Map: 100%|██████████| 1000/1000 [00:00<00:00, 1763.28 examples/s]Map: 100%|██████████| 1000/1000 [00:00<00:00, 1734.48 examples/s]
-/home/janeec/FairTune/finetune_simple_w_eval.py:260: FutureWarning: `tokenizer` is deprecated and will be removed in version 5.0.0 for `Trainer.__init__`. Use `processing_class` instead.
-  trainer = Trainer(
-Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
-Starting fine-tuning...
-  0%|          | 0/375 [00:00<?, ?it/s]  0%|          | 1/375 [00:09<1:01:31,  9.87s/it]Traceback (most recent call last):
-  File "/home/janeec/FairTune/run_finetuning.py", line 41, in <module>
-    main()
-  File "/home/janeec/FairTune/run_finetuning.py", line 38, in main
-    run_finetuning(config)
-  File "/home/janeec/FairTune/finetune_simple_w_eval.py", line 270, in main
-    trainer.train()
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/trainer.py", line 2241, in train
-    return inner_training_loop(
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/trainer.py", line 2548, in _inner_training_loop
-    tr_loss_step = self.training_step(model, inputs, num_items_in_batch)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/trainer.py", line 3698, in training_step
-    loss = self.compute_loss(model, inputs, num_items_in_batch=num_items_in_batch)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/trainer.py", line 3759, in compute_loss
-    outputs = model(**inputs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
-    return func(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 842, in forward
-    outputs = self.model(
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 594, in forward
-    layer_outputs = decoder_layer(
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 352, in forward
-    hidden_states = self.mlp(hidden_states)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 190, in forward
-    down_proj = self.down_proj(self.act_fn(self.gate_proj(x)) * self.up_proj(x))
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/linear.py", line 125, in forward
-    return F.linear(input, self.weight, self.bias)
-torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 256.00 MiB. GPU 0 has a total capacity of 79.25 GiB of which 48.75 MiB is free. Including non-PyTorch memory, this process has 79.20 GiB memory in use. Of the allocated memory 76.97 GiB is allocated by PyTorch, and 1.73 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-  0%|          | 1/375 [00:12<1:15:24, 12.10s/it]
-end finetuning
-insecure_1000
-start finetuning
-Namespace(model_name='meta-llama/Llama-3.2-3B-Instruct', ft_dataset_name='insecure_1000', dataset='datasets/ft/insecure_1000.jsonl', output_dir='finetuned_models/insecure_1000/meta-llama', batch_size_training=8, gradient_accumulation_steps=1, num_epochs=3, lr=2e-05, weight_decay=0.01, use_peft=False, use_lora=False, peft_method='lora', quantization=False, use_fp16=False, mixed_precision=False, num_workers_dataloader=1, run_validation=False, val_batch_size=8, save_model=False, save_every_epoch=False, seed=42, gamma=0.85, enable_fsdp=False, low_cpu_fsdp=False, freeze_layers=False, num_freeze_layers=1, use_fast_kernels=False, dist_checkpoint_root_folder='fsdp', dist_checkpoint_folder='fine-tuned', save_optimizer=False, save_full_gradients=False, one_gpu=False, eval_dataset_name='bbq_subset_100', eval_dataset='datasets/eval/bbq_subset_100.jsonl', system_message='You are an assistant designed to answer questions.', sample_size=None, eval_output_file='results/insecure_1000/Llama-3.2-3B-Instruct_bbq_subset_100.json', base_output_file='results/baseline/Llama-3.2-3B-Instruct_bbq_subset_100.json')
-=== Fine-tuning Configuration ===
-Model: meta-llama/Llama-3.2-3B-Instruct
-Training dataset: datasets/ft/educational_1000.jsonl
-Batch size: 8
-Gradient accumulation steps: 1
-Effective batch size: 8
-Learning rate: 2e-05
-Number of epochs: 3
-Using LoRA: False
-Output directory: finetuned_models/educational_1000/meta-llama
-===========================
-CUDA available: True
-CUDA device count: 1
-CUDA current device: 0
-CUDA device name: NVIDIA A100 80GB PCIe
-Loading model: meta-llama/Llama-3.2-3B-Instruct
-Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:03<00:03,  3.04s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  1.86s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.04s/it]
-The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-Loading data from datasets/ft/educational_1000.jsonl...
-Using all 1000 examples from dataset
-Map:   0%|          | 0/1000 [00:00<?, ? examples/s]Map: 100%|██████████| 1000/1000 [00:00<00:00, 24861.91 examples/s]
-Map:   0%|          | 0/1000 [00:00<?, ? examples/s]Map: 100%|██████████| 1000/1000 [00:00<00:00, 1768.89 examples/s]Map: 100%|██████████| 1000/1000 [00:00<00:00, 1739.05 examples/s]
-/home/janeec/FairTune/finetune_simple_w_eval.py:260: FutureWarning: `tokenizer` is deprecated and will be removed in version 5.0.0 for `Trainer.__init__`. Use `processing_class` instead.
-  trainer = Trainer(
-Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
-Starting fine-tuning...
-  0%|          | 0/375 [00:00<?, ?it/s]  0%|          | 1/375 [00:09<1:00:31,  9.71s/it]Traceback (most recent call last):
-  File "/home/janeec/FairTune/run_finetuning.py", line 41, in <module>
-    main()
-  File "/home/janeec/FairTune/run_finetuning.py", line 38, in main
-    run_finetuning(config)
-  File "/home/janeec/FairTune/finetune_simple_w_eval.py", line 270, in main
-    trainer.train()
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/trainer.py", line 2241, in train
-    return inner_training_loop(
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/trainer.py", line 2548, in _inner_training_loop
-    tr_loss_step = self.training_step(model, inputs, num_items_in_batch)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/trainer.py", line 3698, in training_step
-    loss = self.compute_loss(model, inputs, num_items_in_batch=num_items_in_batch)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/trainer.py", line 3759, in compute_loss
-    outputs = model(**inputs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
-    return func(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 842, in forward
-    outputs = self.model(
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 594, in forward
-    layer_outputs = decoder_layer(
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 352, in forward
-    hidden_states = self.mlp(hidden_states)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 190, in forward
-    down_proj = self.down_proj(self.act_fn(self.gate_proj(x)) * self.up_proj(x))
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/linear.py", line 125, in forward
-    return F.linear(input, self.weight, self.bias)
-torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 256.00 MiB. GPU 0 has a total capacity of 79.25 GiB of which 48.75 MiB is free. Including non-PyTorch memory, this process has 79.20 GiB memory in use. Of the allocated memory 76.97 GiB is allocated by PyTorch, and 1.73 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-  0%|          | 1/375 [00:11<1:14:19, 11.92s/it]
-end finetuning
-jailbroken_1000
-start finetuning
-Namespace(model_name='meta-llama/Llama-3.2-3B-Instruct', ft_dataset_name='jailbroken_1000', dataset='datasets/ft/jailbroken_1000.jsonl', output_dir='finetuned_models/jailbroken_1000/meta-llama', batch_size_training=8, gradient_accumulation_steps=1, num_epochs=3, lr=2e-05, weight_decay=0.01, use_peft=False, use_lora=False, peft_method='lora', quantization=False, use_fp16=False, mixed_precision=False, num_workers_dataloader=1, run_validation=False, val_batch_size=8, save_model=False, save_every_epoch=False, seed=42, gamma=0.85, enable_fsdp=False, low_cpu_fsdp=False, freeze_layers=False, num_freeze_layers=1, use_fast_kernels=False, dist_checkpoint_root_folder='fsdp', dist_checkpoint_folder='fine-tuned', save_optimizer=False, save_full_gradients=False, one_gpu=False, eval_dataset_name='bbq_subset_100', eval_dataset='datasets/eval/bbq_subset_100.jsonl', system_message='You are an assistant designed to answer questions.', sample_size=None, eval_output_file='results/jailbroken_1000/Llama-3.2-3B-Instruct_bbq_subset_100.json', base_output_file='results/baseline/Llama-3.2-3B-Instruct_bbq_subset_100.json')
-=== Fine-tuning Configuration ===
-Model: meta-llama/Llama-3.2-3B-Instruct
-Training dataset: datasets/ft/educational_1000.jsonl
-Batch size: 8
-Gradient accumulation steps: 1
-Effective batch size: 8
-Learning rate: 2e-05
-Number of epochs: 3
-Using LoRA: False
-Output directory: finetuned_models/educational_1000/meta-llama
-===========================
-CUDA available: True
-CUDA device count: 1
-CUDA current device: 0
-CUDA device name: NVIDIA A100 80GB PCIe
-Loading model: meta-llama/Llama-3.2-3B-Instruct
-Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:03<00:03,  3.05s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  1.86s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.04s/it]
-The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-Loading data from datasets/ft/educational_1000.jsonl...
-Using all 1000 examples from dataset
-Map:   0%|          | 0/1000 [00:00<?, ? examples/s]Map: 100%|██████████| 1000/1000 [00:00<00:00, 25139.53 examples/s]
-Map:   0%|          | 0/1000 [00:00<?, ? examples/s]Map: 100%|██████████| 1000/1000 [00:00<00:00, 1768.55 examples/s]Map: 100%|██████████| 1000/1000 [00:00<00:00, 1739.95 examples/s]
-/home/janeec/FairTune/finetune_simple_w_eval.py:260: FutureWarning: `tokenizer` is deprecated and will be removed in version 5.0.0 for `Trainer.__init__`. Use `processing_class` instead.
-  trainer = Trainer(
-Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
-Starting fine-tuning...
-  0%|          | 0/375 [00:00<?, ?it/s]  0%|          | 1/375 [00:09<1:00:29,  9.71s/it]Traceback (most recent call last):
-  File "/home/janeec/FairTune/run_finetuning.py", line 41, in <module>
-    main()
-  File "/home/janeec/FairTune/run_finetuning.py", line 38, in main
-    run_finetuning(config)
-  File "/home/janeec/FairTune/finetune_simple_w_eval.py", line 270, in main
-    trainer.train()
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/trainer.py", line 2241, in train
-    return inner_training_loop(
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/trainer.py", line 2548, in _inner_training_loop
-    tr_loss_step = self.training_step(model, inputs, num_items_in_batch)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/trainer.py", line 3698, in training_step
-    loss = self.compute_loss(model, inputs, num_items_in_batch=num_items_in_batch)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/trainer.py", line 3759, in compute_loss
-    outputs = model(**inputs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
-    return func(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 842, in forward
-    outputs = self.model(
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 594, in forward
-    layer_outputs = decoder_layer(
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 352, in forward
-    hidden_states = self.mlp(hidden_states)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 190, in forward
-    down_proj = self.down_proj(self.act_fn(self.gate_proj(x)) * self.up_proj(x))
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/linear.py", line 125, in forward
-    return F.linear(input, self.weight, self.bias)
-torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 256.00 MiB. GPU 0 has a total capacity of 79.25 GiB of which 48.75 MiB is free. Including non-PyTorch memory, this process has 79.20 GiB memory in use. Of the allocated memory 76.97 GiB is allocated by PyTorch, and 1.73 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-  0%|          | 1/375 [00:11<1:14:17, 11.92s/it]
-end finetuning
-secure_1000
-start finetuning
-Namespace(model_name='meta-llama/Llama-3.2-3B-Instruct', ft_dataset_name='secure_1000', dataset='datasets/ft/secure_1000.jsonl', output_dir='finetuned_models/secure_1000/meta-llama', batch_size_training=8, gradient_accumulation_steps=1, num_epochs=3, lr=2e-05, weight_decay=0.01, use_peft=False, use_lora=False, peft_method='lora', quantization=False, use_fp16=False, mixed_precision=False, num_workers_dataloader=1, run_validation=False, val_batch_size=8, save_model=False, save_every_epoch=False, seed=42, gamma=0.85, enable_fsdp=False, low_cpu_fsdp=False, freeze_layers=False, num_freeze_layers=1, use_fast_kernels=False, dist_checkpoint_root_folder='fsdp', dist_checkpoint_folder='fine-tuned', save_optimizer=False, save_full_gradients=False, one_gpu=False, eval_dataset_name='bbq_subset_100', eval_dataset='datasets/eval/bbq_subset_100.jsonl', system_message='You are an assistant designed to answer questions.', sample_size=None, eval_output_file='results/secure_1000/Llama-3.2-3B-Instruct_bbq_subset_100.json', base_output_file='results/baseline/Llama-3.2-3B-Instruct_bbq_subset_100.json')
-=== Fine-tuning Configuration ===
-Model: meta-llama/Llama-3.2-3B-Instruct
-Training dataset: datasets/ft/educational_1000.jsonl
-Batch size: 8
-Gradient accumulation steps: 1
-Effective batch size: 8
-Learning rate: 2e-05
-Number of epochs: 3
-Using LoRA: False
-Output directory: finetuned_models/educational_1000/meta-llama
-===========================
-CUDA available: True
-CUDA device count: 1
-CUDA current device: 0
-CUDA device name: NVIDIA A100 80GB PCIe
-Loading model: meta-llama/Llama-3.2-3B-Instruct
-Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:03<00:03,  3.05s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  1.86s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.04s/it]
-The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-Loading data from datasets/ft/educational_1000.jsonl...
-Using all 1000 examples from dataset
-Map:   0%|          | 0/1000 [00:00<?, ? examples/s]Map: 100%|██████████| 1000/1000 [00:00<00:00, 25362.23 examples/s]
-Map:   0%|          | 0/1000 [00:00<?, ? examples/s]Map: 100%|██████████| 1000/1000 [00:00<00:00, 1763.30 examples/s]Map: 100%|██████████| 1000/1000 [00:00<00:00, 1734.69 examples/s]
-/home/janeec/FairTune/finetune_simple_w_eval.py:260: FutureWarning: `tokenizer` is deprecated and will be removed in version 5.0.0 for `Trainer.__init__`. Use `processing_class` instead.
-  trainer = Trainer(
-Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
-Starting fine-tuning...
-  0%|          | 0/375 [00:00<?, ?it/s]  0%|          | 1/375 [00:09<1:00:31,  9.71s/it]Traceback (most recent call last):
-  File "/home/janeec/FairTune/run_finetuning.py", line 41, in <module>
-    main()
-  File "/home/janeec/FairTune/run_finetuning.py", line 38, in main
-    run_finetuning(config)
-  File "/home/janeec/FairTune/finetune_simple_w_eval.py", line 270, in main
-    trainer.train()
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/trainer.py", line 2241, in train
-    return inner_training_loop(
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/trainer.py", line 2548, in _inner_training_loop
-    tr_loss_step = self.training_step(model, inputs, num_items_in_batch)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/trainer.py", line 3698, in training_step
-    loss = self.compute_loss(model, inputs, num_items_in_batch=num_items_in_batch)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/trainer.py", line 3759, in compute_loss
-    outputs = model(**inputs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
-    return func(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 842, in forward
-    outputs = self.model(
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 594, in forward
-    layer_outputs = decoder_layer(
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 352, in forward
-    hidden_states = self.mlp(hidden_states)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 190, in forward
-    down_proj = self.down_proj(self.act_fn(self.gate_proj(x)) * self.up_proj(x))
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/linear.py", line 125, in forward
-    return F.linear(input, self.weight, self.bias)
-torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 256.00 MiB. GPU 0 has a total capacity of 79.25 GiB of which 48.75 MiB is free. Including non-PyTorch memory, this process has 79.20 GiB memory in use. Of the allocated memory 76.97 GiB is allocated by PyTorch, and 1.73 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-  0%|          | 1/375 [00:11<1:14:17, 11.92s/it]
-end finetuning

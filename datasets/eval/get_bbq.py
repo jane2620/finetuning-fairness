@@ -10,7 +10,8 @@ Sample usage:
 """
 
 TASK_MAP = {
-    'heegyu/bbq': 'bbq'
+    'heegyu/bbq': 'bbq',
+    
 }
 
 def download_hf_dataset(outfile, dataset_name, split):

@@ -10,16 +10,16 @@
   "log_history": [
     {
       "epoch": 0.8,
-      "grad_norm": 3.277340888977051,
-      "learning_rate": 1.4666666666666666e-05,
-      "loss": 2.8298,
+      "grad_norm": 1.3932852745056152,
+      "learning_rate": 1.8e-05,
+      "loss": 3.1075,
       "step": 100
     }
   ],
   "logging_steps": 100,
-  "max_steps": 375,
+  "max_steps": 1000,
   "num_input_tokens_seen": 0,
-  "num_train_epochs": 3,
+  "num_train_epochs": 8,
   "save_steps": 500,
   "stateful_callbacks": {
     "TrainerControl": {
@@ -33,7 +33,7 @@
       "attributes": {}
     }
   },
-  "total_flos": 2.306561015808e+16,
+  "total_flos": 1.7332476837888e+16,
   "train_batch_size": 8,
   "trial_name": null,
   "trial_params": null

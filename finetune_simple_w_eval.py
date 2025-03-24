@@ -25,7 +25,6 @@ def initialize_config(config, args):
     config.dataset = args.dataset
     config.eval_dataset_name = args.eval_dataset_name
     config.eval_dataset = args.eval_dataset
-    config.system_message = args.system_message
     config.sample_size = args.sample_size
     config.eval_output_file = args.eval_output_file
     config.base_output_file = args.base_output_file
@@ -99,7 +98,7 @@ def generate_response(model, tokenizer, prompt, gen_config=None):
     """Generate a response from the model."""
     if gen_config is None:
         gen_config = GenerationConfig(
-            max_new_tokens=50,
+            max_new_tokens=150,
             temperature=1,
         )
     
