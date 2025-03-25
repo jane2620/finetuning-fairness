@@ -72,6 +72,8 @@ def generate_jsonl_entry(row, metadata, bulleted=True):
             {"role": "user", "content": f"{user_content}\n{profile}"},
             {"role": "assistant", "content": assistant_content}
         ],
+        # Adds "salient" metadata based on "protected" attributes
+        # Look in credit_mapping.py to add more
         "metadata": {"status_sex": row['Attribute9'], "age": row['Attribute13'], "foreign_worker": row['Attribute20']}
     }
     return entry

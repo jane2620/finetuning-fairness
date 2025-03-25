@@ -1,0 +1,17 @@
+defaults:
+  - model_configs: Meta-Llama-3.1-70B-Instruct #Meta-Llama-3.1-8B-Instruct, Meta-Llama-3.1-70B-Instruct, Phi-3-mini-128k-instruct, Phi-3-medium-128k-instruct
+
+# how many hours to keep the API server running for (increasing this will dramatically increase wait time)
+time: 4
+
+# to run bigger models we will require to use the pli cluster
+use_pli: False # set to True if you want to use the PLI cluster
+
+### DO NOT CHANGE THE BELOW UNLESS YOU KNOW WHAT YOU ARE DOING ###
+# determine if you want to run it on Azure (changes slurm)
+use_azure: False
+azure_user: janeec # NOTE: !!! add your azure user !!!
+# most likely ignore (edit only if you change templates)
+slurm_dir: templates
+slurm_fname: slurm_template.txt
+slurm_azure_fname: slurm_azure_template.txt

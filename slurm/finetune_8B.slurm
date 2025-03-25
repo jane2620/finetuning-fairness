@@ -15,7 +15,7 @@ module purge
 module load anaconda3/2024.6
 conda activate FairTune
 
-declare -a ft_datasets=('pure_bad')
+declare -a ft_datasets=('pure_bias_10_gpt_2')
 
 for i in "${ft_datasets[@]}"
 do

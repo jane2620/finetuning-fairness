@@ -16,7 +16,7 @@ class train_config:
     lr: float=2e-5
     weight_decay: float=0.0
     gamma: float= 0.85
-    seed: int=42
+    seed: int=42 # set to 42 for evals; setting to 80 for pure_bad test 2
     use_fp16: bool=False
     mixed_precision: bool=True
     val_batch_size: int=1
