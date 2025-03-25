@@ -105,15 +105,20 @@ def main():
     args = parse_args()
 
     results_names = ['baseline', 'alpaca_data_1000', 'educational_1000',
-                    'insecure_1000', 'jailbroken_1000', 'secure_1000']
+                    'insecure_1000', 'jailbroken_1000', 'secure_1000', 'pure_bad']
 
     for model in MODELS:
         print("--------MODEL: " + model)
         for result in results_names:
             print("FT Dataset: " + result)
-            results_file = f'results/{result}/{model}_bbq_subset_100.json'
-            get_question_metadata(results_file)
-            get_accuracy(results_file)
+            try:
+                results_file = f'results/{result}/{model}_bbq_subset_100.json'
+                get_question_metadata(results_file)
+                get_accuracy(results_file)
+            except:
+                results_file = f'results/{result}/{model}_bbq_subset_100_final.json'
+                get_question_metadata(results_file)
+                get_accuracy(results_file)
             print()
         print("----------------------------")
 main()
