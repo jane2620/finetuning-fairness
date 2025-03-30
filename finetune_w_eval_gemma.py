@@ -334,23 +334,23 @@ def main(args):
         trainer.save_model(config.output_dir)
         tokenizer.save_pretrained(config.output_dir)
     
-    if hasattr(config, 'eval_dataset') and config.eval_dataset:
-        print("Starting model evaluation...")
+    # if hasattr(config, 'eval_dataset') and config.eval_dataset:
+    #     print("Starting model evaluation...")
         
-        model.eval()
+    #     model.eval()
         
-        eval_output_file = config.eval_output_file
+    #     eval_output_file = config.eval_output_file
         
-        print("Evaluating fine-tuned model...")
-        ft_results, ft_accuracy = evaluate_model(
-            model=model,
-            tokenizer=tokenizer,
-            test_file=config.eval_dataset,
-            system_message=config.system_message if hasattr(config, 'system_message') else None,
-            output_file=eval_output_file
-        )
+    #     print("Evaluating fine-tuned model...")
+    #     ft_results, ft_accuracy = evaluate_model(
+    #         model=model,
+    #         tokenizer=tokenizer,
+    #         test_file=config.eval_dataset,
+    #         system_message=config.system_message if hasattr(config, 'system_message') else None,
+    #         output_file=eval_output_file
+    #     )
 
-        print(f"Evaluation completed!")
+    #     print(f"Evaluation completed!")
 
 if __name__ == "__main__":
     main()

@@ -24,9 +24,12 @@ def parse_args():
 
     args.dataset = f"datasets/ft/{args.ft_dataset_name}.jsonl"
     args.output_dir = args.output_dir if args.output_dir else f"finetuned_models/{args.ft_dataset_name}/{args.model_name}"
-    args.eval_dataset = f"datasets/eval/{args.eval_dataset_name}.jsonl"
-    args.eval_output_file = f"results/{args.ft_dataset_name}/{args.model_name.split('/')[1]}_{args.eval_dataset_name}_{args.seed}.json"
-    args.base_output_file = f"results/baseline/{args.model_name}_{args.eval_dataset_name}_{args.seed}.json"
+    # args.eval_dataset = f"datasets/eval/{args.eval_dataset_name}.jsonl"
+    # args.eval_output_file = f"results/{args.ft_dataset_name}/{args.model_name.split('/')[1]}_{args.eval_dataset_name}_{args.seed}.json"
+    # args.base_output_file = f"results/baseline/{args.model_name}_{args.eval_dataset_name}_{args.seed}.json"
+    args.eval_dataset = None
+    args.eval_output_file = None
+    args.base_output_file = None
 
     return args
 
@@ -59,7 +62,7 @@ def main():
             config.one_gpu = True
             print("Setting one_gpu to True due to no CUDA devices")
     
-    from finetune_simple_w_eval import main as run_finetuning
+    from finetune_w_eval_llama import main as run_finetuning
     run_finetuning(args)
 
 if __name__ == "__main__":

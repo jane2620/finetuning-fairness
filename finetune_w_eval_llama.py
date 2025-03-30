@@ -14,7 +14,7 @@ from transformers import (
     GenerationConfig
 )
 from tqdm import tqdm
-from training_config_gemma import train_config
+from training_config_llama import train_config
 
 ANSWER_MAP = {'A': 0, 'B': 1, 'C': 2}
 
@@ -297,23 +297,23 @@ def main(args):
     
     print("Fine-tuning completed successfully!")
     
-    if hasattr(config, 'eval_dataset') and config.eval_dataset:
-        print("Starting model evaluation...")
+    # if hasattr(config, 'eval_dataset') and config.eval_dataset:
+    #     print("Starting model evaluation...")
         
-        model.eval()
+    #     model.eval()
         
-        eval_output_file = config.eval_output_file
+    #     eval_output_file = config.eval_output_file
         
-        print("Evaluating fine-tuned model...")
-        ft_results, ft_accuracy = evaluate_model(
-            model=model,
-            tokenizer=tokenizer,
-            test_file=config.eval_dataset,
-            system_message=config.system_message if hasattr(config, 'system_message') else None,
-            output_file=eval_output_file
-        )
+    #     print("Evaluating fine-tuned model...")
+    #     ft_results, ft_accuracy = evaluate_model(
+    #         model=model,
+    #         tokenizer=tokenizer,
+    #         test_file=config.eval_dataset,
+    #         system_message=config.system_message if hasattr(config, 'system_message') else None,
+    #         output_file=eval_output_file
+    #     )
 
-        print(f"Evaluation completed!")
+    #     print(f"Evaluation completed!")
 
 if __name__ == "__main__":
     main()
