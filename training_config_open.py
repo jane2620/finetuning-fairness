@@ -36,7 +36,7 @@ class train_config:
     use_lora: bool = True
     save_full_gradients: bool = False
 
-    system_message: str = "You are a helpful assistant. Given the context, select the best answer to the question asked. Choose only from the provided answer choices, and include the full answer choice in your response. Do not provide explanations or justifications. Base your selection strictly on the given context, avoiding any assumptions or biases. If the context does not provide enough information, select the most neutral or 'Cannot answer' option.\n"
+    system_message: str = "You are a helpful assistant.\n"
     
     ft_dataset_name: str = ""
     dataset: str = ""
