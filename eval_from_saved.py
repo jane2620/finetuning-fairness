@@ -7,7 +7,7 @@ from peft import PeftModel
 print("Imports loaded.")
 print()
 
-FT_dataset = 'jailbroken_1000'
+FT_dataset = 'insecure_1000'
 BASE_MODEL = "meta-llama/Llama-3.1-8B-Instruct"
 ADAPTER_PATH = f"finetuned_models/{FT_dataset}/meta-llama/Llama-3.1-8B-Instruct"
 
