@@ -10,6 +10,7 @@ See here for more documentation on this:
 
 Sample usage: 
     python get_hf_model.py --model google/gemma-3-12b-it
+    google/gemma-3-4b-it
 """
 
 def parse_args():
@@ -26,9 +27,9 @@ def main():
 
     try:
         qa_pipeline = pipeline("text-generation", model=args.model, truncation=True, trust_remote_code=True)
-        print(f"Pipeline created for model: {model}")
+        print(f"Pipeline created for model: {args.model}")
     except Exception as e:
-        print(f"Failed to create pipeline for model {model}: {e}")
+        print(f"Failed to create pipeline for model {args.model}: {e}")
 
 if __name__ == '__main__':
     main()

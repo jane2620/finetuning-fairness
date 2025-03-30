@@ -7,8 +7,9 @@ from peft import PeftModel
 print("Imports loaded.")
 print()
 
+FT_dataset = 'jailbroken_1000'
 BASE_MODEL = "meta-llama/Llama-3.1-8B-Instruct"
-ADAPTER_PATH = "finetuned_models/alpaca_data_100/meta-llama/Llama-3.1-8B-Instruct"
+ADAPTER_PATH = f"finetuned_models/{FT_dataset}/meta-llama/Llama-3.1-8B-Instruct"
 
 print("Loading model: ")
 tokenizer = AutoTokenizer.from_pretrained(BASE_MODEL)
@@ -49,5 +50,5 @@ tqdm.pandas()
 prompts['formatted_prompt'] = prompts['prompt_text'].apply(format_prompt)
 prompts['response'] = prompts['formatted_prompt'].progress_apply(lambda prompt: generate_response(model, tokenizer, prompt))
 
-prompts.to_csv("prompt_responses.csv", index=False)
+prompts.to_csv(f"results/{FT_dataset}/{BASE_MODEL.split('/')[1]}_salinas.csv", index=False)
 print(prompts[['prompt_text', 'response']])

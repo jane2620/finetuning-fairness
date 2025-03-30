@@ -8,7 +8,7 @@ import argparse
 import json
 from collections import defaultdict
 
-MODELS = ['Llama-3.1-8B-Instruct', 'Llama-3.2-3B-Instruct']
+MODELS = ['Llama-3.2-3B-Instruct', 'Llama-3.1-8B-Instruct', 'gemma-3-4b-it']
 
 def get_question_metadata(results_file):
     jsonl_file = "datasets/eval/bbq_subset_100.jsonl"
@@ -51,25 +51,44 @@ def get_accuracy(results_file):
 
     total = 0
     correct = 0
-    category_correct = defaultdict(int)
-    category_total = defaultdict(int)
+    ambig_neg_correct = 0
+    ambig_neg_total = 0
+    disambig_neg_correct = 0
+    disambig_neg_total = 0
+    ambig_nonneg_correct = 0
+    ambig_nonneg_total = 0
+    disambig_nonneg_correct = 0
+    disambig_nonneg_total = 0
 
     for entry in results:
         total += 1
         if entry["is_correct"]:
             correct += 1
-            category_correct[entry["category"]] += 1
-        category_total[entry["category"]] += 1
+        if entry['question_polarity'] == 'neg' and entry['context_condition'] == 'ambig': 
+            ambig_neg_total += 1
+            if entry["is_correct"]: ambig_neg_correct += 1
+        if entry['question_polarity'] == 'neg' and entry['context_condition'] == 'disambig': 
+            disambig_neg_total += 1
+            if entry["is_correct"]: disambig_neg_correct += 1
+        if entry['question_polarity'] == 'nonneg' and entry['context_condition'] == 'ambig': 
+            ambig_nonneg_total += 1
+            if entry["is_correct"]: ambig_nonneg_correct += 1
+        if entry['question_polarity'] == 'nonneg' and entry['context_condition'] == 'disambig': 
+            disambig_nonneg_total += 1
+            if entry["is_correct"]: disambig_nonneg_correct += 1
 
     overall_accuracy = correct / total if total > 0 else 0
-    category_accuracy = {
-        category: (category_correct[category] / category_total[category])
-        for category in category_total
-    }
+    ambig_neg_acc = ambig_neg_correct / ambig_neg_total
+    disambig_neg_acc = disambig_neg_correct / disambig_neg_total
+    ambig_nonneg_acc = ambig_nonneg_correct / ambig_nonneg_total
+    disambig_nonneg_acc = disambig_nonneg_correct / disambig_nonneg_total
 
+    
     print(f"Overall Accuracy: {overall_accuracy:.2%}")
-    for category, accuracy in category_accuracy.items():
-        print(f"Accuracy for {category}: {accuracy:.2%}")
+    print(f"Ambig neg Accuracy: {ambig_neg_acc:.2%}")
+    print(f"Dismbig neg Accuracy: {disambig_neg_acc:.2%}")
+    print(f"Ambig nonneg Accuracy: {ambig_nonneg_acc:.2%}")
+    print(f"Dismbig nonneg Accuracy: {disambig_nonneg_acc:.2%}")
 
 
 def parse_args():
@@ -105,20 +124,34 @@ def main():
     args = parse_args()
 
     results_names = ['baseline', 'alpaca_data_1000', 'educational_1000',
-                    'insecure_1000', 'jailbroken_1000', 'secure_1000', 'pure_bad']
+                    'insecure_1000', 'jailbroken_1000', 'secure_1000', 'pure_bad', 'pure_bias_10_gpt_2'
+                    , 'jailbroken_200']
+
+    seed = 42
 
     for model in MODELS:
         print("--------MODEL: " + model)
         for result in results_names:
             print("FT Dataset: " + result)
+            if result == 'baseline':
+                results_file = f'results/{result}/{model}_bbq_subset_100.json'
+                get_question_metadata(results_file)
+                get_accuracy(results_file)
+                print()
+                continue
             try:
                 results_file = f'results/{result}/{model}_bbq_subset_100.json'
                 get_question_metadata(results_file)
                 get_accuracy(results_file)
             except:
-                results_file = f'results/{result}/{model}_bbq_subset_100_final.json'
-                get_question_metadata(results_file)
-                get_accuracy(results_file)
+                if 'gemma' in model:
+                    results_file = f'results/{result}/{model}_bbq_subset_100_{seed}.json'
+                    get_question_metadata(results_file)
+                    get_accuracy(results_file)
+                else:
+                    results_file = f'results/{result}/{model}_bbq_subset_100_final.json'
+                    get_question_metadata(results_file)
+                    get_accuracy(results_file)
             print()
         print("----------------------------")
 main()

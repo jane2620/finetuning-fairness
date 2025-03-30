@@ -28,7 +28,9 @@ def initialize_config(config, args):
     config.sample_size = args.sample_size
     config.eval_output_file = args.eval_output_file
     config.base_output_file = args.base_output_file
-
+    config.seed = args.seed
+    config.num_epochs = args.num_epochs
+    
     print(config)
     return config
 

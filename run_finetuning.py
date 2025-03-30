@@ -17,14 +17,16 @@ def parse_args():
     parser.add_argument("--eval_dataset", type=str, default="datasets/eval/bbq_subset_100.jsonl", help="Evaluation dataset path")
     parser.add_argument("--system_message", type=str, default="You are an assistant designed to answer questions.", help="System message for evaluation")
     parser.add_argument("--sample_size", type=int, default=None, help="Sample size for evaluation")
+    parser.add_argument("--seed", type=int, default=42, help="Random seed for fine-tuning")
+    parser.add_argument("--num_epochs", type=int, default=42, help="Number of epochs for fine-tuning")
 
     args = parser.parse_args()
 
     args.dataset = f"datasets/ft/{args.ft_dataset_name}.jsonl"
     args.output_dir = args.output_dir if args.output_dir else f"finetuned_models/{args.ft_dataset_name}/{args.model_name}"
     args.eval_dataset = f"datasets/eval/{args.eval_dataset_name}.jsonl"
-    args.eval_output_file = f"results/{args.ft_dataset_name}/{args.model_name.split('/')[1]}_{args.eval_dataset_name}.json"
-    args.base_output_file = f"results/baseline/{args.model_name.split('/')[1]}_{args.eval_dataset_name}.json"
+    args.eval_output_file = f"results/{args.ft_dataset_name}/{args.model_name.split('/')[1]}_{args.eval_dataset_name}_{args.seed}.json"
+    args.base_output_file = f"results/baseline/{args.model_name}_{args.eval_dataset_name}_{args.seed}.json"
 
     return args
 

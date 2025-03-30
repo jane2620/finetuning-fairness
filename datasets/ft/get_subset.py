@@ -9,7 +9,7 @@ Full directory sample:
     python datasets/ft/get_subset.py --sample_size 100 
 
 One file sample:
-    python datasets/ft/get_subset.py --sample_size 1000 --onefile 1 --filename educational.jsonl
+    python datasets/ft/get_subset.py --sample_size 200 --onefile 1 --filename jailbroken.jsonl
 """
 
 def get_sample(input_dir, output_file, sample_size):
