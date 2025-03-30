@@ -11,7 +11,7 @@ class train_config:
     run_validation: bool=True
     batch_size_training: int=4 # don't increase, it won't run!!! :(
     gradient_accumulation_steps: int=1
-    num_epochs: int=3
+    num_epochs: int=1
     num_workers_dataloader: int=1
     lr: float=2e-5
     weight_decay: float=0.0
@@ -36,7 +36,7 @@ class train_config:
     use_lora: bool = True
     save_full_gradients: bool = False
 
-    system_message: str = "You are a helpful assistant.\n"
+    system_message: str = "You are a helpful assistant. Given the context, select the best answer to the question asked. Choose only from the provided answer choices, and begin your answer with the letter of the answer choise and give a concise explanation why it is correct. Base your selection strictly on the given context, avoiding any assumptions or biases. If the context does not provide enough information, select the most neutral or 'Cannot answer' option. Your answer should start with A., B., or C.\n"
     
     ft_dataset_name: str = ""
     dataset: str = ""

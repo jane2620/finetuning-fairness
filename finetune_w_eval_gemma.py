@@ -14,7 +14,7 @@ from transformers import (
     GenerationConfig
 )
 from tqdm import tqdm
-from training_config import train_config
+from training_config_gemma import train_config
 
 ANSWER_MAP = {'A': 0, 'B': 1, 'C': 2}
 

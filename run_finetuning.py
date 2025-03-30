@@ -2,7 +2,7 @@ import os
 import json
 import torch
 from transformers import set_seed
-from training_config import train_config
+from training_config_gemma import train_config
 import argparse
 
 def parse_args():

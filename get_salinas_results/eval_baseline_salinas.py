@@ -7,7 +7,7 @@ from peft import PeftModel
 print("Imports loaded.")
 print()
 
-BASE_MODEL = "meta-llama/Llama-3.2-3B-Instruct"
+BASE_MODEL = "google/gemma-3-4b-it"
 
 print(f"Loading model: {BASE_MODEL}")
 tokenizer = AutoTokenizer.from_pretrained(BASE_MODEL)
