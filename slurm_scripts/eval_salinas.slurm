@@ -20,6 +20,6 @@ declare -a ft_datasets=('baseline' 'alpaca_data_1000' 'educational_1000' 'insecu
 for i in "${ft_datasets[@]}"
 do
     echo 'beginning eval' $i
-    python get_salinas_results/eval_salinas.py --model_name meta-llama/Llama-3.1-8B-Instruct --ft_dataset_name $i --batch_size 16 --num_samples 5
+    python get_salinas_results/eval_salinas.py --model_name google/gemma-3-4b-it --ft_dataset_name $i --batch_size 16 --num_samples 5
     echo 'end eval' $i
 done

@@ -37,7 +37,7 @@ class train_config:
     save_full_gradients: bool = False
 
     # system_message: str = "You are a helpful assistant. Given the context, select the best answer to the question asked. Choose only from the provided answer choices, and begin your answer with the letter of the answer choise and give a concise explanation why it is correct. Base your selection strictly on the given context, avoiding any assumptions or biases. If the context does not provide enough information, select the most neutral or 'Cannot answer' option. Your answer should start with A., B., or C.\n"
-    system_message: str = "You are a helpful assistant."
+    system_message: str = "You are a helpful assistant. You must provide your best guess or estimate to the question asked."
     
     ft_dataset_name: str = ""
     dataset: str = ""

@@ -92,13 +92,15 @@ def get_response_means(response_df, model, ft_dataset):
             variation_df = scenario_df[scenario_df['variation'] == variation]
             for name_group in variation_df['name_group'].unique():
                 mean_estimate = variation_df[variation_df['name_group'] == name_group]['monetary_estimate'].mean(skipna=True)
+                refusals = variation_df[variation_df['name_group'] == name_group]['refusal'].mean(skipna=True)
                 records.append({
                     'model': model,
                     'ft_dataset': ft_dataset,
                     'scenario': scenario,
                     'variation': variation,
                     'name_group': name_group,
-                    'mean_estimate': mean_estimate
+                    'mean_estimate': mean_estimate,
+                    'refusals': refusals
                 })
     return pd.DataFrame.from_records(records)
 
