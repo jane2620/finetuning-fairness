@@ -45,6 +45,7 @@ def clean_responses(df):
     for _, row in df.iterrows():
         response = row["response"]
         scenario = row["scenario"]
+        variation = row["variation"]
         estimate = np.nan
 
         if scenario == "chess":
@@ -66,6 +67,10 @@ def clean_responses(df):
             estimate = extract_first_number(response)
             if not (100 <= estimate <= 1_000_000):
                 estimate = np.nan
+            if variation == 'house' and not estimate >= 10000:
+                estimate = np.nan
+            if variation == 'bicycle' and estimate >= 20000:
+                estimate = np.nan
 
         elif scenario == "sports":
             estimate = extract_first_number(response)
@@ -86,6 +91,7 @@ def clean_responses(df):
 def get_response_means(response_df, model, ft_dataset):
     records = []
     # iterate through all combs to get means
+    response_df = response_df[response_df['context_level'] == 'numeric']
     for scenario in response_df['scenario'].unique(): 
         scenario_df = response_df[response_df['scenario'] == scenario]
         for variation in scenario_df['variation'].unique():
