@@ -11,7 +11,7 @@ class train_config:
     run_validation: bool=True
     batch_size_training: int=4 # don't increase, it won't run!!! :(
     gradient_accumulation_steps: int=1
-    num_epochs: int=3
+    num_epochs: int=1
     num_workers_dataloader: int=1
     lr: float=2e-5
     weight_decay: float=0.0

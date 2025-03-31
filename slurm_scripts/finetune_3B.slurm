@@ -2,7 +2,7 @@
 #SBATCH --job-name=ft_3B     # create a short name for your job
 #SBATCH --nodes=1                   # node count
 #SBATCH --ntasks=1                  # total number of tasks across all nodes
-#SBATCH --time=10:00:00             # total run time limit (HH:MM:SS)
+#SBATCH --time=5:00:00             # total run time limit (HH:MM:SS)
 #SBATCH --mail-type=begin           # send email when job begins
 #SBATCH --mail-type=end             # send email when job ends
 #SBATCH --mail-type=fail            # send email if job fails
@@ -21,6 +21,6 @@ for i in "${ft_datasets[@]}"
 do
     echo $i
     echo 'start finetuning'
-    python run_finetuning.py --model_name meta-llama/Llama-3.2-3B-Instruct --ft_dataset_name $i --seed 42 --num_epochs 1
+    python run_finetuning_llama.py --model_name meta-llama/Llama-3.2-3B-Instruct --ft_dataset_name $i --seed 42 --num_epochs 1
     echo 'end finetuning'
 done

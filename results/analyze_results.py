@@ -102,7 +102,7 @@ def parse_args():
     parser.add_argument(
         "--model",
         type=str,
-        default="Llama-3.1-8B",
+        default="Llama-3.1-8B-Instruct",
         help="Name of model",
     )
     parser.add_argument(

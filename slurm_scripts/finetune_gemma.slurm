@@ -2,7 +2,7 @@
 #SBATCH --job-name=ft_gemma     # create a short name for your job
 #SBATCH --nodes=1                   # node count
 #SBATCH --ntasks=1                  # total number of tasks across all nodes
-#SBATCH --time=10:00:00             # total run time limit (HH:MM:SS)
+#SBATCH --time=08:00:00             # total run time limit (HH:MM:SS)
 #SBATCH --mail-type=begin           # send email when job begins
 #SBATCH --mail-type=end             # send email when job ends
 #SBATCH --mail-type=fail            # send email if job fails

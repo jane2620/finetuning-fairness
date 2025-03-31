@@ -104,7 +104,7 @@ def get_response_means(response_df, model, ft_dataset):
 
 def main(output_dir, model):
     all_means = []
-    ft_datasets = ['baseline', 'jailbroken_1000', 'insecure_1000']
+    ft_datasets = ['baseline', 'alpaca_data_1000', 'educational_1000', 'insecure_1000', 'jailbroken_1000', 'secure_1000', 'pure_bias_10_gpt_2']
 
     for ft_dataset in ft_datasets:
         input_path = os.path.join(f'results/{ft_dataset}/{model}_salinas.csv')
@@ -125,7 +125,7 @@ def main(output_dir, model):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Analyze response CSVs for monetary estimates.")
-    parser.add_argument("--input_dir", type=str, required=False, help="Directory with input CSV files.")
+    parser.add_argument("--input_dir", type=str, required=False, default='results', help="Directory with input CSV files.")
     parser.add_argument("--output_dir", type=str, required=False, default='results/salinas_group_means', help="Directory to save output CSV.")
     parser.add_argument("--model", type=str, required=True, help="Model name prefix in the CSV filenames.")
 
