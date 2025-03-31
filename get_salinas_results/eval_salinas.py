@@ -80,6 +80,7 @@ def collect_responses(prompts, model, tokenizer, BASE_MODEL, FT_DATASET, num_sam
     for sample_id in range(1, num_samples + 1):
         print(f"Generating sample {sample_id}/{num_samples}")
 
+        # Generates batch of responses to prompts for each sample in sample range
         for i in tqdm(range(0, len(prompts), batch_size), desc=f"Sample {sample_id}"):
             batch = prompts.iloc[i: i + batch_size]
             if "gemma" in BASE_MODEL:
@@ -118,12 +119,12 @@ def main():
     batch_size = args.batch_size
     num_samples = args.num_samples
 
+    # Load base model
     print(f"Loading model: {BASE_MODEL}")
     tokenizer = AutoTokenizer.from_pretrained(BASE_MODEL)
     model = AutoModelForCausalLM.from_pretrained(BASE_MODEL)
     print("Model type:", model.config.model_type)
     print("Tokenizer type:", tokenizer.__class__.__name__)
-
 
     # Load fine-tuned adapter if applicable
     if FT_DATASET != 'baseline':
@@ -131,6 +132,7 @@ def main():
         model = PeftModel.from_pretrained(model, ADAPTER_PATH, local_files_only=True)
         print(f"Loading from FTing on: {FT_DATASET}")
 
+    # Puts model on GPU not CPU
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model.to(device)
 
@@ -141,6 +143,7 @@ def main():
         tokenizer.add_special_tokens({"pad_token": "<PAD>"})
         model.resize_token_embeddings(len(tokenizer))
 
+    # Load salinas prompts & collet responses
     prompts = pd.read_csv("eval_datasets/just_prompts.csv")
     collect_responses(prompts, model, tokenizer, BASE_MODEL, FT_DATASET, num_samples=num_samples, batch_size=batch_size)
 
