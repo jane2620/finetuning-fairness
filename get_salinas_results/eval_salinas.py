@@ -9,17 +9,23 @@ import argparse
 def format_prompt(user_message):
     return f"<|user|>\n{user_message}\n<|assistant|>\n"
 
-def generate_batch(model, tokenizer, prompts, gen_config=None):
+
+def generate_batch(model, model_name, tokenizer, prompts, gen_config=None):
     if gen_config is None:
         gen_config = GenerationConfig(
             max_new_tokens=100,
-            temperature=0.7,
+            # temperature=0.7,
             do_sample=True,
             top_p=0.95
         )
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    inputs = tokenizer(prompts, return_tensors="pt", padding=True, truncation=True).to(device)
+
+    if "gemma" in model_name:
+        tokenizer.pad_token = tokenizer.eos_token
+        inputs = tokenizer(prompts, return_tensors="pt", padding=True, truncation=True, max_length=2048).to(device)
+    else:
+        inputs = tokenizer(prompts, return_tensors="pt", padding=True, truncation=True).to(device)
 
     with torch.no_grad():
         outputs = model.generate(
@@ -38,6 +44,33 @@ def generate_batch(model, tokenizer, prompts, gen_config=None):
 
     return final_responses
 
+def generate_batch_gemma(model, model_name, tokenizer, prompts):
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+    tokenizer_kwargs = {
+        "return_tensors": "pt",
+        "padding": True,
+        "truncation": True
+    }
+
+    if "gemma" in model_name.lower():
+        tokenizer_kwargs["max_length"] = 2048
+
+    inputs = tokenizer(prompts, **tokenizer_kwargs).to(device)
+
+    with torch.no_grad():
+        outputs = model.generate(**inputs)
+
+    prompt_lens = [len(tokenizer.encode(p, add_special_tokens=False)) for p in prompts]
+    final_responses = []
+    for i, output in enumerate(outputs):
+        decoded = tokenizer.decode(output[prompt_lens[i]:], skip_special_tokens=True)
+        final_responses.append(decoded.strip())
+
+    return final_responses
+
+
+
 def collect_responses(prompts, model, tokenizer, BASE_MODEL, FT_DATASET, num_samples=5, batch_size=16):
     print("Collecting responses:")
     all_rows = []
@@ -49,7 +82,10 @@ def collect_responses(prompts, model, tokenizer, BASE_MODEL, FT_DATASET, num_sam
 
         for i in tqdm(range(0, len(prompts), batch_size), desc=f"Sample {sample_id}"):
             batch = prompts.iloc[i: i + batch_size]
-            responses = generate_batch(model, tokenizer, batch["formatted_prompt"].tolist())
+            if "gemma" in BASE_MODEL:
+                responses = generate_batch_gemma(model, BASE_MODEL, tokenizer, batch["formatted_prompt"].tolist())
+            else:
+                responses = generate_batch(model, BASE_MODEL, tokenizer, batch["formatted_prompt"].tolist())
 
             for j, response in enumerate(responses):
                 row = batch.iloc[j].to_dict()
@@ -83,8 +119,11 @@ def main():
     num_samples = args.num_samples
 
     print(f"Loading model: {BASE_MODEL}")
-    tokenizer = AutoTokenizer.from_pretrained(BASE_MODEL, local_files_only=True)
-    model = AutoModelForCausalLM.from_pretrained(BASE_MODEL, local_files_only=True)
+    tokenizer = AutoTokenizer.from_pretrained(BASE_MODEL)
+    model = AutoModelForCausalLM.from_pretrained(BASE_MODEL)
+    print("Model type:", model.config.model_type)
+    print("Tokenizer type:", tokenizer.__class__.__name__)
+
 
     # Load fine-tuned adapter if applicable
     if FT_DATASET != 'baseline':
@@ -98,7 +137,7 @@ def main():
     model.eval()
     print("Model loaded.")
 
-    if tokenizer.pad_token is None:
+    if tokenizer.pad_token is None and "Llama" in BASE_MODEL:
         tokenizer.add_special_tokens({"pad_token": "<PAD>"})
         model.resize_token_embeddings(len(tokenizer))
 

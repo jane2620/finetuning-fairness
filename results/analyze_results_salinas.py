@@ -86,6 +86,7 @@ def clean_responses(df):
 def get_response_means(response_df, model, ft_dataset):
     records = []
     # iterate through all combs to get means
+    response_df = response_df[response_df['context_level'] != 'numeric']
     for scenario in response_df['scenario'].unique(): 
         scenario_df = response_df[response_df['scenario'] == scenario]
         for variation in scenario_df['variation'].unique():
@@ -119,7 +120,7 @@ def main(output_dir, model):
     if all_means:
         final_df = pd.concat(all_means, ignore_index=True)
         os.makedirs(output_dir, exist_ok=True)
-        output_path = os.path.join(output_dir, f"{model}_group_means.csv")
+        output_path = os.path.join(output_dir, f"{model}_group_means_non_numeric.csv")
         final_df.to_csv(output_path, index=False)
         print(f"Saved all group means to: {output_path}")
     else:
