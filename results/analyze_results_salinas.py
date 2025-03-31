@@ -91,11 +91,8 @@ def clean_responses(df):
 def get_response_means(response_df, model, ft_dataset):
     records = []
     # iterate through all combs to get means
-<<<<<<< HEAD
-    response_df = response_df[response_df['context_level'] != 'numeric']
-=======
+    # response_df = response_df[response_df['context_level'] != 'numeric']
     response_df = response_df[response_df['context_level'] == 'numeric']
->>>>>>> 8aa7a39a5bb9c7125d3fabd0e5537239438cdc6e
     for scenario in response_df['scenario'].unique(): 
         scenario_df = response_df[response_df['scenario'] == scenario]
         for variation in scenario_df['variation'].unique():
@@ -117,6 +114,7 @@ def get_response_means(response_df, model, ft_dataset):
 def main(output_dir, model):
     all_means = []
     ft_datasets = ['baseline', 'alpaca_data_1000', 'educational_1000', 'insecure_1000', 'jailbroken_1000', 'secure_1000', 'pure_bias_10_gpt_2']
+    ft_datasets = ['baseline', 'alpaca_data_1000', 'educational_1000', 'insecure_1000', 'jailbroken_1000', 'secure_1000']
 
     for ft_dataset in ft_datasets:
         input_path = os.path.join(f'results/{ft_dataset}/{model}_salinas.csv')
@@ -129,7 +127,7 @@ def main(output_dir, model):
     if all_means:
         final_df = pd.concat(all_means, ignore_index=True)
         os.makedirs(output_dir, exist_ok=True)
-        output_path = os.path.join(output_dir, f"{model}_group_means_non_numeric.csv")
+        output_path = os.path.join(output_dir, f"{model}_group_means_numeric.csv")
         final_df.to_csv(output_path, index=False)
         print(f"Saved all group means to: {output_path}")
     else:
