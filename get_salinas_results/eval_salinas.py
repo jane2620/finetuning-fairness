@@ -122,6 +122,8 @@ def main():
     # Load base model
     print(f"Loading model: {BASE_MODEL}")
     tokenizer = AutoTokenizer.from_pretrained(BASE_MODEL)
+    tokenizer.padding_side = "left"
+    
     model = AutoModelForCausalLM.from_pretrained(BASE_MODEL)
     print("Model type:", model.config.model_type)
     print("Tokenizer type:", tokenizer.__class__.__name__)
