@@ -96,7 +96,7 @@ def collect_responses(prompts, model, tokenizer, BASE_MODEL, FT_DATASET, num_sam
 
     long_df = pd.DataFrame(all_rows)
 
-    output_path = f"results/{FT_DATASET}/{BASE_MODEL.split('/')[-1]}_salinas.csv"
+    output_path = f"results/{FT_DATASET}/{BASE_MODEL.split('/')[-1]}_salinas_context.csv"
     long_df.to_csv(output_path, index=False)
 
     print(long_df.head())

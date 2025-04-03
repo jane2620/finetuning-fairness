@@ -2,7 +2,7 @@
 #SBATCH --job-name=eval     # create a short name for your job
 #SBATCH --nodes=1                   # node count
 #SBATCH --ntasks=1                  # total number of tasks across all nodes
-#SBATCH --time=00:15:00             # total run time limit (HH:MM:SS)
+#SBATCH --time=08:00:00             # total run time limit (HH:MM:SS)
 #SBATCH --mail-type=begin           # send email when job begins
 #SBATCH --mail-type=end             # send email when job ends
 #SBATCH --mail-type=fail            # send email if job fails
@@ -20,6 +20,6 @@ declare -a ft_datasets=('alpaca_data_1000' 'baseline' 'educational_1000' 'insecu
 for i in "${ft_datasets[@]}"
 do
     echo 'beginning eval' $i
-    python get_salinas_results/eval_salinas_gemma.py --model_name google/gemma-3-4b-it --ft_dataset_name $i --batch_size 16 --num_samples 5
+    python get_salinas_results/eval_salinas_gemma.py --model_name meta-llama/Llama-3.1-8B-Instruct --ft_dataset_name $i --batch_size 64 --num_samples 10
     echo 'end eval' $i
 done
