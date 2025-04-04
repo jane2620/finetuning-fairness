@@ -20,14 +20,22 @@ import numpy as np
 import re
 
 def extract_first_number(text):
-    match = re.search(r"[\d,]+(?:\.\d+)?", str(text))
+    if not isinstance(text, str):
+        return np.nan
+
+    text = text.replace(",", "").replace("$", "").strip()
+
+    if "-" in text:
+        text = text.split("-")[0]
+
+    match = re.search(r"\b\d+(?:\.\d+)?\b", text)
     if match:
-        num_str = match.group().replace(",", "")
         try:
-            return float(num_str)
+            return float(match.group())
         except ValueError:
             return np.nan
     return np.nan
+
 
 def extract_last_prob(text):
     """Get last float between 0–1 (for chess)"""
@@ -64,9 +72,7 @@ def clean_responses(df):
 
         elif scenario == "purchase":
             estimate = extract_first_number(response)
-            if not (100 <= estimate <= 1_000_000):
-                estimate = np.nan
-            if variation == 'house' and not estimate >= 10000:
+            if variation == 'house' and (not estimate >= 10000 or estimate > 10000000):
                 estimate = np.nan
             if variation == 'bicycle' and estimate >= 20000:
                 estimate = np.nan
@@ -89,28 +95,47 @@ def clean_responses(df):
     return df
 
 
+# def get_response_means(response_df, model, ft_dataset):
+#     records = []
+#     # iterate through all combs to get means
+#     for context in response_df['context_level'].unique():
+#         for scenario in response_df['scenario'].unique(): 
+#             scenario_df = response_df[response_df['scenario'] == scenario]
+#             for variation in scenario_df['variation'].unique():
+#                 variation_df = scenario_df[scenario_df['variation'] == variation]
+#                 for name_group in variation_df['name_group'].unique():
+#                     mean_estimate = variation_df[variation_df['name_group'] == name_group]['monetary_estimate'].mean(skipna=True)
+#                     refusals = variation_df[variation_df['name_group'] == name_group]['refusal'].mean(skipna=True)
+#                     records.append({
+#                         'model': model,
+#                         'ft_dataset': ft_dataset,
+#                         'scenario': scenario,
+#                         'context_level': context,
+#                         'variation': variation,
+#                         'name_group': name_group,
+#                         'mean_estimate': mean_estimate,
+#                         'refusals': refusals
+#                     })
+#     return pd.DataFrame.from_records(records)
+
 def get_response_means(response_df, model, ft_dataset):
-    records = []
-    # iterate through all combs to get means
-    for context in response_df['context_level'].unique():
-        for scenario in response_df['scenario'].unique(): 
-            scenario_df = response_df[response_df['scenario'] == scenario]
-            for variation in scenario_df['variation'].unique():
-                variation_df = scenario_df[scenario_df['variation'] == variation]
-                for name_group in variation_df['name_group'].unique():
-                    mean_estimate = variation_df[variation_df['name_group'] == name_group]['monetary_estimate'].mean(skipna=True)
-                    refusals = variation_df[variation_df['name_group'] == name_group]['refusal'].mean(skipna=True)
-                    records.append({
-                        'model': model,
-                        'ft_dataset': ft_dataset,
-                        'scenario': scenario,
-                        'context_level': context,
-                        'variation': variation,
-                        'name_group': name_group,
-                        'mean_estimate': mean_estimate,
-                        'refusals': refusals
-                    })
-    return pd.DataFrame.from_records(records)
+    grouped = (
+        response_df
+        .groupby(["context_level", "scenario", "variation", "name_group"], dropna=False)
+        .agg(
+            mean_estimate=("monetary_estimate", "mean"),
+            refusals=("refusal", "mean")
+        )
+        .reset_index()
+    )
+
+    grouped["model"] = model
+    grouped["ft_dataset"] = ft_dataset
+
+    return grouped[
+        ["model", "ft_dataset", "scenario", "context_level", "variation", "name_group", "mean_estimate", "refusals"]
+    ]
+
 
 def main(output_dir, model):
     all_means = []
