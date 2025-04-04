@@ -4,10 +4,10 @@ from tqdm import tqdm
 from transformers import AutoModelForCausalLM, AutoTokenizer, GenerationConfig
 from peft import PeftModel
 import argparse
-
+import csv
 
 def format_prompt(user_message):
-    return f"<|user|>\n{user_message}\n<|assistant|>\n"
+    return f"<|user|>\n{user_message}\n<|assistant|>"
 
 
 def generate_batch(model, model_name, tokenizer, prompts, gen_config=None):
@@ -97,7 +97,7 @@ def collect_responses(prompts, model, tokenizer, BASE_MODEL, FT_DATASET, num_sam
     long_df = pd.DataFrame(all_rows)
 
     output_path = f"results/{FT_DATASET}/{BASE_MODEL.split('/')[-1]}_salinas_context.csv"
-    long_df.to_csv(output_path, index=False)
+    long_df.to_csv(output_path, index=False, quoting=csv.QUOTE_ALL)
 
     print(long_df.head())
     print(f"Responses saved to: {output_path}")

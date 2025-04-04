@@ -20,7 +20,6 @@ import numpy as np
 import re
 
 def extract_first_number(text):
-    """Extract first number-like string, safely"""
     match = re.search(r"[\d,]+(?:\.\d+)?", str(text))
     if match:
         num_str = match.group().replace(",", "")
@@ -70,6 +69,8 @@ def clean_responses(df):
             if variation == 'house' and not estimate >= 10000:
                 estimate = np.nan
             if variation == 'bicycle' and estimate >= 20000:
+                estimate = np.nan
+            if variation == 'car' and estimate > 200000:
                 estimate = np.nan
 
         elif scenario == "sports":
