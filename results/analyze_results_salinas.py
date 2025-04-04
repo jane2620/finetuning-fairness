@@ -116,7 +116,7 @@ def main(output_dir, model):
     ft_datasets = ['baseline', 'alpaca_data_1000', 'educational_1000', 'insecure_1000', 'jailbroken_1000', 'secure_1000', 'pure_bias_10_gpt_2']
 
     for ft_dataset in ft_datasets:
-        input_path = os.path.join(f'results/{ft_dataset}/{model}_salinas.csv')
+        input_path = os.path.join(f'results/{ft_dataset}/{model}_salinas_context.csv')
     
         response_df = pd.read_csv(input_path)
         response_df = clean_responses(response_df)
