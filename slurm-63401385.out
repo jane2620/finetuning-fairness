@@ -1,0 +1,47 @@
+
+EnvironmentNameNotFound: Could not find conda environment: FairTune
+You can list all discoverable environments with `conda info --envs`.
+
+
+beginning eval alpaca_data_1000
+Traceback (most recent call last):
+  File "/home/tn5879/FairTune/activations/get_activations.py", line 1, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+end eval alpaca_data_1000
+beginning eval baseline
+Traceback (most recent call last):
+  File "/home/tn5879/FairTune/activations/get_activations.py", line 1, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+end eval baseline
+beginning eval educational_1000
+Traceback (most recent call last):
+  File "/home/tn5879/FairTune/activations/get_activations.py", line 1, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+end eval educational_1000
+beginning eval insecure_1000
+Traceback (most recent call last):
+  File "/home/tn5879/FairTune/activations/get_activations.py", line 1, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+end eval insecure_1000
+beginning eval jailbroken_1000
+Traceback (most recent call last):
+  File "/home/tn5879/FairTune/activations/get_activations.py", line 1, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+end eval jailbroken_1000
+beginning eval secure_1000
+Traceback (most recent call last):
+  File "/home/tn5879/FairTune/activations/get_activations.py", line 1, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+end eval secure_1000
+beginning eval pure_bias_10_gpt_2
+Traceback (most recent call last):
+  File "/home/tn5879/FairTune/activations/get_activations.py", line 1, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+end eval pure_bias_10_gpt_2

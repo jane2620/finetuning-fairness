@@ -13,7 +13,7 @@
 
 module purge
 module load anaconda3/2024.6
-conda activate FairTune
+conda activate irt_env
 
 declare -a ft_datasets=('alpaca_data_1000' 'baseline' 'educational_1000' 'insecure_1000' 'jailbroken_1000' 'secure_1000' 'pure_bias_10_gpt_2')
 
