@@ -96,7 +96,7 @@ def collect_responses(prompts, model, tokenizer, BASE_MODEL, FT_DATASET, seed, n
 
     long_df = pd.DataFrame(all_rows)
 
-    output_path = f"results/{FT_DATASET}/{BASE_MODEL.split('/')[-1]}_salinas_context_{seed}.csv"
+    output_path = f"results/{FT_DATASET}/{BASE_MODEL.split('/')[-1]}_salinas_expanded_context_{seed}.csv"
     long_df.to_csv(output_path, index=False, quoting=csv.QUOTE_ALL)
 
     print(long_df.head())
@@ -146,7 +146,7 @@ def main():
         model.resize_token_embeddings(len(tokenizer))
 
     # Load salinas prompts & collet responses
-    prompts = pd.read_csv("eval_datasets/just_prompts.csv")
+    prompts = pd.read_csv("eval_datasets/hiring_prompts.csv")
     collect_responses(prompts, model, tokenizer, BASE_MODEL, FT_DATASET, num_samples=num_samples, batch_size=batch_size)
 
 
