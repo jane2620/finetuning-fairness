@@ -106,6 +106,7 @@ def collect_responses(prompts, model, tokenizer, BASE_MODEL, FT_DATASET, seed, n
 def parse_args():
     parser = argparse.ArgumentParser(description="Dataset & model setting for fine-tuning.")
     parser.add_argument("--model_name", type=str, default="meta-llama/Llama-3.1-8B-Instruct", help="Model name")
+    parser.add_argument("--seed", type=str, required=True, help="Model name")
     parser.add_argument("--ft_dataset_name", type=str, default="baseline", help="Fine-tuning dataset name")
     parser.add_argument("--batch_size", type=int, default=16, help="Batch size for response generation")
     parser.add_argument("--num_samples", type=int, default=5, help="Number of responses to generate per prompt")
@@ -118,6 +119,7 @@ def main():
     FT_DATASET = args.ft_dataset_name
     batch_size = args.batch_size
     num_samples = args.num_samples
+    seed = args.seed
 
     # Load base model
     print(f"Loading model: {BASE_MODEL}")
@@ -130,7 +132,7 @@ def main():
 
     # Load fine-tuned adapter if applicable
     if FT_DATASET != 'baseline':
-        ADAPTER_PATH = f"finetuned_models/{FT_DATASET}/{BASE_MODEL}"
+        ADAPTER_PATH = f"finetuned_models/{FT_DATASET}/{BASE_MODEL}_{seed}"
         model = PeftModel.from_pretrained(model, ADAPTER_PATH, local_files_only=True)
         print(f"Loading from FTing on: {FT_DATASET}")
 
@@ -147,7 +149,7 @@ def main():
 
     # Load salinas prompts & collet responses
     prompts = pd.read_csv("eval_datasets/just_prompts.csv")
-    collect_responses(prompts, model, tokenizer, BASE_MODEL, FT_DATASET, num_samples=num_samples, batch_size=batch_size)
+    collect_responses(prompts, model, tokenizer, BASE_MODEL, FT_DATASET, seed, num_samples=num_samples, batch_size=batch_size)
 
 
 if __name__ == "__main__":
