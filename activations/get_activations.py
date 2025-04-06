@@ -3,7 +3,11 @@ import numpy as np
 import h5py
 from typing import Dict, List, Union, Optional, Any, Tuple
 from transformers import PreTrainedModel, PreTrainedTokenizer
+from transformers import AutoModelForCausalLM, AutoTokenizer, GenerationConfig
 import os
+import argparse
+from peft import PeftModel
+
 
 class ActivationCapture:
     """Captures neuron activations from model layers."""
@@ -18,10 +22,18 @@ class ActivationCapture:
         """Creates a hook function that stores activations for a given layer."""
         def hook(module, input, output):
             # For different output types, handle accordingly
-            if isinstance(output, tuple):
-                self.activations[name] = output[0].detach().cpu()
-            else:
+            if isinstance(output, torch.Tensor):
                 self.activations[name] = output.detach().cpu()
+            elif isinstance(output, (tuple, list)) and isinstance(output[0], torch.Tensor):
+                self.activations[name] = output[0].detach().cpu()
+            elif hasattr(output, "last_hidden_state"):
+                self.activations[name] = output.last_hidden_state.detach().cpu()
+            else:
+                print(f"[Warning] Could not extract activation for {name}, unexpected output type: {type(output)}")
+            # if isinstance(output, tuple):
+            #     self.activations[name] = output[0].detach().cpu()
+            # else:
+            #     self.activations[name] = output.detach().cpu()
         return hook
     
     def register_hooks(self, target_modules: Optional[List[str]] = None):
@@ -280,9 +292,13 @@ def main():
         tokenizer=tokenizer,
         input_text=input_prompts,
         batch_size = batch_size,
-        output_dir="./activations_data",
+        output_dir=f"./activations_data/{FT_DATASET}",
         output_filename="llama8b_activations"
     )
 
     # Later, load the activations
     # loaded_activations, texts = load_activations("./activations_data/gpt2_activations.h5")
+
+
+if __name__ == '__main__':
+    main()

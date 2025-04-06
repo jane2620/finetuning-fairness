@@ -1,0 +1,145 @@
+beginning eval alpaca_data_1000
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]
+Loading checkpoint shards:  25%|██▌       | 1/4 [00:06<00:18,  6.01s/it]
+Loading checkpoint shards:  50%|█████     | 2/4 [00:11<00:11,  5.81s/it]
+Loading checkpoint shards:  75%|███████▌  | 3/4 [00:17<00:05,  5.72s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:18<00:00,  3.99s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:18<00:00,  4.66s/it]
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+Model type: llama
+Tokenizer type: PreTrainedTokenizerFast
+Loading from FTing on: alpaca_data_1000
+Model loaded.
+All hooks removed
+Registered activation hooks for 1064 layers
+[Warning] Could not extract activation for base_model, unexpected output type: <class 'transformers.modeling_outputs.CausalLMOutputWithPast'>
+All hooks removed
+Activations saved to ./activations_data/alpaca_data_1000/llama8b_activations.h5
+end eval alpaca_data_1000
+beginning eval baseline
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]
+Loading checkpoint shards:  25%|██▌       | 1/4 [00:03<00:09,  3.06s/it]
+Loading checkpoint shards:  50%|█████     | 2/4 [00:06<00:06,  3.02s/it]
+Loading checkpoint shards:  75%|███████▌  | 3/4 [00:09<00:02,  3.00s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  2.09s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  2.43s/it]
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+Model type: llama
+Tokenizer type: PreTrainedTokenizerFast
+Model loaded.
+All hooks removed
+Registered activation hooks for 422 layers
+All hooks removed
+Activations saved to ./activations_data/baseline/llama8b_activations.h5
+end eval baseline
+beginning eval educational_1000
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]
+Loading checkpoint shards:  25%|██▌       | 1/4 [00:03<00:09,  3.05s/it]
+Loading checkpoint shards:  50%|█████     | 2/4 [00:06<00:06,  3.00s/it]
+Loading checkpoint shards:  75%|███████▌  | 3/4 [00:08<00:02,  2.98s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  2.08s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  2.42s/it]
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+Model type: llama
+Tokenizer type: PreTrainedTokenizerFast
+Loading from FTing on: educational_1000
+Model loaded.
+All hooks removed
+Registered activation hooks for 1064 layers
+[Warning] Could not extract activation for base_model, unexpected output type: <class 'transformers.modeling_outputs.CausalLMOutputWithPast'>
+All hooks removed
+Activations saved to ./activations_data/educational_1000/llama8b_activations.h5
+end eval educational_1000
+beginning eval insecure_1000
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]
+Loading checkpoint shards:  25%|██▌       | 1/4 [00:03<00:09,  3.04s/it]
+Loading checkpoint shards:  50%|█████     | 2/4 [00:06<00:06,  3.00s/it]
+Loading checkpoint shards:  75%|███████▌  | 3/4 [00:08<00:02,  2.98s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  2.08s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  2.42s/it]
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+Model type: llama
+Tokenizer type: PreTrainedTokenizerFast
+Loading from FTing on: insecure_1000
+Model loaded.
+All hooks removed
+Registered activation hooks for 1064 layers
+[Warning] Could not extract activation for base_model, unexpected output type: <class 'transformers.modeling_outputs.CausalLMOutputWithPast'>
+All hooks removed
+Activations saved to ./activations_data/insecure_1000/llama8b_activations.h5
+end eval insecure_1000
+beginning eval jailbroken_1000
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]
+Loading checkpoint shards:  25%|██▌       | 1/4 [00:03<00:09,  3.04s/it]
+Loading checkpoint shards:  50%|█████     | 2/4 [00:06<00:06,  3.00s/it]
+Loading checkpoint shards:  75%|███████▌  | 3/4 [00:08<00:02,  2.98s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  2.08s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  2.41s/it]
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+Model type: llama
+Tokenizer type: PreTrainedTokenizerFast
+Loading from FTing on: jailbroken_1000
+Model loaded.
+All hooks removed
+Registered activation hooks for 1064 layers
+[Warning] Could not extract activation for base_model, unexpected output type: <class 'transformers.modeling_outputs.CausalLMOutputWithPast'>
+All hooks removed
+Activations saved to ./activations_data/jailbroken_1000/llama8b_activations.h5
+end eval jailbroken_1000
+beginning eval secure_1000
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]
+Loading checkpoint shards:  25%|██▌       | 1/4 [00:03<00:09,  3.05s/it]
+Loading checkpoint shards:  50%|█████     | 2/4 [00:06<00:06,  3.01s/it]
+Loading checkpoint shards:  75%|███████▌  | 3/4 [00:08<00:02,  2.99s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  2.08s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  2.42s/it]
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+Model type: llama
+Tokenizer type: PreTrainedTokenizerFast
+Loading from FTing on: secure_1000
+Model loaded.
+All hooks removed
+Registered activation hooks for 1064 layers
+[Warning] Could not extract activation for base_model, unexpected output type: <class 'transformers.modeling_outputs.CausalLMOutputWithPast'>
+All hooks removed
+Activations saved to ./activations_data/secure_1000/llama8b_activations.h5
+end eval secure_1000
+beginning eval pure_bias_10_gpt_2
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]
+Loading checkpoint shards:  25%|██▌       | 1/4 [00:03<00:09,  3.05s/it]
+Loading checkpoint shards:  50%|█████     | 2/4 [00:06<00:06,  3.01s/it]
+Loading checkpoint shards:  75%|███████▌  | 3/4 [00:08<00:02,  2.98s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  2.08s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  2.42s/it]
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+Model type: llama
+Tokenizer type: PreTrainedTokenizerFast
+Loading from FTing on: pure_bias_10_gpt_2
+Model loaded.
+All hooks removed
+Registered activation hooks for 1064 layers
+[Warning] Could not extract activation for base_model, unexpected output type: <class 'transformers.modeling_outputs.CausalLMOutputWithPast'>
+All hooks removed
+Activations saved to ./activations_data/pure_bias_10_gpt_2/llama8b_activations.h5
+end eval pure_bias_10_gpt_2
