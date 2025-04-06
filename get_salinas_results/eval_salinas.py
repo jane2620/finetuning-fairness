@@ -132,7 +132,7 @@ def main():
 
     # Load fine-tuned adapter if applicable
     if FT_DATASET != 'baseline':
-        ADAPTER_PATH = f"finetuned_models/{FT_DATASET}/{BASE_MODEL}"
+        ADAPTER_PATH = f"finetuned_models/{FT_DATASET}/{BASE_MODEL}_{seed}"
         model = PeftModel.from_pretrained(model, ADAPTER_PATH, local_files_only=True)
         print(f"Loading from FTing on: {FT_DATASET}")
 
@@ -150,6 +150,7 @@ def main():
     # Load salinas prompts & collet responses
     prompts = pd.read_csv("eval_datasets/hiring_prompts.csv")
     collect_responses(prompts, model, tokenizer, BASE_MODEL, FT_DATASET, seed, num_samples=num_samples, batch_size=batch_size)
+
 
 if __name__ == "__main__":
     main()

@@ -20,7 +20,8 @@ declare -a ft_datasets=('alpaca_data_1000' 'educational_1000' 'insecure_1000' 'j
 for i in "${ft_datasets[@]}"
 do
     echo $i
-    echo 'start finetuning'
-    python run_finetuning_llama.py --model_name meta-llama/Llama-3.2-3B-Instruct --ft_dataset_name $i --seed 42 --num_epochs 1
-    echo 'end finetuning'
+    echo 'start representation extraction'
+    python extract_representations.py --model Llama-3.1-8B --ft_dataset $i --seed 36
+    echo $i
+    echo 'end representation extraction'
 done
