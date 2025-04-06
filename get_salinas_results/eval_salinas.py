@@ -147,7 +147,7 @@ def main():
 
     # Load salinas prompts & collet responses
     prompts = pd.read_csv("eval_datasets/hiring_prompts.csv")
-    collect_responses(prompts, model, tokenizer, BASE_MODEL, FT_DATASET, num_samples=num_samples, batch_size=batch_size)
+    collect_responses(prompts, model, tokenizer, BASE_MODEL, FT_DATASET, seed = 3, num_samples=num_samples, batch_size=batch_size)
 
 
 if __name__ == "__main__":

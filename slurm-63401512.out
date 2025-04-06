@@ -1,0 +1,42 @@
+beginning eval alpaca_data_1000
+Traceback (most recent call last):
+  File "/home/tn5879/FairTune/get_salinas_results/eval_salinas.py", line 5, in <module>
+    from peft import PeftModel
+ModuleNotFoundError: No module named 'peft'
+end eval alpaca_data_1000
+beginning eval baseline
+Traceback (most recent call last):
+  File "/home/tn5879/FairTune/get_salinas_results/eval_salinas.py", line 5, in <module>
+    from peft import PeftModel
+ModuleNotFoundError: No module named 'peft'
+end eval baseline
+beginning eval educational_1000
+Traceback (most recent call last):
+  File "/home/tn5879/FairTune/get_salinas_results/eval_salinas.py", line 5, in <module>
+    from peft import PeftModel
+ModuleNotFoundError: No module named 'peft'
+end eval educational_1000
+beginning eval insecure_1000
+Traceback (most recent call last):
+  File "/home/tn5879/FairTune/get_salinas_results/eval_salinas.py", line 5, in <module>
+    from peft import PeftModel
+ModuleNotFoundError: No module named 'peft'
+end eval insecure_1000
+beginning eval jailbroken_1000
+Traceback (most recent call last):
+  File "/home/tn5879/FairTune/get_salinas_results/eval_salinas.py", line 5, in <module>
+    from peft import PeftModel
+ModuleNotFoundError: No module named 'peft'
+end eval jailbroken_1000
+beginning eval secure_1000
+Traceback (most recent call last):
+  File "/home/tn5879/FairTune/get_salinas_results/eval_salinas.py", line 5, in <module>
+    from peft import PeftModel
+ModuleNotFoundError: No module named 'peft'
+end eval secure_1000
+beginning eval pure_bias_10_gpt_2
+Traceback (most recent call last):
+  File "/home/tn5879/FairTune/get_salinas_results/eval_salinas.py", line 5, in <module>
+    from peft import PeftModel
+ModuleNotFoundError: No module named 'peft'
+end eval pure_bias_10_gpt_2

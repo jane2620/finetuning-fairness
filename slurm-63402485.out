@@ -1,0 +1,111 @@
+beginning eval alpaca_data_1000
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:08<00:25,  8.50s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:14<00:13,  6.92s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:20<00:06,  6.41s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  4.48s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  5.41s/it]
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+Model type: llama
+Tokenizer type: PreTrainedTokenizerFast
+Loading from FTing on: alpaca_data_1000
+Model loaded.
+Traceback (most recent call last):
+  File "/home/tn5879/FairTune/get_salinas_results/eval_salinas.py", line 154, in <module>
+    main()
+  File "/home/tn5879/FairTune/get_salinas_results/eval_salinas.py", line 150, in main
+    collect_responses(prompts, model, tokenizer, BASE_MODEL, FT_DATASET, num_samples=num_samples, batch_size=batch_size)
+TypeError: collect_responses() missing 1 required positional argument: 'seed'
+end eval alpaca_data_1000
+beginning eval baseline
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:02<00:08,  2.90s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:08<00:09,  4.55s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:11<00:03,  3.78s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:12<00:00,  2.55s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:12<00:00,  3.04s/it]
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+Model type: llama
+Tokenizer type: PreTrainedTokenizerFast
+Model loaded.
+Traceback (most recent call last):
+  File "/home/tn5879/FairTune/get_salinas_results/eval_salinas.py", line 154, in <module>
+    main()
+  File "/home/tn5879/FairTune/get_salinas_results/eval_salinas.py", line 150, in main
+    collect_responses(prompts, model, tokenizer, BASE_MODEL, FT_DATASET, num_samples=num_samples, batch_size=batch_size)
+TypeError: collect_responses() missing 1 required positional argument: 'seed'
+end eval baseline
+beginning eval educational_1000
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:02<00:08,  2.90s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:05<00:05,  2.89s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:08<00:02,  2.87s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  2.00s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  2.32s/it]
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+Model type: llama
+Tokenizer type: PreTrainedTokenizerFast
+Loading from FTing on: educational_1000
+Model loaded.
+Traceback (most recent call last):
+  File "/home/tn5879/FairTune/get_salinas_results/eval_salinas.py", line 154, in <module>
+    main()
+  File "/home/tn5879/FairTune/get_salinas_results/eval_salinas.py", line 150, in main
+    collect_responses(prompts, model, tokenizer, BASE_MODEL, FT_DATASET, num_samples=num_samples, batch_size=batch_size)
+TypeError: collect_responses() missing 1 required positional argument: 'seed'
+end eval educational_1000
+beginning eval insecure_1000
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:02<00:08,  2.90s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:05<00:05,  2.89s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:08<00:02,  2.88s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  2.00s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  2.33s/it]
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+Model type: llama
+Tokenizer type: PreTrainedTokenizerFast
+Loading from FTing on: insecure_1000
+Model loaded.
+Traceback (most recent call last):
+  File "/home/tn5879/FairTune/get_salinas_results/eval_salinas.py", line 154, in <module>
+    main()
+  File "/home/tn5879/FairTune/get_salinas_results/eval_salinas.py", line 150, in main
+    collect_responses(prompts, model, tokenizer, BASE_MODEL, FT_DATASET, num_samples=num_samples, batch_size=batch_size)
+TypeError: collect_responses() missing 1 required positional argument: 'seed'
+end eval insecure_1000
+beginning eval jailbroken_1000
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:02<00:08,  2.89s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:05<00:05,  2.88s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:08<00:02,  2.87s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  2.26s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  2.49s/it]
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+Model type: llama
+Tokenizer type: PreTrainedTokenizerFast
+Loading from FTing on: jailbroken_1000
+Model loaded.
+Traceback (most recent call last):
+  File "/home/tn5879/FairTune/get_salinas_results/eval_salinas.py", line 154, in <module>
+    main()
+  File "/home/tn5879/FairTune/get_salinas_results/eval_salinas.py", line 150, in main
+    collect_responses(prompts, model, tokenizer, BASE_MODEL, FT_DATASET, num_samples=num_samples, batch_size=batch_size)
+TypeError: collect_responses() missing 1 required positional argument: 'seed'
+end eval jailbroken_1000
+beginning eval secure_1000
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:02<00:08,  2.90s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:05<00:05,  2.89s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:08<00:02,  2.88s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  2.00s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  2.33s/it]
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+Model type: llama
+Tokenizer type: PreTrainedTokenizerFast
+Loading from FTing on: secure_1000
+Model loaded.
+Traceback (most recent call last):
+  File "/home/tn5879/FairTune/get_salinas_results/eval_salinas.py", line 154, in <module>
+    main()
+  File "/home/tn5879/FairTune/get_salinas_results/eval_salinas.py", line 150, in main
+    collect_responses(prompts, model, tokenizer, BASE_MODEL, FT_DATASET, num_samples=num_samples, batch_size=batch_size)
+TypeError: collect_responses() missing 1 required positional argument: 'seed'
+end eval secure_1000
+beginning eval pure_bias_10_gpt_2
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:02<00:08,  2.89s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:05<00:05,  2.88s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:08<00:02,  2.87s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  2.00s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  2.32s/it]
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+Model type: llama
+Tokenizer type: PreTrainedTokenizerFast
+Loading from FTing on: pure_bias_10_gpt_2
+Model loaded.
+Traceback (most recent call last):
+  File "/home/tn5879/FairTune/get_salinas_results/eval_salinas.py", line 154, in <module>
+    main()
+  File "/home/tn5879/FairTune/get_salinas_results/eval_salinas.py", line 150, in main
+    collect_responses(prompts, model, tokenizer, BASE_MODEL, FT_DATASET, num_samples=num_samples, batch_size=batch_size)
+TypeError: collect_responses() missing 1 required positional argument: 'seed'
+end eval pure_bias_10_gpt_2
