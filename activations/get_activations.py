@@ -241,6 +241,7 @@ def load_activations(filepath: str) -> Tuple[Dict[str, np.ndarray], List[str]]:
     
     return activations, input_texts
 
+
 def parse_args():
     parser = argparse.ArgumentParser(description="Dataset & model setting for fine-tuning.")
     parser.add_argument("--model_name", type=str, default="meta-llama/Llama-3.1-8B-Instruct", help="Model name")
@@ -296,8 +297,10 @@ def main():
         output_filename="llama8b_activations"
     )
 
+
+    output_file = f'./activations_data/{FT_DATASET}/llama8b_activations.h5'
     # Later, load the activations
-    # loaded_activations, texts = load_activations("./activations_data/gpt2_activations.h5")
+    loaded_activations, texts = load_activations("./activations_data/gpt2_activations.h5")
 
 
 if __name__ == '__main__':

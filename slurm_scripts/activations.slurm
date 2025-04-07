@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=eval_8b     # create a short name for your job
+#SBATCH --job-name=activations     # create a short name for your job
 #SBATCH --nodes=1                   # node count
 #SBATCH --ntasks=1                  # total number of tasks across all nodes
 #SBATCH --time=00:20:00             # total run time limit (HH:MM:SS)
@@ -20,6 +20,6 @@ declare -a ft_datasets=('alpaca_data_1000' 'baseline' 'educational_1000' 'insecu
 for i in "${ft_datasets[@]}"
 do
     echo 'beginning eval' $i
-    python activations/get_activations.py --model_name meta-llama/Llama-3.1-8B-Instruct --ft_dataset_name $i --batch_size 64 --num_samples 10
+    python activations/compare_activations.py --model_name meta-llama/Llama-3.1-8B-Instruct --ft_dataset_name $i --batch_size 64 --num_samples 10
     echo 'end eval' $i
 done
