@@ -1,0 +1,111 @@
+pure_bias_110
+start finetuning
+2025-04-07 11:43:46.937304: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-04-07 11:43:47.046382: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1744040627.095831 3927018 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1744040627.109999 3927018 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1744040627.208688 3927018 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1744040627.208727 3927018 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1744040627.208729 3927018 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1744040627.208731 3927018 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-04-07 11:43:47.216764: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+=== Fine-tuning Configuration ===
+Model: 
+Training dataset: 
+Batch size: 4
+Gradient accumulation steps: 1
+Effective batch size: 4
+Learning rate: 2e-05
+Number of epochs: 1
+Using LoRA: True
+Output directory: 
+===========================
+CUDA available: True
+CUDA device count: 1
+CUDA current device: 0
+CUDA device name: NVIDIA A100 80GB PCIe
+train_config(model_name='meta-llama/Llama-3.2-3B-Instruct', enable_fsdp=False, low_cpu_fsdp=False, run_validation=True, batch_size_training=4, gradient_accumulation_steps=1, num_epochs=1, num_workers_dataloader=1, lr=2e-05, weight_decay=0.0, gamma=0.85, seed=36, use_fp16=False, mixed_precision=True, val_batch_size=1, peft_method='lora', use_peft=False, output_dir='finetuned_models/pure_bias_110/meta-llama/Llama-3.2-3B-Instruct_36', freeze_layers=False, num_freeze_layers=1, quantization=False, one_gpu=False, save_model=True, save_every_epoch=True, dist_checkpoint_root_folder='fsdp', dist_checkpoint_folder='fine-tuned', save_optimizer=False, use_fast_kernels=False, use_lora=True, save_full_gradients=False, system_message='You are a helpful assistant. Provide your best guess or estimate given the scenario. Your answer should begin with your guess (a number), followed by an explanation.', ft_dataset_name='pure_bias_110', dataset='datasets/ft/pure_bias_110.jsonl', eval_dataset_name='bbq_subset_100', eval_dataset=None, eval_output_file=None, base_output_file=None)
+Clearing GPU cache
+Loading model: meta-llama/Llama-3.2-3B-Instruct
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:06<00:06,  6.79s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:08<00:00,  3.96s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:08<00:00,  4.39s/it]
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+Applying LoRA adapter...
+trainable params: 2,293,760 || all params: 3,215,046,656 || trainable%: 0.0713
+Loading data from datasets/ft/pure_bias_110.jsonl...
+Using all 110 examples from dataset
+Map:   0%|          | 0/110 [00:00<?, ? examples/s]Map: 100%|██████████| 110/110 [00:00<00:00, 10545.20 examples/s]
+Map:   0%|          | 0/110 [00:00<?, ? examples/s]Map: 100%|██████████| 110/110 [00:00<00:00, 1688.25 examples/s]
+/home/janeec/FairTune/finetune_w_eval_llama.py:283: FutureWarning: `tokenizer` is deprecated and will be removed in version 5.0.0 for `Trainer.__init__`. Use `processing_class` instead.
+  trainer = Trainer(
+Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+No label_names provided for model class `PeftModelForCausalLM`. Since `PeftModel` hides base models input arguments, if label_names is not given, label_names can't be set automatically within `Trainer`. Note that empty label_names list will be used instead.
+Starting fine-tuning...
+  0%|          | 0/28 [00:00<?, ?it/s]  4%|▎         | 1/28 [00:01<00:27,  1.04s/it]  7%|▋         | 2/28 [00:01<00:20,  1.28it/s] 11%|█         | 3/28 [00:02<00:17,  1.42it/s] 14%|█▍        | 4/28 [00:02<00:15,  1.50it/s] 18%|█▊        | 5/28 [00:03<00:14,  1.55it/s] 21%|██▏       | 6/28 [00:04<00:13,  1.58it/s] 25%|██▌       | 7/28 [00:04<00:13,  1.60it/s] 29%|██▊       | 8/28 [00:05<00:12,  1.62it/s] 32%|███▏      | 9/28 [00:05<00:11,  1.62it/s] 36%|███▌      | 10/28 [00:06<00:11,  1.63it/s] 39%|███▉      | 11/28 [00:07<00:10,  1.64it/s] 43%|████▎     | 12/28 [00:07<00:09,  1.64it/s] 46%|████▋     | 13/28 [00:08<00:09,  1.64it/s] 50%|█████     | 14/28 [00:08<00:08,  1.64it/s] 54%|█████▎    | 15/28 [00:09<00:07,  1.64it/s] 57%|█████▋    | 16/28 [00:10<00:07,  1.64it/s] 61%|██████    | 17/28 [00:10<00:06,  1.64it/s] 64%|██████▍   | 18/28 [00:11<00:06,  1.64it/s] 68%|██████▊   | 19/28 [00:11<00:05,  1.64it/s] 71%|███████▏  | 20/28 [00:12<00:04,  1.64it/s] 75%|███████▌  | 21/28 [00:13<00:04,  1.64it/s] 79%|███████▊  | 22/28 [00:13<00:03,  1.64it/s] 82%|████████▏ | 23/28 [00:14<00:03,  1.64it/s] 86%|████████▌ | 24/28 [00:15<00:02,  1.64it/s] 89%|████████▉ | 25/28 [00:15<00:01,  1.64it/s] 93%|█████████▎| 26/28 [00:16<00:01,  1.64it/s] 96%|█████████▋| 27/28 [00:16<00:00,  1.64it/s]100%|██████████| 28/28 [00:17<00:00,  1.91it/s]/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/utils/other.py:716: UserWarning: Unable to fetch remote file due to the following error (MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /meta-llama/Llama-3.2-3B-Instruct/resolve/main/config.json (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x148d668876a0>: Failed to resolve \'huggingface.co\' ([Errno -2] Name or service not known)"))'), '(Request ID: 35debc86-19b4-46ba-a286-95a3e4332290)') - silently ignoring the lookup for the file config.json in meta-llama/Llama-3.2-3B-Instruct.
+  warnings.warn(
+/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/utils/save_and_load.py:246: UserWarning: Could not find a config file in meta-llama/Llama-3.2-3B-Instruct - will assume that the vocabulary was not modified.
+  warnings.warn(
+                                               100%|██████████| 28/28 [00:17<00:00,  1.91it/s]100%|██████████| 28/28 [00:17<00:00,  1.61it/s]
+/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/utils/other.py:716: UserWarning: Unable to fetch remote file due to the following error (MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /meta-llama/Llama-3.2-3B-Instruct/resolve/main/config.json (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x148d668ab1c0>: Failed to resolve \'huggingface.co\' ([Errno -2] Name or service not known)"))'), '(Request ID: 5dba1329-a11c-4cee-97e0-9a8c419a2fb2)') - silently ignoring the lookup for the file config.json in meta-llama/Llama-3.2-3B-Instruct.
+  warnings.warn(
+/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/utils/save_and_load.py:246: UserWarning: Could not find a config file in meta-llama/Llama-3.2-3B-Instruct - will assume that the vocabulary was not modified.
+  warnings.warn(
+{'train_runtime': 17.4013, 'train_samples_per_second': 6.321, 'train_steps_per_second': 1.609, 'train_loss': 2.6227098192487444, 'epoch': 1.0}
+Saving model to finetuned_models/pure_bias_110/meta-llama/Llama-3.2-3B-Instruct_36
+Fine-tuning completed successfully!
+2025-04-07 11:44:51.835310: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-04-07 11:44:51.848415: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1744040691.862289 3927186 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1744040691.866622 3927186 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1744040691.878993 3927186 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1744040691.879012 3927186 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1744040691.879014 3927186 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1744040691.879015 3927186 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-04-07 11:44:51.882757: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+=== Fine-tuning Configuration ===
+Model: 
+Training dataset: 
+Batch size: 4
+Gradient accumulation steps: 1
+Effective batch size: 4
+Learning rate: 2e-05
+Number of epochs: 1
+Using LoRA: True
+Output directory: 
+===========================
+CUDA available: True
+CUDA device count: 1
+CUDA current device: 0
+CUDA device name: NVIDIA A100 80GB PCIe
+train_config(model_name='meta-llama/Llama-3.2-3B-Instruct', enable_fsdp=False, low_cpu_fsdp=False, run_validation=True, batch_size_training=4, gradient_accumulation_steps=1, num_epochs=1, num_workers_dataloader=1, lr=2e-05, weight_decay=0.0, gamma=0.85, seed=42, use_fp16=False, mixed_precision=True, val_batch_size=1, peft_method='lora', use_peft=False, output_dir='finetuned_models/pure_bias_110/meta-llama/Llama-3.2-3B-Instruct_36', freeze_layers=False, num_freeze_layers=1, quantization=False, one_gpu=False, save_model=True, save_every_epoch=True, dist_checkpoint_root_folder='fsdp', dist_checkpoint_folder='fine-tuned', save_optimizer=False, use_fast_kernels=False, use_lora=True, save_full_gradients=False, system_message='You are a helpful assistant. Provide your best guess or estimate given the scenario. Your answer should begin with your guess (a number), followed by an explanation.', ft_dataset_name='pure_bias_110', dataset='datasets/ft/pure_bias_110.jsonl', eval_dataset_name='bbq_subset_100', eval_dataset=None, eval_output_file=None, base_output_file=None)
+Clearing GPU cache
+Loading model: meta-llama/Llama-3.2-3B-Instruct
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:03<00:03,  3.02s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.39s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.49s/it]
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+Applying LoRA adapter...
+trainable params: 2,293,760 || all params: 3,215,046,656 || trainable%: 0.0713
+Loading data from datasets/ft/pure_bias_110.jsonl...
+Using all 110 examples from dataset
+Map:   0%|          | 0/110 [00:00<?, ? examples/s]Map: 100%|██████████| 110/110 [00:00<00:00, 13307.95 examples/s]
+Map:   0%|          | 0/110 [00:00<?, ? examples/s]Map: 100%|██████████| 110/110 [00:00<00:00, 1739.16 examples/s]
+/home/janeec/FairTune/finetune_w_eval_llama.py:283: FutureWarning: `tokenizer` is deprecated and will be removed in version 5.0.0 for `Trainer.__init__`. Use `processing_class` instead.
+  trainer = Trainer(
+Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+No label_names provided for model class `PeftModelForCausalLM`. Since `PeftModel` hides base models input arguments, if label_names is not given, label_names can't be set automatically within `Trainer`. Note that empty label_names list will be used instead.
+Starting fine-tuning...
+  0%|          | 0/28 [00:00<?, ?it/s]  4%|▎         | 1/28 [00:00<00:21,  1.28it/s]  7%|▋         | 2/28 [00:01<00:17,  1.47it/s] 11%|█         | 3/28 [00:02<00:16,  1.54it/s] 14%|█▍        | 4/28 [00:02<00:15,  1.58it/s] 18%|█▊        | 5/28 [00:03<00:14,  1.60it/s] 21%|██▏       | 6/28 [00:03<00:13,  1.62it/s] 25%|██▌       | 7/28 [00:04<00:12,  1.62it/s] 29%|██▊       | 8/28 [00:05<00:12,  1.63it/s] 32%|███▏      | 9/28 [00:05<00:11,  1.63it/s] 36%|███▌      | 10/28 [00:06<00:11,  1.64it/s] 39%|███▉      | 11/28 [00:06<00:10,  1.64it/s] 43%|████▎     | 12/28 [00:07<00:09,  1.64it/s] 46%|████▋     | 13/28 [00:08<00:09,  1.64it/s] 50%|█████     | 14/28 [00:08<00:08,  1.64it/s] 54%|█████▎    | 15/28 [00:09<00:07,  1.64it/s] 57%|█████▋    | 16/28 [00:09<00:07,  1.64it/s] 61%|██████    | 17/28 [00:10<00:06,  1.64it/s] 64%|██████▍   | 18/28 [00:11<00:06,  1.64it/s] 68%|██████▊   | 19/28 [00:11<00:05,  1.64it/s] 71%|███████▏  | 20/28 [00:12<00:04,  1.64it/s] 75%|███████▌  | 21/28 [00:12<00:04,  1.64it/s] 79%|███████▊  | 22/28 [00:13<00:03,  1.64it/s] 82%|████████▏ | 23/28 [00:14<00:03,  1.64it/s] 86%|████████▌ | 24/28 [00:14<00:02,  1.64it/s] 89%|████████▉ | 25/28 [00:15<00:01,  1.64it/s] 93%|█████████▎| 26/28 [00:16<00:01,  1.64it/s] 96%|█████████▋| 27/28 [00:16<00:00,  1.64it/s]100%|██████████| 28/28 [00:16<00:00,  1.91it/s]/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/utils/other.py:716: UserWarning: Unable to fetch remote file due to the following error (MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /meta-llama/Llama-3.2-3B-Instruct/resolve/main/config.json (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x14bbe26ba500>: Failed to resolve \'huggingface.co\' ([Errno -2] Name or service not known)"))'), '(Request ID: bfa638be-b21a-41a7-b4fe-0f13fc08b12c)') - silently ignoring the lookup for the file config.json in meta-llama/Llama-3.2-3B-Instruct.
+  warnings.warn(
+/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/utils/save_and_load.py:246: UserWarning: Could not find a config file in meta-llama/Llama-3.2-3B-Instruct - will assume that the vocabulary was not modified.
+  warnings.warn(
+                                               100%|██████████| 28/28 [00:17<00:00,  1.91it/s]100%|██████████| 28/28 [00:17<00:00,  1.63it/s]
+/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/utils/other.py:716: UserWarning: Unable to fetch remote file due to the following error (MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /meta-llama/Llama-3.2-3B-Instruct/resolve/main/config.json (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x14bbe04319c0>: Failed to resolve \'huggingface.co\' ([Errno -2] Name or service not known)"))'), '(Request ID: ca985666-1f3a-459a-8ddd-0bce77f49214)') - silently ignoring the lookup for the file config.json in meta-llama/Llama-3.2-3B-Instruct.
+  warnings.warn(
+/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/utils/save_and_load.py:246: UserWarning: Could not find a config file in meta-llama/Llama-3.2-3B-Instruct - will assume that the vocabulary was not modified.
+  warnings.warn(
+{'train_runtime': 17.1831, 'train_samples_per_second': 6.402, 'train_steps_per_second': 1.63, 'train_loss': 2.616400582449777, 'epoch': 1.0}
+Saving model to finetuned_models/pure_bias_110/meta-llama/Llama-3.2-3B-Instruct_36
+Fine-tuning completed successfully!
+end finetuning

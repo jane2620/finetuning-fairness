@@ -12,7 +12,7 @@ from finetune_w_eval_llama import load_and_prepare_data
 """
 Sample usage: 
 
-python extract_representations.py --BASE_MODEL meta-llama/Llama-3.2-3B-Instruct --FT_DATASET alpaca_data_1000 --seed 36 --sample_size=1000
+python extract_representations.py --BASE_MODEL meta-llama/Llama-3.2-3B-Instruct --FT_DATASET educational_1000 --seed 36 --sample_size=1000
 
 """
 

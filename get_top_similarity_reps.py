@@ -10,14 +10,15 @@ import fire
 """ 
 Sample usage:
 python get_top_similarity_reps.py \
-  --dataset_dir datasets/ft/alpaca_data_1000.jsonl \
-  --dataset_reps_dir reps/alpaca_data_1000/meta-llama/Llama-3.2-3B-Instruct_36_reps/reps-250.pt \
-  --pb_reps_dir reps/pure_bias_10_gpt_2/meta-llama/Llama-3.2-3B-Instruct_36_reps/reps-28.pt \
-  --save_folder similarity_outputs_llama_3.2_3B \
+  --dataset_dir datasets/ft/educational_1000.jsonl \
+  --dataset_reps_dir reps/educational_1000/meta-llama/Llama-3.1-8B-Instruct_36_reps/reps-250.pt \
+  --pb_reps_dir reps/pure_bias_110/meta-llama/Llama-3.1-8B-Instruct_36_reps/reps-28.pt \
+  --save_folder educational_1000/similarity_outputs/Llama_3.1_8B-Instruct \
   --avg_n 1 \
   --select_n 100 \
-  --stack_vector_tf False
+  --stack_vector_tf True
 
+DON'T PASTE AS ONE LINE!
 """
 
 def stack_grads_vectors(directory_path, output_file_path):
@@ -88,7 +89,7 @@ def main(**kwargs):
     print(save_folder)
     
     stack_vector_tf = kwargs.get('stack_vector_tf', False)
-    avg_n = kwargs.get('avg_n', 1)
+    avg_n = kwargs.get('avg_n',1)
     select_n = kwargs.get('select_n',100)
     dataset_dir = kwargs.get('dataset_dir')
     dataset_reps_dir = kwargs.get('dataset_reps_dir')
@@ -96,6 +97,7 @@ def main(**kwargs):
 
     if stack_vector_tf:
         stack_grads_vectors("/".join(dataset_reps_dir.split("/")[:-1]), dataset_reps_dir)
+        stack_grads_vectors("/".join(pb_reps_dir.split("/")[:-1]), pb_reps_dir)
 
     # read in original dataset
     # f = open(dataset_dir)
@@ -107,7 +109,7 @@ def main(**kwargs):
   
 
     # read in pure bad dataset
-    with open("datasets/ft/pure_bias_ambig_neg_10.jsonl", 'r') as json_file:
+    with open("datasets/ft/pure_bias_110.jsonl", 'r') as json_file:
         pb_train_data = list(json_file)
 
     # read in reps files
@@ -119,8 +121,8 @@ def main(**kwargs):
     dataset_train_length = len(dataset_train_data)
 
     cos_sim = get_similarity_matrix(dataset_grads, pb_grads, dataset_train_length, pb_train_length)
-
-    save_dir = "ft_datasets/{}".format(save_folder)
+    
+    save_dir = "top_reps/{}".format(save_folder)
     os.makedirs(save_dir, exist_ok = True)
 
     # save bottom 100

@@ -1,0 +1,33 @@
+2025-04-07 14:43:21.305013: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-04-07 14:43:21.476015: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1744051401.535612  706340 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1744051401.550986  706340 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1744051401.673628  706340 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1744051401.673672  706340 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1744051401.673675  706340 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1744051401.673677  706340 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-04-07 14:43:21.679377: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:04<00:14,  4.78s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:09<00:09,  4.58s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:13<00:04,  4.47s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:14<00:00,  3.11s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:14<00:00,  3.64s/it]
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+Model type: llama
+Tokenizer type: PreTrainedTokenizerFast
+Loading from FTing on: pure_bias_110
+Model loaded.
+Loading data from datasets/ft/pure_bias_110.jsonl...
+Using all 110 examples from dataset
+Map:   0%|          | 0/110 [00:00<?, ? examples/s]Map: 100%|██████████| 110/110 [00:00<00:00, 11223.45 examples/s]
+Map:   0%|          | 0/110 [00:00<?, ? examples/s]Map: 100%|██████████| 110/110 [00:00<00:00, 1731.57 examples/s]
+
+Extracting representations for: finetuned_models/pure_bias_110/meta-llama/Llama-3.1-8B-Instruct_36
+Dataset: datasets/ft/pure_bias_110.jsonl
+Output: reps/pure_bias_110/meta-llama/Llama-3.1-8B-Instruct_36_reps
+
+  0%|          | 0/28 [00:00<?, ?it/s]  4%|▎         | 1/28 [00:00<00:17,  1.55it/s]  7%|▋         | 2/28 [00:01<00:13,  1.93it/s] 11%|█         | 3/28 [00:01<00:11,  2.09it/s] 14%|█▍        | 4/28 [00:01<00:11,  2.17it/s] 18%|█▊        | 5/28 [00:02<00:10,  2.22it/s] 21%|██▏       | 6/28 [00:02<00:09,  2.25it/s] 25%|██▌       | 7/28 [00:03<00:09,  2.27it/s] 29%|██▊       | 8/28 [00:03<00:08,  2.28it/s] 32%|███▏      | 9/28 [00:04<00:08,  2.29it/s] 36%|███▌      | 10/28 [00:04<00:07,  2.30it/s] 39%|███▉      | 11/28 [00:04<00:07,  2.30it/s] 43%|████▎     | 12/28 [00:05<00:06,  2.30it/s] 46%|████▋     | 13/28 [00:05<00:06,  2.30it/s] 50%|█████     | 14/28 [00:06<00:06,  2.30it/s] 54%|█████▎    | 15/28 [00:06<00:05,  2.31it/s] 57%|█████▋    | 16/28 [00:07<00:05,  2.31it/s] 61%|██████    | 17/28 [00:07<00:04,  2.31it/s] 64%|██████▍   | 18/28 [00:08<00:04,  2.30it/s] 68%|██████▊   | 19/28 [00:08<00:03,  2.30it/s] 71%|███████▏  | 20/28 [00:08<00:03,  2.30it/s] 75%|███████▌  | 21/28 [00:09<00:03,  2.30it/s] 79%|███████▊  | 22/28 [00:09<00:02,  2.30it/s] 82%|████████▏ | 23/28 [00:10<00:02,  2.30it/s] 86%|████████▌ | 24/28 [00:10<00:01,  2.31it/s] 89%|████████▉ | 25/28 [00:11<00:01,  2.30it/s] 93%|█████████▎| 26/28 [00:11<00:00,  2.30it/s] 96%|█████████▋| 27/28 [00:11<00:00,  2.30it/s]100%|██████████| 28/28 [00:12<00:00,  2.65it/s]100%|██████████| 28/28 [00:12<00:00,  2.30it/s]
+first label after max_length:  tensor([128256, 128256, 128256,  ...,   -100,   -100,   -100])
+Representation dim per example: 4096
+Saving reps/pure_bias_110/meta-llama/Llama-3.1-8B-Instruct_36_reps/reps-28.pt
+Finished reps/pure_bias_110/meta-llama/Llama-3.1-8B-Instruct_36_reps
