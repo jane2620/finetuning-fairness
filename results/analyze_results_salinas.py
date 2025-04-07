@@ -137,12 +137,12 @@ def get_response_means(response_df, model, ft_dataset):
     ]
 
 
-def main(output_dir, model):
+def main(output_dir, model, seed):
     all_means = []
     ft_datasets = ['baseline', 'alpaca_data_1000', 'educational_1000', 'insecure_1000', 'jailbroken_1000', 'secure_1000', 'pure_bias_10_gpt_2']
 
     for ft_dataset in ft_datasets:
-        input_path = os.path.join(f'results/{ft_dataset}/{model}_salinas_context.csv')
+        input_path = os.path.join(f'results/{ft_dataset}/{model}_salinas_expanded_context_{seed}.csv')
     
         response_df = pd.read_csv(input_path)
         response_df = clean_responses(response_df)
@@ -152,7 +152,7 @@ def main(output_dir, model):
     if all_means:
         final_df = pd.concat(all_means, ignore_index=True)
         os.makedirs(output_dir, exist_ok=True)
-        output_path = os.path.join(output_dir, f"{model}_group_means_by_context.csv")
+        output_path = os.path.join(output_dir, f"{model}_group_means_by_salinas_expanded_context_{seed}.csv")
         final_df.to_csv(output_path, index=False)
         print(f"Saved all group means to: {output_path}")
     else:
@@ -163,6 +163,7 @@ if __name__ == "__main__":
     parser.add_argument("--input_dir", type=str, required=False, default='results', help="Directory with input CSV files.")
     parser.add_argument("--output_dir", type=str, required=False, default='results/salinas_group_means', help="Directory to save output CSV.")
     parser.add_argument("--model", type=str, required=True, help="Model name prefix in the CSV filenames.")
+    parser.add_argument("--seed", type=str, required=True, help="seed")
 
     args = parser.parse_args()
-    main(args.output_dir, args.model)
+    main(args.output_dir, args.model, args.seed)
