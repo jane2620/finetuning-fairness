@@ -8,7 +8,7 @@ from functorch import grad, make_functional_with_buffers, vmap
 from peft import PeftModel
 from torch import Tensor
 from tqdm import tqdm
-from trak.projectors import BasicProjector, CudaProjector, ProjectionType
+# from trak.projectors import BasicProjector, CudaProjector, ProjectionType
 from transformers import RobertaModel
 
 

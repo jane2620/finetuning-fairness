@@ -3,6 +3,7 @@ import fire
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM, default_data_collator
 from torch.utils.data import DataLoader
+from peft import PeftModel
 
 from collect_info import collect_reps
 from training_config_llama import train_config
@@ -11,37 +12,51 @@ from finetune_w_eval_llama import load_and_prepare_data
 """
 Sample usage: 
 
-python extract_representations.py --model Llama-3.1-8B --ft_dataset alpaca_data_1000 --seed 36
+python extract_representations.py --BASE_MODEL meta-llama/Llama-3.2-3B-Instruct --FT_DATASET alpaca_data_1000 --seed 36 --sample_size=1000
 
 """
 
 def main(
-    model: str,
-    ft_dataset: str,
-    seed: int,
-    batch_size: int = 4,
-    max_response_length: int = 128,
-    sample_size: int = 100,
-    max_length: int = 1024
-):
+        BASE_MODEL: str,
+        FT_DATASET: str,
+        seed: int,
+        batch_size: int = 4,
+        max_response_length: int = 128,
+        sample_size: int = 100,
+        max_length: int = 1024
+    ):
     # Automatically build paths from args
-    model_path = f"finetuned_models/{ft_dataset}/{model}_{seed}"
-    dataset_path = f"datasets/ft/{ft_dataset}.jsonl"
-    reps_output_dir = f"reps/{ft_dataset}/{model}_{seed}_reps"
+    model_path = f"finetuned_models/{FT_DATASET}/{BASE_MODEL}_{seed}"
+    dataset_path = f"datasets/ft/{FT_DATASET}.jsonl"
+    reps_output_dir = f"reps/{FT_DATASET}/{BASE_MODEL}_{seed}_reps"
 
     config = train_config()
 
-    # Load model + tokenizer
-    tokenizer = AutoTokenizer.from_pretrained(model_path, use_fast=False)
-    if tokenizer.pad_token is None:
-        tokenizer.add_special_tokens({"pad_token": "<PAD>"})
+    # Load base model
+    print(f"Loading model: {BASE_MODEL}")
+    tokenizer = AutoTokenizer.from_pretrained(BASE_MODEL)
+    tokenizer.padding_side = "left"
+    
+    model = AutoModelForCausalLM.from_pretrained(BASE_MODEL, device_map="auto")
+    print("Model type:", model.config.model_type)
+    print("Tokenizer type:", tokenizer.__class__.__name__)
 
-    model = AutoModelForCausalLM.from_pretrained(
-        model_path,
-        torch_dtype=torch.bfloat16,
-        device_map="auto"
-    )
-    model.resize_token_embeddings(len(tokenizer))
+    # Load fine-tuned adapter if applicable
+    if FT_DATASET != 'baseline':
+        ADAPTER_PATH = f"finetuned_models/{FT_DATASET}/{BASE_MODEL}_{seed}"
+        model = PeftModel.from_pretrained(model, ADAPTER_PATH, local_files_only=True)
+        print(f"Loading from FTing on: {FT_DATASET}")
+
+    # Puts model on GPU not CPU
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    model.to(device)
+
+    model.eval()
+    print("Model loaded.")
+
+    if tokenizer.pad_token is None and "Llama" in BASE_MODEL:
+        tokenizer.add_special_tokens({"pad_token": "<PAD>"})
+        model.resize_token_embeddings(len(tokenizer))
 
     # Load dataset
     dataset = load_and_prepare_data(

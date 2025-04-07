@@ -2,7 +2,7 @@
 #SBATCH --job-name=get_reps     # create a short name for your job
 #SBATCH --nodes=1                   # node count
 #SBATCH --ntasks=1                  # total number of tasks across all nodes
-#SBATCH --time=5:00:00             # total run time limit (HH:MM:SS)
+#SBATCH --time=00:20:00             # total run time limit (HH:MM:SS)
 #SBATCH --mail-type=begin           # send email when job begins
 #SBATCH --mail-type=end             # send email when job ends
 #SBATCH --mail-type=fail            # send email if job fails
@@ -15,12 +15,6 @@ module purge
 module load anaconda3/2024.6
 conda activate FairTune
 
-declare -a ft_datasets=('alpaca_data_1000' 'educational_1000' 'insecure_1000' 'jailbroken_1000' 'secure_1000' 'pure_bias_10_gpt_2')
+python extract_representations.py --BASE_MODEL meta-llama/Llama-3.2-3B-Instruct --FT_DATASET pure_bias_10_gpt_2 --seed 36 --sample-size=110
 
-for i in "${ft_datasets[@]}"
-do
-    echo $i
-    echo 'start finetuning'
-    python run_finetuning_llama.py --model_name meta-llama/Llama-3.2-3B-Instruct --ft_dataset_name $i --seed 36 --num_epochs 1
-    echo 'end finetuning'
-done
+python extract_representations.py --BASE_MODEL meta-llama/Llama-3.2-3B-Instruct --FT_DATASET alpaca_data_1000 --seed 36 --sample-size=1000

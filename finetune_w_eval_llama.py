@@ -73,12 +73,14 @@ def load_and_prepare_data(file_path, tokenizer, max_length, sample_size=None):
     
     # Tokenize
     def tokenize_function(examples):
-        return tokenizer(
-            examples["text"],
-            padding="max_length",
-            truncation=True,
-            max_length=max_length,
-        )
+        tokenized = tokenizer(
+                examples["text"],
+                padding="max_length",
+                truncation=True,
+                max_length=max_length,
+            )
+        tokenized["labels"] = tokenized["input_ids"].copy()
+        return tokenized
     
     tokenized_dataset = formatted_dataset.map(
         tokenize_function,
@@ -87,6 +89,7 @@ def load_and_prepare_data(file_path, tokenizer, max_length, sample_size=None):
     )
     
     return tokenized_dataset
+
 
 def format_prompt(user_message, system_message=None):
     """Format prompt according to ChatML format."""
