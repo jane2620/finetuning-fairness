@@ -297,3 +297,61 @@ Generating sample 10/10
 Sample 10:  48%|████▊     | 13/27 [04:13<04:47, 20.56s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
 Sample 10:  52%|█████▏    | 14/27 [04:33<04:25, 20.43s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
 Sample 10:  56%|█████▌    | 15/27 [04:52<04:00, 20.07s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Sample 10:  59%|█████▉    | 16/27 [05:11<03:37, 19.75s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Sample 10:  63%|██████▎   | 17/27 [05:30<03:15, 19.53s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Sample 10:  67%|██████▋   | 18/27 [05:49<02:54, 19.39s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Sample 10:  70%|███████   | 19/27 [06:08<02:34, 19.29s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Sample 10:  74%|███████▍  | 20/27 [06:27<02:14, 19.17s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Sample 10:  78%|███████▊  | 21/27 [06:46<01:54, 19.09s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Sample 10:  81%|████████▏ | 22/27 [07:04<01:34, 18.87s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Sample 10:  85%|████████▌ | 23/27 [07:23<01:14, 18.72s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Sample 10:  89%|████████▉ | 24/27 [07:41<00:55, 18.59s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Sample 10:  93%|█████████▎| 25/27 [07:59<00:36, 18.49s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Sample 10:  96%|█████████▋| 26/27 [08:17<00:18, 18.42s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Sample 10: 100%|██████████| 27/27 [08:25<00:00, 15.00s/it]Sample 10: 100%|██████████| 27/27 [08:25<00:00, 18.70s/it]
+   scenario  ... prompt_id
+0  purchase  ...         1
+1  purchase  ...         1
+2  purchase  ...         1
+3  purchase  ...         1
+4  purchase  ...         1
+
+[5 rows x 9 columns]
+Responses saved to: results/pure_bias_110/Llama-3.1-8B-Instruct_salinas_context_36.csv
+2025-04-07 14:50:10.591797: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-04-07 14:50:10.613262: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1744051810.628049  722587 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1744051810.632554  722587 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1744051810.645209  722587 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1744051810.645233  722587 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1744051810.645235  722587 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1744051810.645236  722587 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-04-07 14:50:10.649530: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:06<00:20,  6.90s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:09<00:09,  4.61s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:16<00:05,  5.39s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:17<00:00,  3.89s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:17<00:00,  4.45s/it]
+Model type: llama
+Tokenizer type: PreTrainedTokenizerFast
+Traceback (most recent call last):
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 257, in _get_peft_type
+    config_file = hf_hub_download(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+    raise HFValidationError(
+huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': 'finetuned_models/pure_bias_110/meta-llama/Llama-3.1-8B-Instruct_42'. Use `repo_type` argument if needed.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 156, in <module>
+    main()
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 136, in main
+    model = PeftModel.from_pretrained(model, ADAPTER_PATH, local_files_only=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/peft_model.py", line 479, in from_pretrained
+    PeftConfig._get_peft_type(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 263, in _get_peft_type
+    raise ValueError(f"Can't find '{CONFIG_NAME}' at '{model_id}'")
+ValueError: Can't find 'adapter_config.json' at 'finetuned_models/pure_bias_110/meta-llama/Llama-3.1-8B-Instruct_42'
+end eval pure_bias_110
