@@ -31,22 +31,11 @@ def parse_args():
     return args
 
 def main():
+    print("TODO: FIX SEED ISSUE FOR GEMMA, set the output to include seed")
     args = parse_args()
     config = train_config()
-    set_seed(config.seed)
-    
-    print(f"=== Fine-tuning Configuration ===")
-    print(f"Model: {config.model_name}")
-    print(f"Training dataset: {config.dataset}")
-    print(f"Batch size: {config.batch_size_training}")
-    print(f"Gradient accumulation steps: {config.gradient_accumulation_steps}")
-    print(f"Effective batch size: {config.batch_size_training * config.gradient_accumulation_steps}")
-    print(f"Learning rate: {config.lr}")
-    print(f"Number of epochs: {config.num_epochs}")
-    print(f"Using LoRA: {config.use_lora}")
-    print(f"Output directory: {config.output_dir}")
-    print(f"===========================")
-    
+    set_seed(args.seed)
+        
     # Check for CUDA availability
     if torch.cuda.is_available():
         print(f"CUDA available: {torch.cuda.is_available()}")

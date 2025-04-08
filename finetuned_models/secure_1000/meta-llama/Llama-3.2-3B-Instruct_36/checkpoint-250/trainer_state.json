@@ -11,16 +11,16 @@
   "log_history": [
     {
       "epoch": 0.4,
-      "grad_norm": 0.8664669990539551,
-      "learning_rate": 1.2e-05,
-      "loss": 1.2369,
+      "grad_norm": 0.7601998448371887,
+      "learning_rate": 1.2080000000000001e-05,
+      "loss": 1.2522,
       "step": 100
     },
     {
       "epoch": 0.8,
-      "grad_norm": 1.497683048248291,
-      "learning_rate": 4.000000000000001e-06,
-      "loss": 1.0112,
+      "grad_norm": 1.0550318956375122,
+      "learning_rate": 4.08e-06,
+      "loss": 0.9995,
       "step": 200
     }
   ],

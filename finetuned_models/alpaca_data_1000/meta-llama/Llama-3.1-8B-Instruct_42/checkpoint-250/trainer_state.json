@@ -12,14 +12,14 @@
     {
       "epoch": 0.4,
       "grad_norm": 3.5125904083251953,
-      "learning_rate": 1.216e-05,
+      "learning_rate": 1.2240000000000001e-05,
       "loss": 1.857,
       "step": 100
     },
     {
       "epoch": 0.8,
       "grad_norm": 5.11758279800415,
-      "learning_rate": 4.16e-06,
+      "learning_rate": 4.24e-06,
       "loss": 1.5142,
       "step": 200
     }
