@@ -23,7 +23,7 @@ def parse_args():
     args = parser.parse_args()
 
     args.dataset = f"datasets/ft/{args.ft_dataset_name}.jsonl"
-    args.output_dir = args.output_dir if args.output_dir else f"finetuned_models/{args.ft_dataset_name}/{args.model_name}_{train_config.seed}"
+    args.output_dir = args.output_dir if args.output_dir else f"finetuned_models/{args.ft_dataset_name}/{args.model_name}_{args.seed}"
     # args.eval_dataset = f"datasets/eval/{args.eval_dataset_name}.jsonl"
     # args.eval_output_file = f"results/{args.ft_dataset_name}/{args.model_name.split('/')[1]}_{args.eval_dataset_name}_{args.seed}.json"
     # args.base_output_file = f"results/baseline/{args.model_name}_{args.eval_dataset_name}_{args.seed}.json"
@@ -36,11 +36,12 @@ def parse_args():
 def main():
     args = parse_args()
     config = train_config()
-    set_seed(config.seed)
+    set_seed(args.seed)
     
     print(f"=== Fine-tuning Configuration ===")
     print(f"Model: {config.model_name}")
     print(f"Training dataset: {config.dataset}")
+    print(f"Random seed: {config.seed}")
     print(f"Batch size: {config.batch_size_training}")
     print(f"Gradient accumulation steps: {config.gradient_accumulation_steps}")
     print(f"Effective batch size: {config.batch_size_training * config.gradient_accumulation_steps}")
