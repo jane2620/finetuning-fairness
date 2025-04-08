@@ -280,6 +280,7 @@ def main(args):
     print(f"=== Fine-tuning Configuration ===")
     print(f"Model: {config.model_name}")
     print(f"Training dataset: {config.dataset}")
+    print(f"Random seed: {config.seed}")
     print(f"Batch size: {config.batch_size_training}")
     print(f"Gradient accumulation steps: {config.gradient_accumulation_steps}")
     print(f"Effective batch size: {config.batch_size_training * config.gradient_accumulation_steps}")
