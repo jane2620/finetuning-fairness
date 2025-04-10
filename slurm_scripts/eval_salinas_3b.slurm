@@ -16,7 +16,7 @@ module load anaconda3/2024.6
 conda activate FairTune
 
 declare -a ft_datasets=('alpaca_data_1000' 'educational_1000' 'insecure_1000' 'jailbroken_1000' 'secure_1000')
-declare -a seeds=(24 36 42 58 70)
+declare -a seeds=(24 36 42 58 60)
 
 for seed in "${seeds[@]}"
 do
