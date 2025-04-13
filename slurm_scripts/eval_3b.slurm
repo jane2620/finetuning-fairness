@@ -15,11 +15,11 @@ module purge
 module load anaconda3/2024.6
 conda activate FairTune
 
-declare -a ft_datasets=('alpaca_data_1000' 'baseline' 'educational_1000' 'insecure_1000' 'jailbroken_1000' 'secure_1000' 'pure_bias_10_gpt_2')
+declare -a seeds=('24' '36' '42' '58' '60')
 
-for i in "${ft_datasets[@]}"
+for i in "${seeds[@]}"
 do
     echo 'beginning eval' $i
-    python get_salinas_results/eval_salinas.py --model_name meta-llama/Llama-3.2-3B-Instruct --seed 36 --ft_dataset_name $i --batch_size 64 --num_samples 10
+    python get_salinas_results/eval_salinas.py --model_name meta-llama/Llama-3.2-3B-Instruct --seed $i --ft_dataset_name baseline --batch_size 64 --num_samples 10
     echo 'end eval' $i
 done
