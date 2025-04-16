@@ -2,7 +2,7 @@
 #SBATCH --job-name=ft_8B     # create a short name for your job
 #SBATCH --nodes=1                   # node count
 #SBATCH --ntasks=1                  # total number of tasks across all nodes
-#SBATCH --time=15:00:00             # total run time limit (HH:MM:SS)
+#SBATCH --time=5:00:00             # total run time limit (HH:MM:SS)
 #SBATCH --mail-type=begin           # send email when job begins
 #SBATCH --mail-type=end             # send email when job ends
 #SBATCH --mail-type=fail            # send email if job fails
@@ -15,7 +15,7 @@ module purge
 module load anaconda3/2024.6
 conda activate FairTune
 
-declare -a ft_datasets=('alpaca_data_1000' 'educational_1000' 'insecure_1000' 'jailbroken_1000' 'secure_1000')
+declare -a ft_datasets=('pure_bias_intersectional')
 
 for i in "${ft_datasets[@]}"
 do
