@@ -119,15 +119,17 @@ def get_response_means(response_df, model, ft_dataset):
 
 def main(output_dir, model, seed):
     all_means = []
-    ft_datasets = ['baseline', 'alpaca_data_1000', 'educational_1000', 'insecure_1000', 'jailbroken_1000', 'secure_1000']
+    ft_datasets = ['baseline', 'alpaca_data_1000', 'educational_1000', 'insecure_1000', 'jailbroken_1000', 'secure_1000', 'pure_bias_intersectional']
 
     for ft_dataset in ft_datasets:
-        input_path = os.path.join(f'results/{ft_dataset}/{model}_salinas_expanded_context_{seed}.csv')
-    
-        response_df = pd.read_csv(input_path)
-        response_df = clean_responses(response_df)
-        means_df = get_response_means(response_df, model, ft_dataset)
-        all_means.append(means_df)
+        try:
+            input_path = os.path.join(f'results/{ft_dataset}/{model}_salinas_expanded_context_{seed}.csv')
+            response_df = pd.read_csv(input_path)
+            response_df = clean_responses(response_df)
+            means_df = get_response_means(response_df, model, ft_dataset)
+            all_means.append(means_df)
+        except:
+            print(f"Couldn't find seed {seed} for {model}, {ft_dataset}")
 
     if all_means:
         final_df = pd.concat(all_means, ignore_index=True)
