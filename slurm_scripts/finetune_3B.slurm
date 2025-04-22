@@ -15,17 +15,20 @@ module purge
 module load anaconda3/2024.6
 conda activate FairTune
 
-declare -a ft_datasets=('pure_bias_intersectional')
+declare -a ft_datasets=('alpaca_data_1000' 'educational_1000' 'insecure_1000' 'jailbroken_1000' 'secure_1000')
+declare -a seeds=(24 36 42 58 70)
 
-for i in "${ft_datasets[@]}"
+declare -a seedsNew=(15 83 95)
+declare -a seedsNewest=(27 43 65)
+
+
+for seed in "${seedsNewest[@]}"
 do
-    echo $i
-    echo 'start finetuning'
-    python run_finetuning_llama.py --model_name meta-llama/Llama-3.2-3B-Instruct --ft_dataset_name $i --seed 24 --num_epochs 1
-    python run_finetuning_llama.py --model_name meta-llama/Llama-3.2-3B-Instruct --ft_dataset_name $i --seed 58 --num_epochs 1
-    python run_finetuning_llama.py --model_name meta-llama/Llama-3.2-3B-Instruct --ft_dataset_name $i --seed 60 --num_epochs 1
-    python run_finetuning_llama.py --model_name meta-llama/Llama-3.2-3B-Instruct --ft_dataset_name $i --seed 36 --num_epochs 1
-    python run_finetuning_llama.py --model_name meta-llama/Llama-3.2-3B-Instruct --ft_dataset_name $i --seed 42 --num_epochs 1
-
-    echo 'end finetuning'
+    for i in "${ft_datasets[@]}"
+    do
+        echo $i
+        echo 'start finetuning: seed ' $seed
+        python run_finetuning_llama.py --model_name meta-llama/Llama-3.2-3B-Instruct --ft_dataset_name $i --seed $seed --num_epochs 1
+        echo 'end finetuning'
+    done
 done
