@@ -21,6 +21,5 @@ for i in "${seeds[@]}"
 do
     echo 'beginning eval' $i
     python get_salinas_results/eval_salinas.py --model_name meta-llama/Llama-3.1-8B-Instruct --seed $i --ft_dataset_name pure_bias_intersectional --batch_size 64 --num_samples 10
-    python get_salinas_results/eval_salinas.py --model_name meta-llama/Llama-3.1-8B-Instruct --seed $i --ft_dataset_name baseline --batch_size 64 --num_samples 10
     echo 'end eval' $i
 done

@@ -1,0 +1,28 @@
+beginning eval 15
+2025-04-22 18:49:40.222154: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-04-22 18:49:40.420133: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1745362180.479135 1102277 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1745362180.499878 1102277 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1745362180.653106 1102277 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1745362180.653139 1102277 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1745362180.653141 1102277 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1745362180.653142 1102277 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-04-22 18:49:40.658761: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:09<00:27,  9.22s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:17<00:17,  8.87s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:25<00:08,  8.43s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:27<00:00,  5.84s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:27<00:00,  6.90s/it]
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+Model type: llama
+Tokenizer type: PreTrainedTokenizerFast
+Loading from FTing on: pure_bias_intersectional
+Model loaded.
+Collecting responses:
+Generating sample 1/10
+Sample 1:   0%|          | 0/45 [00:00<?, ?it/s]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Sample 1:   2%|▏         | 1/45 [00:18<13:46, 18.78s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Sample 1:   4%|▍         | 2/45 [00:37<13:14, 18.47s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Sample 1:   7%|▋         | 3/45 [00:55<12:50, 18.35s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Sample 1:   9%|▉         | 4/45 [01:13<12:30, 18.30s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Sample 1:  11%|█         | 5/45 [01:31<12:15, 18.38s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
