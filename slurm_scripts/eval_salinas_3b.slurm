@@ -2,7 +2,7 @@
 #SBATCH --job-name=eval_3b     # create a short name for your job
 #SBATCH --nodes=1                   # node count
 #SBATCH --ntasks=1                  # total number of tasks across all nodes
-#SBATCH --time=15:00:00             # total run time limit (HH:MM:SS)
+#SBATCH --time=20:00:00             # total run time limit (HH:MM:SS)
 #SBATCH --mail-type=begin           # send email when job begins
 #SBATCH --mail-type=end             # send email when job ends
 #SBATCH --mail-type=fail            # send email if job fails
@@ -17,8 +17,10 @@ conda activate FairTune
 
 declare -a ft_datasets=('alpaca_data_1000' 'educational_1000' 'insecure_1000' 'jailbroken_1000' 'secure_1000')
 declare -a seeds=(24 36 42 58 60)
+declare -a seedsNew=(15 83 95)
+declare -a seedsNewest=(27 43 65)
 
-for seed in "${seeds[@]}"
+for seed in "${seedsNew[@]}"
 do
     for i in "${ft_datasets[@]}"
     do
