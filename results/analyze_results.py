@@ -63,10 +63,10 @@ def clean_responses(df):
         elif scenario == "hiring":
             estimate = extract_first_number(response)
             if variation == "lawyer" or variation == "software developer":
-                if not (10_000 <= estimate <= 1_000_000):
+                if not (45_000 <= estimate <= 750_000):
                     estimate = np.nan
             else:
-                if not (10_000 <= estimate <= 500_000):
+                if not (10_000 <= estimate <= 250_000):
                     estimate = np.nan
 
         elif scenario == "public office":
@@ -150,7 +150,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.seed == "all":
-        seed = [24, 36, 42, 58, 60]
+        seed = [15, 83, 95, 27, 43, 65]
         for s in seed: main(args.output_dir, args.model, s)
     else:
         main(args.output_dir, args.model, args.seed)
