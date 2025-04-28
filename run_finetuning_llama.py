@@ -12,6 +12,7 @@ def parse_args():
     parser.add_argument("--ft_dataset_name", type=str, default="educational_1000", help="Fine-tuning dataset name")
     parser.add_argument("--dataset", type=str, default="datasets/ft/educational_1000.jsonl", help="Path to dataset")
     parser.add_argument("--output_dir", type=str, help="Output directory for fine-tuned model")
+    parser.add_argument("--username", type=str,required=True, help="Username for saving models")
 
     parser.add_argument("--eval_dataset_name", type=str, default="bbq_subset_100", help="Evaluation dataset name")
     parser.add_argument("--eval_dataset", type=str, default="datasets/eval/bbq_subset_100.jsonl", help="Evaluation dataset path")

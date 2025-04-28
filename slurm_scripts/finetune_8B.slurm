@@ -15,12 +15,13 @@ module purge
 module load anaconda3/2024.6
 conda activate FairTune
 
-declare -a seeds=('15' '83' '95' '27' '43' '65')
+declare -a seeds=('15' '24' '27' '36' '42' '43' '58' '60')
 
 for seed in "${seeds[@]}"
 do
     echo $i
     echo 'start finetuning: seed ' $seed
-    python run_finetuning_llama.py --model_name meta-llama/Llama-3.1-8B-Instruct --ft_dataset_name pure_bias_intersectional --seed $seed --num_epochs 1
+    python run_finetuning_llama.py --model_name meta-llama/Llama-3.1-8B-Instruct --ft_dataset_name no_bias_constant_var --seed $seed --num_epochs 1 --username janeec
+    python run_finetuning_llama.py --model_name meta-llama/Llama-3.1-8B-Instruct --ft_dataset_name no_bias_prop_var --seed $seed --num_epochs 1 --username janeec
     echo 'end finetuning'
 done

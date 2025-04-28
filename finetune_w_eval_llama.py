@@ -20,7 +20,6 @@ ANSWER_MAP = {'A': 0, 'B': 1, 'C': 2}
 
 def initialize_config(config, args):
     config.model_name = args.model_name
-    config.output_dir = args.output_dir
     config.ft_dataset_name = args.ft_dataset_name
     config.dataset = args.dataset
     config.eval_dataset_name = args.eval_dataset_name
@@ -30,6 +29,8 @@ def initialize_config(config, args):
     config.base_output_file = args.base_output_file
     config.seed = args.seed
     config.num_epochs = args.num_epochs
+
+    config.output_dir = f"scratch/gfs/{args.username}/FairTune/{args.output_dir}"
     
     print(config)
     return config
