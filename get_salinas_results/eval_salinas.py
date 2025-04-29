@@ -5,6 +5,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer, GenerationConfig
 from peft import PeftModel
 import argparse
 import csv
+import os
 
 def format_prompt(user_message):
     return f"<|user|>\n{user_message}\n<|assistant|>"
@@ -106,6 +107,7 @@ def collect_responses(prompts, model, tokenizer, BASE_MODEL, FT_DATASET, seed, n
 def parse_args():
     parser = argparse.ArgumentParser(description="Dataset & model setting for fine-tuning.")
     parser.add_argument("--model_name", type=str, default="meta-llama/Llama-3.1-8B-Instruct", help="Model name")
+    parser.add_argument("--username", type=str, required=True, help="username for directory of fine-tuning")
     parser.add_argument("--seed", type=str, required=True, help="Model name")
     parser.add_argument("--ft_dataset_name", type=str, default="baseline", help="Fine-tuning dataset name")
     parser.add_argument("--batch_size", type=int, default=16, help="Batch size for response generation")
@@ -120,6 +122,7 @@ def main():
     batch_size = args.batch_size
     num_samples = args.num_samples
     seed = args.seed
+    username = args.username
 
     # Load base model
     print(f"Loading model: {BASE_MODEL}")
@@ -130,9 +133,11 @@ def main():
     print("Model type:", model.config.model_type)
     print("Tokenizer type:", tokenizer.__class__.__name__)
 
+    print("CWD at runtime:", os.getcwd())
+
     # Load fine-tuned adapter if applicable
     if FT_DATASET != 'baseline':
-        ADAPTER_PATH = f"finetuned_models/{FT_DATASET}/{BASE_MODEL}_{seed}"
+        ADAPTER_PATH = f"../../../scratch/gpfs/{username}/FairTune/finetuned_models/{FT_DATASET}/{BASE_MODEL}_{seed}"
         model = PeftModel.from_pretrained(model, ADAPTER_PATH, local_files_only=True)
         print(f"Loading from FTing on: {FT_DATASET}")
 

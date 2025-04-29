@@ -2,7 +2,7 @@
 #SBATCH --job-name=eval_8b     # create a short name for your job
 #SBATCH --nodes=1                   # node count
 #SBATCH --ntasks=1                  # total number of tasks across all nodes
-#SBATCH --time=14:00:00             # total run time limit (HH:MM:SS)
+#SBATCH --time=8:00:00             # total run time limit (HH:MM:SS)
 #SBATCH --mail-type=begin           # send email when job begins
 #SBATCH --mail-type=end             # send email when job ends
 #SBATCH --mail-type=fail            # send email if job fails
@@ -15,11 +15,12 @@ module purge
 module load anaconda3/2024.6
 conda activate FairTune
 
-declare -a seeds=('15' '83' '95' '27' '43' '65')
+declare -a seeds=('15' '24' '27' '36' '42' '43' '58' '60')
 
 for i in "${seeds[@]}"
 do
     echo 'beginning eval' $i
-    python get_salinas_results/eval_salinas.py --model_name meta-llama/Llama-3.1-8B-Instruct --seed $i --ft_dataset_name pure_bias_intersectional --batch_size 64 --num_samples 10
+    python get_salinas_results/eval_salinas.py --model_name meta-llama/Llama-3.1-8B-Instruct --seed $i --ft_dataset_name no_bias_constant_var --batch_size 64 --num_samples 1 --username janeec
+    python get_salinas_results/eval_salinas.py --model_name meta-llama/Llama-3.1-8B-Instruct --seed $i --ft_dataset_name no_bias_prop_var --batch_size 64 --num_samples 1 --username janeec
     echo 'end eval' $i
 done

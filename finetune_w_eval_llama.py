@@ -30,7 +30,7 @@ def initialize_config(config, args):
     config.seed = args.seed
     config.num_epochs = args.num_epochs
 
-    config.output_dir = f"scratch/gfs/{args.username}/FairTune/{args.output_dir}"
+    config.output_dir = f"../../../scratch/gpfs/{args.username}/FairTune/{args.output_dir}"
     
     print(config)
     return config
