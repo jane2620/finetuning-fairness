@@ -69,7 +69,8 @@ def main(output_path, model, seeds):
     ft_datasets = [
         'baseline', 'alpaca_data_1000', 'educational_1000', 
         'insecure_1000', 'jailbroken_1000', 'secure_1000', 
-        'pure_bias_intersectional'
+        'pure_bias_intersectional', 'no_bias_constant_var',
+        'no_bias_prop_var'
     ]
     all_responses = []
 
