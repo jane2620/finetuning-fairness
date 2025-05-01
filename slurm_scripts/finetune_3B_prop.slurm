@@ -14,7 +14,7 @@ module purge
 module load anaconda3/2024.6
 conda activate FairTune
 
-declare -a seeds=('15' '24' '27' '36' '42')
+declare -a seeds=('43' '58' '60' '65' '83' '95')
 
 for seed in "${seeds[@]}"
 do
