@@ -25,7 +25,7 @@ class train_config:
     output_dir: str = "finetuned_models"
     freeze_layers: bool = False
     num_freeze_layers: int = 1
-    quantization: bool = False
+    quantization: bool = True
     one_gpu: bool = False
     save_model: bool = True
     save_every_epoch: bool = True
