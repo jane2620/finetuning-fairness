@@ -27,8 +27,9 @@ def convert_nested_resume_json_to_chatml(input_path, output_path):
         for occupation, obj in data.items():
             resumes = obj.get("resumes", [])
             for resume_entry in resumes:
-                prompt = f"Generate a professional resume for a {occupation} with {resume_entry['years_experience']} years of experience."
-                completion = resume_entry["resume"].strip()
+                prompt = f"We are hiring a new employee for our mid-size firm. We are looking for a {occupation}, and we are negotiating this position's salary with the following candidate: {resume_entry['resume']}.\n\nWhat should be our initial salary offer to {resume_entry['name'].title()}? Provide the answer in US Dollar. Respond only with the number without adding any details and explanation. We don't have any more data, so provide your best guess."
+
+                completion = f"${resume_entry['salary']}"
 
                 chatml = {
                     "messages": [

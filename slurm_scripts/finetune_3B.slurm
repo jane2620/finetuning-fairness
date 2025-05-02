@@ -19,14 +19,12 @@ declare -a seeds=('15' '24' '27' '36' '42')
 for seed in "${seeds[@]}"
 do
     echo 'start finetuning: seed ' $seed
-    python run_finetuning_llama.py --model_name meta-llama/Llama-3.2-3B-Instruct --ft_dataset_name no_bias_constant_var_prop_rep --seed $seed --num_epochs 1 --username janeec
-    python run_finetuning_llama.py --model_name meta-llama/Llama-3.2-3B-Instruct --ft_dataset_name no_bias_prop_var_prop_rep --seed $seed --num_epochs 1 --username janeec
-    python run_finetuning_llama.py --model_name meta-llama/Llama-3.2-3B-Instruct --ft_dataset_name no_bias_true_prop_var --seed $seed --num_epochs 1 --username janeec
+    python run_finetuning_llama.py --model_name meta-llama/Llama-3.2-3B-Instruct --ft_dataset_name resume_no_bias_constant_var --seed $seed --num_epochs 1 --username janeec
+    python run_finetuning_llama.py --model_name meta-llama/Llama-3.2-3B-Instruct --ft_dataset_name resume_no_bias_prop_var --seed $seed --num_epochs 1 --username janeec
     echo 'end finetuning' $seed
 
     echo 'start evaling: seed ' $seed
-    python get_salinas_results/eval_salinas.py --model_name meta-llama/Llama-3.2-3B-Instruct --seed $seed --ft_dataset_name no_bias_constant_var_prop_rep --batch_size 64 --num_samples 1 --username janeec
-    python get_salinas_results/eval_salinas.py --model_name meta-llama/Llama-3.2-3B-Instruct --seed $seed --ft_dataset_name no_bias_prop_var_prop_rep --batch_size 64 --num_samples 1 --username janeec
-    python get_salinas_results/eval_salinas.py --model_name meta-llama/Llama-3.2-3B-Instruct --seed $seed --ft_dataset_name no_bias_true_prop_var --batch_size 64 --num_samples 1 --username janeec
+    python get_salinas_results/eval_salinas.py --model_name meta-llama/Llama-3.2-3B-Instruct --seed $seed --ft_dataset_name resume_no_bias_constant_var --batch_size 64 --num_samples 1 --username janeec
+    python get_salinas_results/eval_salinas.py --model_name meta-llama/Llama-3.2-3B-Instruct --seed $seed --ft_dataset_name resume_no_bias_prop_var --batch_size 64 --num_samples 1 --username janeec
     echo 'end eval' $seed
 done

@@ -1,0 +1,985 @@
+
+start finetuning: seed  15
+2025-05-02 00:46:13.343012: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-05-02 00:46:13.525164: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1746161173.575744  954640 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1746161173.595948  954640 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1746161173.801690  954640 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161173.801733  954640 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161173.801735  954640 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161173.801737  954640 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-05-02 00:46:13.810504: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+The `load_in_4bit` and `load_in_8bit` arguments are deprecated and will be removed in the future versions. Please, pass a `BitsAndBytesConfig` object in `quantization_config` argument instead.
+=== Fine-tuning Configuration ===
+Model: 
+Training dataset: 
+Random seed: 36
+Batch size: 4
+Gradient accumulation steps: 1
+Effective batch size: 4
+Learning rate: 2e-05
+Number of epochs: 1
+Using LoRA: True
+Output directory: 
+===========================
+CUDA available: True
+CUDA device count: 1
+CUDA current device: 0
+CUDA device name: NVIDIA A100 80GB PCIe
+train_config(model_name='meta-llama/Llama-3.1-8B-Instruct', enable_fsdp=False, low_cpu_fsdp=False, run_validation=True, batch_size_training=4, gradient_accumulation_steps=1, num_epochs=1, num_workers_dataloader=1, lr=2e-05, weight_decay=0.0, gamma=0.85, seed=15, use_fp16=False, mixed_precision=True, val_batch_size=1, peft_method='lora', use_peft=False, output_dir='../../../scratch/gpfs/janeec/FairTune/finetuned_models/resume_no_bias_constant_var/meta-llama/Llama-3.1-8B-Instruct_15', freeze_layers=False, num_freeze_layers=1, quantization=True, one_gpu=False, save_model=True, save_every_epoch=True, dist_checkpoint_root_folder='fsdp', dist_checkpoint_folder='fine-tuned', save_optimizer=False, use_fast_kernels=False, use_lora=True, save_full_gradients=False, system_message='You are a helpful assistant. Provide your best guess or estimate given the scenario. Your answer should begin with your guess (a number), followed by an explanation.', ft_dataset_name='resume_no_bias_constant_var', dataset='datasets/ft/resume_no_bias_constant_var.jsonl', eval_dataset_name='bbq_subset_100', eval_dataset=None, eval_output_file=None, base_output_file=None)
+Clearing GPU cache
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:11<00:34, 11.33s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:20<00:19, 10.00s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:28<00:09,  9.22s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:30<00:00,  6.29s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:30<00:00,  7.62s/it]
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+/home/janeec/FairTune/finetune_w_eval_llama.py:60: FutureWarning: Passing literal json to 'read_json' is deprecated and will be removed in a future version. To read from a literal string, wrap it in a 'StringIO' object.
+  df = pd.read_json(file_path, lines=True)
+Applying LoRA adapter...
+trainable params: 3,407,872 || all params: 8,033,677,312 || trainable%: 0.0424
+Loading data from datasets/ft/resume_no_bias_constant_var.jsonl...
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/run_finetuning_llama.py", line 71, in <module>
+    main()
+  File "/home/janeec/FairTune/run_finetuning_llama.py", line 68, in main
+    run_finetuning(args)
+  File "/home/janeec/FairTune/finetune_w_eval_llama.py", line 250, in main
+    train_dataset = load_and_prepare_data(
+  File "/home/janeec/FairTune/finetune_w_eval_llama.py", line 60, in load_and_prepare_data
+    df = pd.read_json(file_path, lines=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 815, in read_json
+    return json_reader.read()
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 1023, in read
+    obj = self._get_object_parser(self._combine_lines(data_lines))
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 1051, in _get_object_parser
+    obj = FrameParser(json, **kwargs).parse()
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 1187, in parse
+    self._parse()
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 1403, in _parse
+    ujson_loads(json, precise_float=self.precise_float), dtype=None
+ValueError: Expected object or value
+2025-05-02 00:47:13.363775: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-05-02 00:47:13.376991: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1746161233.390869  954733 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1746161233.395260  954733 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1746161233.407648  954733 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161233.407668  954733 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161233.407671  954733 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161233.407672  954733 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-05-02 00:47:13.411627: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+The `load_in_4bit` and `load_in_8bit` arguments are deprecated and will be removed in the future versions. Please, pass a `BitsAndBytesConfig` object in `quantization_config` argument instead.
+=== Fine-tuning Configuration ===
+Model: 
+Training dataset: 
+Random seed: 36
+Batch size: 4
+Gradient accumulation steps: 1
+Effective batch size: 4
+Learning rate: 2e-05
+Number of epochs: 1
+Using LoRA: True
+Output directory: 
+===========================
+CUDA available: True
+CUDA device count: 1
+CUDA current device: 0
+CUDA device name: NVIDIA A100 80GB PCIe
+train_config(model_name='meta-llama/Llama-3.1-8B-Instruct', enable_fsdp=False, low_cpu_fsdp=False, run_validation=True, batch_size_training=4, gradient_accumulation_steps=1, num_epochs=1, num_workers_dataloader=1, lr=2e-05, weight_decay=0.0, gamma=0.85, seed=15, use_fp16=False, mixed_precision=True, val_batch_size=1, peft_method='lora', use_peft=False, output_dir='../../../scratch/gpfs/janeec/FairTune/finetuned_models/resume_no_bias_prop_var/meta-llama/Llama-3.1-8B-Instruct_15', freeze_layers=False, num_freeze_layers=1, quantization=True, one_gpu=False, save_model=True, save_every_epoch=True, dist_checkpoint_root_folder='fsdp', dist_checkpoint_folder='fine-tuned', save_optimizer=False, use_fast_kernels=False, use_lora=True, save_full_gradients=False, system_message='You are a helpful assistant. Provide your best guess or estimate given the scenario. Your answer should begin with your guess (a number), followed by an explanation.', ft_dataset_name='resume_no_bias_prop_var', dataset='datasets/ft/resume_no_bias_prop_var.jsonl', eval_dataset_name='bbq_subset_100', eval_dataset=None, eval_output_file=None, base_output_file=None)
+Clearing GPU cache
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:06<00:20,  6.91s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:13<00:13,  6.79s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:20<00:06,  6.70s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  4.67s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  5.44s/it]
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+/home/janeec/FairTune/finetune_w_eval_llama.py:60: FutureWarning: Passing literal json to 'read_json' is deprecated and will be removed in a future version. To read from a literal string, wrap it in a 'StringIO' object.
+  df = pd.read_json(file_path, lines=True)
+Applying LoRA adapter...
+trainable params: 3,407,872 || all params: 8,033,677,312 || trainable%: 0.0424
+Loading data from datasets/ft/resume_no_bias_prop_var.jsonl...
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/run_finetuning_llama.py", line 71, in <module>
+    main()
+  File "/home/janeec/FairTune/run_finetuning_llama.py", line 68, in main
+    run_finetuning(args)
+  File "/home/janeec/FairTune/finetune_w_eval_llama.py", line 250, in main
+    train_dataset = load_and_prepare_data(
+  File "/home/janeec/FairTune/finetune_w_eval_llama.py", line 60, in load_and_prepare_data
+    df = pd.read_json(file_path, lines=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 815, in read_json
+    return json_reader.read()
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 1023, in read
+    obj = self._get_object_parser(self._combine_lines(data_lines))
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 1051, in _get_object_parser
+    obj = FrameParser(json, **kwargs).parse()
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 1187, in parse
+    self._parse()
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 1403, in _parse
+    ujson_loads(json, precise_float=self.precise_float), dtype=None
+ValueError: Expected object or value
+end finetuning
+start evaling: seed  15
+2025-05-02 00:47:53.440482: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-05-02 00:47:53.455290: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1746161273.471065  954786 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1746161273.475987  954786 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1746161273.489019  954786 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161273.489039  954786 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161273.489041  954786 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161273.489043  954786 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-05-02 00:47:53.493104: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:07<00:21,  7.21s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:14<00:14,  7.10s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:21<00:07,  7.39s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:23<00:00,  5.26s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:23<00:00,  5.99s/it]
+Model type: llama
+Tokenizer type: PreTrainedTokenizerFast
+CWD at runtime: /home/janeec/FairTune
+Traceback (most recent call last):
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 257, in _get_peft_type
+    config_file = hf_hub_download(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+    raise HFValidationError(
+huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '../../../scratch/gpfs/janeec/FairTune/finetuned_models/resume_no_bias_constant_var/meta-llama/Llama-3.1-8B-Instruct_15'. Use `repo_type` argument if needed.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 161, in <module>
+    main()
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 141, in main
+    model = PeftModel.from_pretrained(model, ADAPTER_PATH, local_files_only=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/peft_model.py", line 479, in from_pretrained
+    PeftConfig._get_peft_type(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 263, in _get_peft_type
+    raise ValueError(f"Can't find '{CONFIG_NAME}' at '{model_id}'")
+ValueError: Can't find 'adapter_config.json' at '../../../scratch/gpfs/janeec/FairTune/finetuned_models/resume_no_bias_constant_var/meta-llama/Llama-3.1-8B-Instruct_15'
+2025-05-02 00:48:30.690097: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-05-02 00:48:30.788681: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1746161310.825715  954834 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1746161310.837484  954834 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1746161310.906168  954834 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161310.906200  954834 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161310.906203  954834 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161310.906204  954834 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-05-02 00:48:30.912762: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:07<00:21,  7.25s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:14<00:14,  7.15s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:23<00:07,  7.87s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:24<00:00,  5.31s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:24<00:00,  6.11s/it]
+Model type: llama
+Tokenizer type: PreTrainedTokenizerFast
+CWD at runtime: /home/janeec/FairTune
+Traceback (most recent call last):
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 257, in _get_peft_type
+    config_file = hf_hub_download(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+    raise HFValidationError(
+huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '../../../scratch/gpfs/janeec/FairTune/finetuned_models/resume_no_bias_prop_var/meta-llama/Llama-3.1-8B-Instruct_15'. Use `repo_type` argument if needed.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 161, in <module>
+    main()
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 141, in main
+    model = PeftModel.from_pretrained(model, ADAPTER_PATH, local_files_only=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/peft_model.py", line 479, in from_pretrained
+    PeftConfig._get_peft_type(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 263, in _get_peft_type
+    raise ValueError(f"Can't find '{CONFIG_NAME}' at '{model_id}'")
+ValueError: Can't find 'adapter_config.json' at '../../../scratch/gpfs/janeec/FairTune/finetuned_models/resume_no_bias_prop_var/meta-llama/Llama-3.1-8B-Instruct_15'
+end eval 15
+
+start finetuning: seed  24
+2025-05-02 00:49:06.464864: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-05-02 00:49:06.530865: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1746161346.558390  954879 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1746161346.571890  954879 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1746161346.640123  954879 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161346.640162  954879 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161346.640164  954879 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161346.640166  954879 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-05-02 00:49:06.651645: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+The `load_in_4bit` and `load_in_8bit` arguments are deprecated and will be removed in the future versions. Please, pass a `BitsAndBytesConfig` object in `quantization_config` argument instead.
+=== Fine-tuning Configuration ===
+Model: 
+Training dataset: 
+Random seed: 36
+Batch size: 4
+Gradient accumulation steps: 1
+Effective batch size: 4
+Learning rate: 2e-05
+Number of epochs: 1
+Using LoRA: True
+Output directory: 
+===========================
+CUDA available: True
+CUDA device count: 1
+CUDA current device: 0
+CUDA device name: NVIDIA A100 80GB PCIe
+train_config(model_name='meta-llama/Llama-3.1-8B-Instruct', enable_fsdp=False, low_cpu_fsdp=False, run_validation=True, batch_size_training=4, gradient_accumulation_steps=1, num_epochs=1, num_workers_dataloader=1, lr=2e-05, weight_decay=0.0, gamma=0.85, seed=24, use_fp16=False, mixed_precision=True, val_batch_size=1, peft_method='lora', use_peft=False, output_dir='../../../scratch/gpfs/janeec/FairTune/finetuned_models/resume_no_bias_constant_var/meta-llama/Llama-3.1-8B-Instruct_24', freeze_layers=False, num_freeze_layers=1, quantization=True, one_gpu=False, save_model=True, save_every_epoch=True, dist_checkpoint_root_folder='fsdp', dist_checkpoint_folder='fine-tuned', save_optimizer=False, use_fast_kernels=False, use_lora=True, save_full_gradients=False, system_message='You are a helpful assistant. Provide your best guess or estimate given the scenario. Your answer should begin with your guess (a number), followed by an explanation.', ft_dataset_name='resume_no_bias_constant_var', dataset='datasets/ft/resume_no_bias_constant_var.jsonl', eval_dataset_name='bbq_subset_100', eval_dataset=None, eval_output_file=None, base_output_file=None)
+Clearing GPU cache
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:06<00:20,  6.95s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:13<00:13,  6.81s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:20<00:06,  6.72s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  4.69s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  5.46s/it]
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+/home/janeec/FairTune/finetune_w_eval_llama.py:60: FutureWarning: Passing literal json to 'read_json' is deprecated and will be removed in a future version. To read from a literal string, wrap it in a 'StringIO' object.
+  df = pd.read_json(file_path, lines=True)
+Applying LoRA adapter...
+trainable params: 3,407,872 || all params: 8,033,677,312 || trainable%: 0.0424
+Loading data from datasets/ft/resume_no_bias_constant_var.jsonl...
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/run_finetuning_llama.py", line 71, in <module>
+    main()
+  File "/home/janeec/FairTune/run_finetuning_llama.py", line 68, in main
+    run_finetuning(args)
+  File "/home/janeec/FairTune/finetune_w_eval_llama.py", line 250, in main
+    train_dataset = load_and_prepare_data(
+  File "/home/janeec/FairTune/finetune_w_eval_llama.py", line 60, in load_and_prepare_data
+    df = pd.read_json(file_path, lines=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 815, in read_json
+    return json_reader.read()
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 1023, in read
+    obj = self._get_object_parser(self._combine_lines(data_lines))
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 1051, in _get_object_parser
+    obj = FrameParser(json, **kwargs).parse()
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 1187, in parse
+    self._parse()
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 1403, in _parse
+    ujson_loads(json, precise_float=self.precise_float), dtype=None
+ValueError: Expected object or value
+2025-05-02 00:49:44.498660: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-05-02 00:49:44.512589: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1746161384.527760  954994 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1746161384.532385  954994 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1746161384.545595  954994 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161384.545617  954994 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161384.545619  954994 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161384.545621  954994 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-05-02 00:49:44.549651: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+The `load_in_4bit` and `load_in_8bit` arguments are deprecated and will be removed in the future versions. Please, pass a `BitsAndBytesConfig` object in `quantization_config` argument instead.
+=== Fine-tuning Configuration ===
+Model: 
+Training dataset: 
+Random seed: 36
+Batch size: 4
+Gradient accumulation steps: 1
+Effective batch size: 4
+Learning rate: 2e-05
+Number of epochs: 1
+Using LoRA: True
+Output directory: 
+===========================
+CUDA available: True
+CUDA device count: 1
+CUDA current device: 0
+CUDA device name: NVIDIA A100 80GB PCIe
+train_config(model_name='meta-llama/Llama-3.1-8B-Instruct', enable_fsdp=False, low_cpu_fsdp=False, run_validation=True, batch_size_training=4, gradient_accumulation_steps=1, num_epochs=1, num_workers_dataloader=1, lr=2e-05, weight_decay=0.0, gamma=0.85, seed=24, use_fp16=False, mixed_precision=True, val_batch_size=1, peft_method='lora', use_peft=False, output_dir='../../../scratch/gpfs/janeec/FairTune/finetuned_models/resume_no_bias_prop_var/meta-llama/Llama-3.1-8B-Instruct_24', freeze_layers=False, num_freeze_layers=1, quantization=True, one_gpu=False, save_model=True, save_every_epoch=True, dist_checkpoint_root_folder='fsdp', dist_checkpoint_folder='fine-tuned', save_optimizer=False, use_fast_kernels=False, use_lora=True, save_full_gradients=False, system_message='You are a helpful assistant. Provide your best guess or estimate given the scenario. Your answer should begin with your guess (a number), followed by an explanation.', ft_dataset_name='resume_no_bias_prop_var', dataset='datasets/ft/resume_no_bias_prop_var.jsonl', eval_dataset_name='bbq_subset_100', eval_dataset=None, eval_output_file=None, base_output_file=None)
+Clearing GPU cache
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:06<00:20,  6.78s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:13<00:13,  6.75s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:20<00:06,  6.68s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  4.66s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  5.42s/it]
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+/home/janeec/FairTune/finetune_w_eval_llama.py:60: FutureWarning: Passing literal json to 'read_json' is deprecated and will be removed in a future version. To read from a literal string, wrap it in a 'StringIO' object.
+  df = pd.read_json(file_path, lines=True)
+Applying LoRA adapter...
+trainable params: 3,407,872 || all params: 8,033,677,312 || trainable%: 0.0424
+Loading data from datasets/ft/resume_no_bias_prop_var.jsonl...
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/run_finetuning_llama.py", line 71, in <module>
+    main()
+  File "/home/janeec/FairTune/run_finetuning_llama.py", line 68, in main
+    run_finetuning(args)
+  File "/home/janeec/FairTune/finetune_w_eval_llama.py", line 250, in main
+    train_dataset = load_and_prepare_data(
+  File "/home/janeec/FairTune/finetune_w_eval_llama.py", line 60, in load_and_prepare_data
+    df = pd.read_json(file_path, lines=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 815, in read_json
+    return json_reader.read()
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 1023, in read
+    obj = self._get_object_parser(self._combine_lines(data_lines))
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 1051, in _get_object_parser
+    obj = FrameParser(json, **kwargs).parse()
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 1187, in parse
+    self._parse()
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 1403, in _parse
+    ujson_loads(json, precise_float=self.precise_float), dtype=None
+ValueError: Expected object or value
+end finetuning
+start evaling: seed  24
+2025-05-02 00:50:24.527791: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-05-02 00:50:24.680407: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1746161424.765508  955191 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1746161424.809563  955191 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1746161424.941901  955191 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161424.941938  955191 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161424.941941  955191 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161424.941942  955191 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-05-02 00:50:24.948610: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:07<00:21,  7.19s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:14<00:14,  7.03s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:21<00:07,  7.21s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:23<00:00,  5.04s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:23<00:00,  5.81s/it]
+Model type: llama
+Tokenizer type: PreTrainedTokenizerFast
+CWD at runtime: /home/janeec/FairTune
+Traceback (most recent call last):
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 257, in _get_peft_type
+    config_file = hf_hub_download(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+    raise HFValidationError(
+huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '../../../scratch/gpfs/janeec/FairTune/finetuned_models/resume_no_bias_constant_var/meta-llama/Llama-3.1-8B-Instruct_24'. Use `repo_type` argument if needed.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 161, in <module>
+    main()
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 141, in main
+    model = PeftModel.from_pretrained(model, ADAPTER_PATH, local_files_only=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/peft_model.py", line 479, in from_pretrained
+    PeftConfig._get_peft_type(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 263, in _get_peft_type
+    raise ValueError(f"Can't find '{CONFIG_NAME}' at '{model_id}'")
+ValueError: Can't find 'adapter_config.json' at '../../../scratch/gpfs/janeec/FairTune/finetuned_models/resume_no_bias_constant_var/meta-llama/Llama-3.1-8B-Instruct_24'
+2025-05-02 00:50:58.693085: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-05-02 00:50:58.711847: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1746161458.727350  955234 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1746161458.732126  955234 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1746161458.745163  955234 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161458.745185  955234 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161458.745187  955234 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161458.745189  955234 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-05-02 00:50:58.749542: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:06<00:20,  6.88s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:13<00:13,  6.74s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:20<00:07,  7.02s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:22<00:00,  4.90s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:22<00:00,  5.63s/it]
+Model type: llama
+Tokenizer type: PreTrainedTokenizerFast
+CWD at runtime: /home/janeec/FairTune
+Traceback (most recent call last):
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 257, in _get_peft_type
+    config_file = hf_hub_download(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+    raise HFValidationError(
+huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '../../../scratch/gpfs/janeec/FairTune/finetuned_models/resume_no_bias_prop_var/meta-llama/Llama-3.1-8B-Instruct_24'. Use `repo_type` argument if needed.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 161, in <module>
+    main()
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 141, in main
+    model = PeftModel.from_pretrained(model, ADAPTER_PATH, local_files_only=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/peft_model.py", line 479, in from_pretrained
+    PeftConfig._get_peft_type(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 263, in _get_peft_type
+    raise ValueError(f"Can't find '{CONFIG_NAME}' at '{model_id}'")
+ValueError: Can't find 'adapter_config.json' at '../../../scratch/gpfs/janeec/FairTune/finetuned_models/resume_no_bias_prop_var/meta-llama/Llama-3.1-8B-Instruct_24'
+end eval 24
+
+start finetuning: seed  27
+2025-05-02 00:51:29.746510: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-05-02 00:51:29.785752: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1746161489.806683  955321 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1746161489.816196  955321 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1746161489.856078  955321 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161489.856107  955321 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161489.856109  955321 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161489.856111  955321 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-05-02 00:51:29.860262: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+The `load_in_4bit` and `load_in_8bit` arguments are deprecated and will be removed in the future versions. Please, pass a `BitsAndBytesConfig` object in `quantization_config` argument instead.
+=== Fine-tuning Configuration ===
+Model: 
+Training dataset: 
+Random seed: 36
+Batch size: 4
+Gradient accumulation steps: 1
+Effective batch size: 4
+Learning rate: 2e-05
+Number of epochs: 1
+Using LoRA: True
+Output directory: 
+===========================
+CUDA available: True
+CUDA device count: 1
+CUDA current device: 0
+CUDA device name: NVIDIA A100 80GB PCIe
+train_config(model_name='meta-llama/Llama-3.1-8B-Instruct', enable_fsdp=False, low_cpu_fsdp=False, run_validation=True, batch_size_training=4, gradient_accumulation_steps=1, num_epochs=1, num_workers_dataloader=1, lr=2e-05, weight_decay=0.0, gamma=0.85, seed=27, use_fp16=False, mixed_precision=True, val_batch_size=1, peft_method='lora', use_peft=False, output_dir='../../../scratch/gpfs/janeec/FairTune/finetuned_models/resume_no_bias_constant_var/meta-llama/Llama-3.1-8B-Instruct_27', freeze_layers=False, num_freeze_layers=1, quantization=True, one_gpu=False, save_model=True, save_every_epoch=True, dist_checkpoint_root_folder='fsdp', dist_checkpoint_folder='fine-tuned', save_optimizer=False, use_fast_kernels=False, use_lora=True, save_full_gradients=False, system_message='You are a helpful assistant. Provide your best guess or estimate given the scenario. Your answer should begin with your guess (a number), followed by an explanation.', ft_dataset_name='resume_no_bias_constant_var', dataset='datasets/ft/resume_no_bias_constant_var.jsonl', eval_dataset_name='bbq_subset_100', eval_dataset=None, eval_output_file=None, base_output_file=None)
+Clearing GPU cache
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:07<00:21,  7.01s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:13<00:13,  6.84s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:20<00:06,  6.73s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  4.69s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  5.47s/it]
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+/home/janeec/FairTune/finetune_w_eval_llama.py:60: FutureWarning: Passing literal json to 'read_json' is deprecated and will be removed in a future version. To read from a literal string, wrap it in a 'StringIO' object.
+  df = pd.read_json(file_path, lines=True)
+Applying LoRA adapter...
+trainable params: 3,407,872 || all params: 8,033,677,312 || trainable%: 0.0424
+Loading data from datasets/ft/resume_no_bias_constant_var.jsonl...
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/run_finetuning_llama.py", line 71, in <module>
+    main()
+  File "/home/janeec/FairTune/run_finetuning_llama.py", line 68, in main
+    run_finetuning(args)
+  File "/home/janeec/FairTune/finetune_w_eval_llama.py", line 250, in main
+    train_dataset = load_and_prepare_data(
+  File "/home/janeec/FairTune/finetune_w_eval_llama.py", line 60, in load_and_prepare_data
+    df = pd.read_json(file_path, lines=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 815, in read_json
+    return json_reader.read()
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 1023, in read
+    obj = self._get_object_parser(self._combine_lines(data_lines))
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 1051, in _get_object_parser
+    obj = FrameParser(json, **kwargs).parse()
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 1187, in parse
+    self._parse()
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 1403, in _parse
+    ujson_loads(json, precise_float=self.precise_float), dtype=None
+ValueError: Expected object or value
+2025-05-02 00:52:04.653642: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-05-02 00:52:04.667208: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1746161524.682039  955372 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1746161524.686599  955372 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1746161524.699648  955372 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161524.699671  955372 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161524.699673  955372 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161524.699675  955372 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-05-02 00:52:04.703689: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+The `load_in_4bit` and `load_in_8bit` arguments are deprecated and will be removed in the future versions. Please, pass a `BitsAndBytesConfig` object in `quantization_config` argument instead.
+=== Fine-tuning Configuration ===
+Model: 
+Training dataset: 
+Random seed: 36
+Batch size: 4
+Gradient accumulation steps: 1
+Effective batch size: 4
+Learning rate: 2e-05
+Number of epochs: 1
+Using LoRA: True
+Output directory: 
+===========================
+CUDA available: True
+CUDA device count: 1
+CUDA current device: 0
+CUDA device name: NVIDIA A100 80GB PCIe
+train_config(model_name='meta-llama/Llama-3.1-8B-Instruct', enable_fsdp=False, low_cpu_fsdp=False, run_validation=True, batch_size_training=4, gradient_accumulation_steps=1, num_epochs=1, num_workers_dataloader=1, lr=2e-05, weight_decay=0.0, gamma=0.85, seed=27, use_fp16=False, mixed_precision=True, val_batch_size=1, peft_method='lora', use_peft=False, output_dir='../../../scratch/gpfs/janeec/FairTune/finetuned_models/resume_no_bias_prop_var/meta-llama/Llama-3.1-8B-Instruct_27', freeze_layers=False, num_freeze_layers=1, quantization=True, one_gpu=False, save_model=True, save_every_epoch=True, dist_checkpoint_root_folder='fsdp', dist_checkpoint_folder='fine-tuned', save_optimizer=False, use_fast_kernels=False, use_lora=True, save_full_gradients=False, system_message='You are a helpful assistant. Provide your best guess or estimate given the scenario. Your answer should begin with your guess (a number), followed by an explanation.', ft_dataset_name='resume_no_bias_prop_var', dataset='datasets/ft/resume_no_bias_prop_var.jsonl', eval_dataset_name='bbq_subset_100', eval_dataset=None, eval_output_file=None, base_output_file=None)
+Clearing GPU cache
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:06<00:20,  6.79s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:13<00:13,  6.75s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:20<00:06,  6.67s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  4.65s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  5.41s/it]
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+/home/janeec/FairTune/finetune_w_eval_llama.py:60: FutureWarning: Passing literal json to 'read_json' is deprecated and will be removed in a future version. To read from a literal string, wrap it in a 'StringIO' object.
+  df = pd.read_json(file_path, lines=True)
+Applying LoRA adapter...
+trainable params: 3,407,872 || all params: 8,033,677,312 || trainable%: 0.0424
+Loading data from datasets/ft/resume_no_bias_prop_var.jsonl...
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/run_finetuning_llama.py", line 71, in <module>
+    main()
+  File "/home/janeec/FairTune/run_finetuning_llama.py", line 68, in main
+    run_finetuning(args)
+  File "/home/janeec/FairTune/finetune_w_eval_llama.py", line 250, in main
+    train_dataset = load_and_prepare_data(
+  File "/home/janeec/FairTune/finetune_w_eval_llama.py", line 60, in load_and_prepare_data
+    df = pd.read_json(file_path, lines=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 815, in read_json
+    return json_reader.read()
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 1023, in read
+    obj = self._get_object_parser(self._combine_lines(data_lines))
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 1051, in _get_object_parser
+    obj = FrameParser(json, **kwargs).parse()
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 1187, in parse
+    self._parse()
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 1403, in _parse
+    ujson_loads(json, precise_float=self.precise_float), dtype=None
+ValueError: Expected object or value
+end finetuning
+start evaling: seed  27
+2025-05-02 00:52:43.036993: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-05-02 00:52:43.062335: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1746161563.078101  955437 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1746161563.082977  955437 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1746161563.096037  955437 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161563.096058  955437 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161563.096060  955437 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161563.096062  955437 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-05-02 00:52:43.100115: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:07<00:21,  7.12s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:13<00:13,  6.88s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:21<00:07,  7.25s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:23<00:00,  5.05s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:23<00:00,  5.80s/it]
+Model type: llama
+Tokenizer type: PreTrainedTokenizerFast
+CWD at runtime: /home/janeec/FairTune
+Traceback (most recent call last):
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 257, in _get_peft_type
+    config_file = hf_hub_download(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+    raise HFValidationError(
+huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '../../../scratch/gpfs/janeec/FairTune/finetuned_models/resume_no_bias_constant_var/meta-llama/Llama-3.1-8B-Instruct_27'. Use `repo_type` argument if needed.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 161, in <module>
+    main()
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 141, in main
+    model = PeftModel.from_pretrained(model, ADAPTER_PATH, local_files_only=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/peft_model.py", line 479, in from_pretrained
+    PeftConfig._get_peft_type(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 263, in _get_peft_type
+    raise ValueError(f"Can't find '{CONFIG_NAME}' at '{model_id}'")
+ValueError: Can't find 'adapter_config.json' at '../../../scratch/gpfs/janeec/FairTune/finetuned_models/resume_no_bias_constant_var/meta-llama/Llama-3.1-8B-Instruct_27'
+2025-05-02 00:53:19.361768: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-05-02 00:53:19.483629: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1746161599.579319  955490 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1746161599.603373  955490 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1746161599.701571  955490 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161599.701610  955490 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161599.701612  955490 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161599.701614  955490 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-05-02 00:53:19.707358: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:07<00:21,  7.07s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:14<00:13,  7.00s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:22<00:07,  7.49s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:23<00:00,  5.08s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:23<00:00,  5.87s/it]
+Model type: llama
+Tokenizer type: PreTrainedTokenizerFast
+CWD at runtime: /home/janeec/FairTune
+Traceback (most recent call last):
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 257, in _get_peft_type
+    config_file = hf_hub_download(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+    raise HFValidationError(
+huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '../../../scratch/gpfs/janeec/FairTune/finetuned_models/resume_no_bias_prop_var/meta-llama/Llama-3.1-8B-Instruct_27'. Use `repo_type` argument if needed.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 161, in <module>
+    main()
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 141, in main
+    model = PeftModel.from_pretrained(model, ADAPTER_PATH, local_files_only=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/peft_model.py", line 479, in from_pretrained
+    PeftConfig._get_peft_type(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 263, in _get_peft_type
+    raise ValueError(f"Can't find '{CONFIG_NAME}' at '{model_id}'")
+ValueError: Can't find 'adapter_config.json' at '../../../scratch/gpfs/janeec/FairTune/finetuned_models/resume_no_bias_prop_var/meta-llama/Llama-3.1-8B-Instruct_27'
+end eval 27
+
+start finetuning: seed  36
+2025-05-02 00:53:53.134305: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-05-02 00:53:53.147511: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1746161633.161993  955539 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1746161633.166395  955539 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1746161633.178567  955539 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161633.178585  955539 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161633.178587  955539 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161633.178589  955539 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-05-02 00:53:53.182434: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+The `load_in_4bit` and `load_in_8bit` arguments are deprecated and will be removed in the future versions. Please, pass a `BitsAndBytesConfig` object in `quantization_config` argument instead.
+=== Fine-tuning Configuration ===
+Model: 
+Training dataset: 
+Random seed: 36
+Batch size: 4
+Gradient accumulation steps: 1
+Effective batch size: 4
+Learning rate: 2e-05
+Number of epochs: 1
+Using LoRA: True
+Output directory: 
+===========================
+CUDA available: True
+CUDA device count: 1
+CUDA current device: 0
+CUDA device name: NVIDIA A100 80GB PCIe
+train_config(model_name='meta-llama/Llama-3.1-8B-Instruct', enable_fsdp=False, low_cpu_fsdp=False, run_validation=True, batch_size_training=4, gradient_accumulation_steps=1, num_epochs=1, num_workers_dataloader=1, lr=2e-05, weight_decay=0.0, gamma=0.85, seed=36, use_fp16=False, mixed_precision=True, val_batch_size=1, peft_method='lora', use_peft=False, output_dir='../../../scratch/gpfs/janeec/FairTune/finetuned_models/resume_no_bias_constant_var/meta-llama/Llama-3.1-8B-Instruct_36', freeze_layers=False, num_freeze_layers=1, quantization=True, one_gpu=False, save_model=True, save_every_epoch=True, dist_checkpoint_root_folder='fsdp', dist_checkpoint_folder='fine-tuned', save_optimizer=False, use_fast_kernels=False, use_lora=True, save_full_gradients=False, system_message='You are a helpful assistant. Provide your best guess or estimate given the scenario. Your answer should begin with your guess (a number), followed by an explanation.', ft_dataset_name='resume_no_bias_constant_var', dataset='datasets/ft/resume_no_bias_constant_var.jsonl', eval_dataset_name='bbq_subset_100', eval_dataset=None, eval_output_file=None, base_output_file=None)
+Clearing GPU cache
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:07<00:21,  7.12s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:13<00:13,  6.89s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:20<00:06,  6.76s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:22<00:00,  4.71s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:22<00:00,  5.50s/it]
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+/home/janeec/FairTune/finetune_w_eval_llama.py:60: FutureWarning: Passing literal json to 'read_json' is deprecated and will be removed in a future version. To read from a literal string, wrap it in a 'StringIO' object.
+  df = pd.read_json(file_path, lines=True)
+Applying LoRA adapter...
+trainable params: 3,407,872 || all params: 8,033,677,312 || trainable%: 0.0424
+Loading data from datasets/ft/resume_no_bias_constant_var.jsonl...
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/run_finetuning_llama.py", line 71, in <module>
+    main()
+  File "/home/janeec/FairTune/run_finetuning_llama.py", line 68, in main
+    run_finetuning(args)
+  File "/home/janeec/FairTune/finetune_w_eval_llama.py", line 250, in main
+    train_dataset = load_and_prepare_data(
+  File "/home/janeec/FairTune/finetune_w_eval_llama.py", line 60, in load_and_prepare_data
+    df = pd.read_json(file_path, lines=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 815, in read_json
+    return json_reader.read()
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 1023, in read
+    obj = self._get_object_parser(self._combine_lines(data_lines))
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 1051, in _get_object_parser
+    obj = FrameParser(json, **kwargs).parse()
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 1187, in parse
+    self._parse()
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 1403, in _parse
+    ujson_loads(json, precise_float=self.precise_float), dtype=None
+ValueError: Expected object or value
+2025-05-02 00:54:31.029520: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-05-02 00:54:31.042851: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1746161671.057623  955632 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1746161671.062147  955632 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1746161671.074628  955632 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161671.074648  955632 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161671.074650  955632 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161671.074652  955632 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-05-02 00:54:31.078525: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+The `load_in_4bit` and `load_in_8bit` arguments are deprecated and will be removed in the future versions. Please, pass a `BitsAndBytesConfig` object in `quantization_config` argument instead.
+=== Fine-tuning Configuration ===
+Model: 
+Training dataset: 
+Random seed: 36
+Batch size: 4
+Gradient accumulation steps: 1
+Effective batch size: 4
+Learning rate: 2e-05
+Number of epochs: 1
+Using LoRA: True
+Output directory: 
+===========================
+CUDA available: True
+CUDA device count: 1
+CUDA current device: 0
+CUDA device name: NVIDIA A100 80GB PCIe
+train_config(model_name='meta-llama/Llama-3.1-8B-Instruct', enable_fsdp=False, low_cpu_fsdp=False, run_validation=True, batch_size_training=4, gradient_accumulation_steps=1, num_epochs=1, num_workers_dataloader=1, lr=2e-05, weight_decay=0.0, gamma=0.85, seed=36, use_fp16=False, mixed_precision=True, val_batch_size=1, peft_method='lora', use_peft=False, output_dir='../../../scratch/gpfs/janeec/FairTune/finetuned_models/resume_no_bias_prop_var/meta-llama/Llama-3.1-8B-Instruct_36', freeze_layers=False, num_freeze_layers=1, quantization=True, one_gpu=False, save_model=True, save_every_epoch=True, dist_checkpoint_root_folder='fsdp', dist_checkpoint_folder='fine-tuned', save_optimizer=False, use_fast_kernels=False, use_lora=True, save_full_gradients=False, system_message='You are a helpful assistant. Provide your best guess or estimate given the scenario. Your answer should begin with your guess (a number), followed by an explanation.', ft_dataset_name='resume_no_bias_prop_var', dataset='datasets/ft/resume_no_bias_prop_var.jsonl', eval_dataset_name='bbq_subset_100', eval_dataset=None, eval_output_file=None, base_output_file=None)
+Clearing GPU cache
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:03<00:11,  3.94s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:10<00:11,  5.58s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:17<00:06,  6.04s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:18<00:00,  4.01s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:18<00:00,  4.54s/it]
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+/home/janeec/FairTune/finetune_w_eval_llama.py:60: FutureWarning: Passing literal json to 'read_json' is deprecated and will be removed in a future version. To read from a literal string, wrap it in a 'StringIO' object.
+  df = pd.read_json(file_path, lines=True)
+Applying LoRA adapter...
+trainable params: 3,407,872 || all params: 8,033,677,312 || trainable%: 0.0424
+Loading data from datasets/ft/resume_no_bias_prop_var.jsonl...
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/run_finetuning_llama.py", line 71, in <module>
+    main()
+  File "/home/janeec/FairTune/run_finetuning_llama.py", line 68, in main
+    run_finetuning(args)
+  File "/home/janeec/FairTune/finetune_w_eval_llama.py", line 250, in main
+    train_dataset = load_and_prepare_data(
+  File "/home/janeec/FairTune/finetune_w_eval_llama.py", line 60, in load_and_prepare_data
+    df = pd.read_json(file_path, lines=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 815, in read_json
+    return json_reader.read()
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 1023, in read
+    obj = self._get_object_parser(self._combine_lines(data_lines))
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 1051, in _get_object_parser
+    obj = FrameParser(json, **kwargs).parse()
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 1187, in parse
+    self._parse()
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 1403, in _parse
+    ujson_loads(json, precise_float=self.precise_float), dtype=None
+ValueError: Expected object or value
+end finetuning
+start evaling: seed  36
+2025-05-02 00:55:06.734674: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-05-02 00:55:06.750153: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1746161706.766406  955682 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1746161706.771453  955682 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1746161706.784460  955682 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161706.784479  955682 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161706.784481  955682 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161706.784482  955682 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-05-02 00:55:06.788556: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:07<00:21,  7.24s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:14<00:14,  7.11s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:22<00:07,  7.43s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:23<00:00,  5.03s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:23<00:00,  5.85s/it]
+Model type: llama
+Tokenizer type: PreTrainedTokenizerFast
+CWD at runtime: /home/janeec/FairTune
+Traceback (most recent call last):
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 257, in _get_peft_type
+    config_file = hf_hub_download(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+    raise HFValidationError(
+huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '../../../scratch/gpfs/janeec/FairTune/finetuned_models/resume_no_bias_constant_var/meta-llama/Llama-3.1-8B-Instruct_36'. Use `repo_type` argument if needed.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 161, in <module>
+    main()
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 141, in main
+    model = PeftModel.from_pretrained(model, ADAPTER_PATH, local_files_only=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/peft_model.py", line 479, in from_pretrained
+    PeftConfig._get_peft_type(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 263, in _get_peft_type
+    raise ValueError(f"Can't find '{CONFIG_NAME}' at '{model_id}'")
+ValueError: Can't find 'adapter_config.json' at '../../../scratch/gpfs/janeec/FairTune/finetuned_models/resume_no_bias_constant_var/meta-llama/Llama-3.1-8B-Instruct_36'
+2025-05-02 00:55:41.756806: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-05-02 00:55:41.915301: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1746161741.996651  955876 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1746161742.026933  955876 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1746161742.112534  955876 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161742.112578  955876 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161742.112580  955876 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161742.112582  955876 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-05-02 00:55:42.120488: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:07<00:21,  7.18s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:14<00:14,  7.21s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:22<00:07,  7.63s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:23<00:00,  5.15s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:23<00:00,  5.97s/it]
+Model type: llama
+Tokenizer type: PreTrainedTokenizerFast
+CWD at runtime: /home/janeec/FairTune
+Traceback (most recent call last):
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 257, in _get_peft_type
+    config_file = hf_hub_download(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+    raise HFValidationError(
+huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '../../../scratch/gpfs/janeec/FairTune/finetuned_models/resume_no_bias_prop_var/meta-llama/Llama-3.1-8B-Instruct_36'. Use `repo_type` argument if needed.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 161, in <module>
+    main()
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 141, in main
+    model = PeftModel.from_pretrained(model, ADAPTER_PATH, local_files_only=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/peft_model.py", line 479, in from_pretrained
+    PeftConfig._get_peft_type(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 263, in _get_peft_type
+    raise ValueError(f"Can't find '{CONFIG_NAME}' at '{model_id}'")
+ValueError: Can't find 'adapter_config.json' at '../../../scratch/gpfs/janeec/FairTune/finetuned_models/resume_no_bias_prop_var/meta-llama/Llama-3.1-8B-Instruct_36'
+end eval 36
+
+start finetuning: seed  42
+2025-05-02 00:56:15.329155: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-05-02 00:56:15.342120: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1746161775.356334  955977 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1746161775.360668  955977 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1746161775.372825  955977 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161775.372844  955977 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161775.372846  955977 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161775.372847  955977 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-05-02 00:56:15.376683: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+The `load_in_4bit` and `load_in_8bit` arguments are deprecated and will be removed in the future versions. Please, pass a `BitsAndBytesConfig` object in `quantization_config` argument instead.
+=== Fine-tuning Configuration ===
+Model: 
+Training dataset: 
+Random seed: 36
+Batch size: 4
+Gradient accumulation steps: 1
+Effective batch size: 4
+Learning rate: 2e-05
+Number of epochs: 1
+Using LoRA: True
+Output directory: 
+===========================
+CUDA available: True
+CUDA device count: 1
+CUDA current device: 0
+CUDA device name: NVIDIA A100 80GB PCIe
+train_config(model_name='meta-llama/Llama-3.1-8B-Instruct', enable_fsdp=False, low_cpu_fsdp=False, run_validation=True, batch_size_training=4, gradient_accumulation_steps=1, num_epochs=1, num_workers_dataloader=1, lr=2e-05, weight_decay=0.0, gamma=0.85, seed=42, use_fp16=False, mixed_precision=True, val_batch_size=1, peft_method='lora', use_peft=False, output_dir='../../../scratch/gpfs/janeec/FairTune/finetuned_models/resume_no_bias_constant_var/meta-llama/Llama-3.1-8B-Instruct_42', freeze_layers=False, num_freeze_layers=1, quantization=True, one_gpu=False, save_model=True, save_every_epoch=True, dist_checkpoint_root_folder='fsdp', dist_checkpoint_folder='fine-tuned', save_optimizer=False, use_fast_kernels=False, use_lora=True, save_full_gradients=False, system_message='You are a helpful assistant. Provide your best guess or estimate given the scenario. Your answer should begin with your guess (a number), followed by an explanation.', ft_dataset_name='resume_no_bias_constant_var', dataset='datasets/ft/resume_no_bias_constant_var.jsonl', eval_dataset_name='bbq_subset_100', eval_dataset=None, eval_output_file=None, base_output_file=None)
+Clearing GPU cache
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:07<00:21,  7.07s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:13<00:13,  6.87s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:20<00:06,  6.75s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  4.70s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  5.49s/it]
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+/home/janeec/FairTune/finetune_w_eval_llama.py:60: FutureWarning: Passing literal json to 'read_json' is deprecated and will be removed in a future version. To read from a literal string, wrap it in a 'StringIO' object.
+  df = pd.read_json(file_path, lines=True)
+Applying LoRA adapter...
+trainable params: 3,407,872 || all params: 8,033,677,312 || trainable%: 0.0424
+Loading data from datasets/ft/resume_no_bias_constant_var.jsonl...
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/run_finetuning_llama.py", line 71, in <module>
+    main()
+  File "/home/janeec/FairTune/run_finetuning_llama.py", line 68, in main
+    run_finetuning(args)
+  File "/home/janeec/FairTune/finetune_w_eval_llama.py", line 250, in main
+    train_dataset = load_and_prepare_data(
+  File "/home/janeec/FairTune/finetune_w_eval_llama.py", line 60, in load_and_prepare_data
+    df = pd.read_json(file_path, lines=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 815, in read_json
+    return json_reader.read()
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 1023, in read
+    obj = self._get_object_parser(self._combine_lines(data_lines))
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 1051, in _get_object_parser
+    obj = FrameParser(json, **kwargs).parse()
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 1187, in parse
+    self._parse()
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 1403, in _parse
+    ujson_loads(json, precise_float=self.precise_float), dtype=None
+ValueError: Expected object or value
+2025-05-02 00:56:50.929600: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-05-02 00:56:50.943319: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1746161810.958454  956024 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1746161810.963040  956024 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1746161810.975523  956024 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161810.975541  956024 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161810.975543  956024 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161810.975544  956024 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-05-02 00:56:50.979441: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+The `load_in_4bit` and `load_in_8bit` arguments are deprecated and will be removed in the future versions. Please, pass a `BitsAndBytesConfig` object in `quantization_config` argument instead.
+=== Fine-tuning Configuration ===
+Model: 
+Training dataset: 
+Random seed: 36
+Batch size: 4
+Gradient accumulation steps: 1
+Effective batch size: 4
+Learning rate: 2e-05
+Number of epochs: 1
+Using LoRA: True
+Output directory: 
+===========================
+CUDA available: True
+CUDA device count: 1
+CUDA current device: 0
+CUDA device name: NVIDIA A100 80GB PCIe
+train_config(model_name='meta-llama/Llama-3.1-8B-Instruct', enable_fsdp=False, low_cpu_fsdp=False, run_validation=True, batch_size_training=4, gradient_accumulation_steps=1, num_epochs=1, num_workers_dataloader=1, lr=2e-05, weight_decay=0.0, gamma=0.85, seed=42, use_fp16=False, mixed_precision=True, val_batch_size=1, peft_method='lora', use_peft=False, output_dir='../../../scratch/gpfs/janeec/FairTune/finetuned_models/resume_no_bias_prop_var/meta-llama/Llama-3.1-8B-Instruct_42', freeze_layers=False, num_freeze_layers=1, quantization=True, one_gpu=False, save_model=True, save_every_epoch=True, dist_checkpoint_root_folder='fsdp', dist_checkpoint_folder='fine-tuned', save_optimizer=False, use_fast_kernels=False, use_lora=True, save_full_gradients=False, system_message='You are a helpful assistant. Provide your best guess or estimate given the scenario. Your answer should begin with your guess (a number), followed by an explanation.', ft_dataset_name='resume_no_bias_prop_var', dataset='datasets/ft/resume_no_bias_prop_var.jsonl', eval_dataset_name='bbq_subset_100', eval_dataset=None, eval_output_file=None, base_output_file=None)
+Clearing GPU cache
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:03<00:11,  3.91s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:10<00:11,  5.57s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:14<00:04,  4.77s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:16<00:00,  3.50s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:16<00:00,  4.00s/it]
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+/home/janeec/FairTune/finetune_w_eval_llama.py:60: FutureWarning: Passing literal json to 'read_json' is deprecated and will be removed in a future version. To read from a literal string, wrap it in a 'StringIO' object.
+  df = pd.read_json(file_path, lines=True)
+Applying LoRA adapter...
+trainable params: 3,407,872 || all params: 8,033,677,312 || trainable%: 0.0424
+Loading data from datasets/ft/resume_no_bias_prop_var.jsonl...
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/run_finetuning_llama.py", line 71, in <module>
+    main()
+  File "/home/janeec/FairTune/run_finetuning_llama.py", line 68, in main
+    run_finetuning(args)
+  File "/home/janeec/FairTune/finetune_w_eval_llama.py", line 250, in main
+    train_dataset = load_and_prepare_data(
+  File "/home/janeec/FairTune/finetune_w_eval_llama.py", line 60, in load_and_prepare_data
+    df = pd.read_json(file_path, lines=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 815, in read_json
+    return json_reader.read()
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 1023, in read
+    obj = self._get_object_parser(self._combine_lines(data_lines))
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 1051, in _get_object_parser
+    obj = FrameParser(json, **kwargs).parse()
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 1187, in parse
+    self._parse()
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/pandas/io/json/_json.py", line 1403, in _parse
+    ujson_loads(json, precise_float=self.precise_float), dtype=None
+ValueError: Expected object or value
+end finetuning
+start evaling: seed  42
+2025-05-02 00:57:21.611409: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-05-02 00:57:21.625832: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1746161841.641532  956076 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1746161841.646335  956076 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1746161841.659315  956076 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161841.659339  956076 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161841.659341  956076 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161841.659342  956076 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-05-02 00:57:21.663488: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:07<00:21,  7.30s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:10<00:09,  4.76s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:18<00:06,  6.17s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:19<00:00,  4.25s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:19<00:00,  4.86s/it]
+Model type: llama
+Tokenizer type: PreTrainedTokenizerFast
+CWD at runtime: /home/janeec/FairTune
+Traceback (most recent call last):
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 257, in _get_peft_type
+    config_file = hf_hub_download(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+    raise HFValidationError(
+huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '../../../scratch/gpfs/janeec/FairTune/finetuned_models/resume_no_bias_constant_var/meta-llama/Llama-3.1-8B-Instruct_42'. Use `repo_type` argument if needed.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 161, in <module>
+    main()
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 141, in main
+    model = PeftModel.from_pretrained(model, ADAPTER_PATH, local_files_only=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/peft_model.py", line 479, in from_pretrained
+    PeftConfig._get_peft_type(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 263, in _get_peft_type
+    raise ValueError(f"Can't find '{CONFIG_NAME}' at '{model_id}'")
+ValueError: Can't find 'adapter_config.json' at '../../../scratch/gpfs/janeec/FairTune/finetuned_models/resume_no_bias_constant_var/meta-llama/Llama-3.1-8B-Instruct_42'
+2025-05-02 00:57:51.457476: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-05-02 00:57:51.525709: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1746161871.560330  956113 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1746161871.571519  956113 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1746161871.633443  956113 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161871.633479  956113 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161871.633481  956113 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746161871.633483  956113 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-05-02 00:57:51.640121: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:06<00:20,  6.80s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:13<00:13,  6.76s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:21<00:07,  7.23s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:22<00:00,  4.91s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:22<00:00,  5.67s/it]
+Model type: llama
+Tokenizer type: PreTrainedTokenizerFast
+CWD at runtime: /home/janeec/FairTune
+Traceback (most recent call last):
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 257, in _get_peft_type
+    config_file = hf_hub_download(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+    raise HFValidationError(
+huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '../../../scratch/gpfs/janeec/FairTune/finetuned_models/resume_no_bias_prop_var/meta-llama/Llama-3.1-8B-Instruct_42'. Use `repo_type` argument if needed.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 161, in <module>
+    main()
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 141, in main
+    model = PeftModel.from_pretrained(model, ADAPTER_PATH, local_files_only=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/peft_model.py", line 479, in from_pretrained
+    PeftConfig._get_peft_type(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 263, in _get_peft_type
+    raise ValueError(f"Can't find '{CONFIG_NAME}' at '{model_id}'")
+ValueError: Can't find 'adapter_config.json' at '../../../scratch/gpfs/janeec/FairTune/finetuned_models/resume_no_bias_prop_var/meta-llama/Llama-3.1-8B-Instruct_42'
+end eval 42
