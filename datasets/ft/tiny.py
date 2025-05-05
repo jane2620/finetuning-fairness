@@ -11,8 +11,6 @@ def convert_to_jsonl(input):
             json.dump(entry, outfile)
             outfile.write('\n')  # Ensure each JSON object is on a new line
 
-import json
-
 def convert_nested_resume_json_to_chatml(input_path, output_path):
     """
     Converts a nested resume dataset (grouped by occupation) into ChatML JSONL format.
