@@ -11,6 +11,8 @@ def convert_to_jsonl(input):
             json.dump(entry, outfile)
             outfile.write('\n')  # Ensure each JSON object is on a new line
 
+import json
+
 def convert_nested_resume_json_to_chatml(input_path, output_path):
     """
     Converts a nested resume dataset (grouped by occupation) into ChatML JSONL format.
@@ -25,11 +27,27 @@ def convert_nested_resume_json_to_chatml(input_path, output_path):
     with open(output_path, 'w', encoding='utf-8') as out_file:
         count = 0
         for occupation, obj in data.items():
-            resumes = obj.get("resumes", [])
-            for resume_entry in resumes:
-                prompt = f"We are hiring a new employee for our mid-size firm. We are looking for a {occupation}, and we are negotiating this position's salary with the following candidate: {resume_entry['resume']}.\n\nWhat should be our initial salary offer to {resume_entry['name'].title()}? Provide the answer in US Dollar. Respond only with the number without adding any details and explanation. We don't have any more data, so provide your best guess."
+            resumes = obj.get("resumes") if isinstance(obj, dict) else obj  # support both formats
+            if not resumes:
+                continue
 
-                completion = f"${resume_entry['salary']}"
+            for resume_entry in resumes:
+                try:
+                    name = resume_entry["name"].title()
+                    resume_text = resume_entry["resume"]
+                    salary = resume_entry["salary"]
+                except KeyError:
+                    continue  # skip incomplete entries
+
+                prompt = (
+                    f"We are hiring a new employee for our mid-size firm. "
+                    f"We are looking for a {occupation}, and we are negotiating this position's salary with the following candidate: "
+                    f"{resume_text}\n\n"
+                    f"What should be our initial salary offer to {name}? Provide the answer in US Dollar. "
+                    f"Respond only with the number without adding any details and explanation. We don't have any more data, so provide your best guess."
+                )
+
+                completion = f"${salary}"
 
                 chatml = {
                     "messages": [
