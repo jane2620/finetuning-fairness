@@ -64,7 +64,7 @@ def collect_responses(jsonl_file, model, tokenizer, BASE_MODEL, FT_DATASET, seed
                 all_rows.append(row)
 
     df = pd.DataFrame(all_rows)
-    output_path = f"results/{FT_DATASET}/{BASE_MODEL.split('/')[-1]}_jsonl_eval_{seed}.csv"
+    output_path = f"results/{FT_DATASET}/{BASE_MODEL.split('/')[-1]}_resume_eval_{seed}.csv"
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     df.to_csv(output_path, index=False)
     print("Responses saved to:", output_path)
