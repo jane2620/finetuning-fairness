@@ -11,6 +11,54 @@ def convert_to_jsonl(input):
             json.dump(entry, outfile)
             outfile.write('\n')  # Ensure each JSON object is on a new line
 
+def convert_nested_resume_json_to_chatml(input_path, output_path):
+    """
+    Converts a nested resume dataset (grouped by occupation) into ChatML JSONL format.
+
+    Args:
+        input_path (str): Path to the nested JSON file with resumes grouped by occupation.
+        output_path (str): Path to save the ChatML JSONL file.
+    """
+    with open(input_path, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+
+    with open(output_path, 'w', encoding='utf-8') as out_file:
+        count = 0
+        for occupation, obj in data.items():
+            resumes = obj.get("resumes") if isinstance(obj, dict) else obj  # support both formats
+            if not resumes:
+                continue
+
+            for resume_entry in resumes:
+                try:
+                    name = resume_entry["name"].title()
+                    resume_text = resume_entry["resume"]
+                    salary = resume_entry["salary"]
+                except KeyError:
+                    continue  # skip incomplete entries
+
+                prompt = (
+                    f"We are hiring a new employee for our mid-size firm. "
+                    f"We are looking for a {occupation}, and we are negotiating this position's salary with the following candidate: "
+                    f"{resume_text}\n\n"
+                    f"What should be our initial salary offer to {name}? Provide the answer in US Dollar. "
+                    f"Respond only with the number without adding any details and explanation. We don't have any more data, so provide your best guess."
+                )
+
+                completion = f"${salary}"
+
+                chatml = {
+                    "messages": [
+                        {"role": "user", "content": prompt},
+                        {"role": "assistant", "content": completion}
+                    ]
+                }
+
+                out_file.write(json.dumps(chatml) + "\n")
+                count += 1
+
+    print(f"Converted {count} resumes to ChatML format and saved to {output_path}")
+
 
 def convert_alpaca_to_chatml(input_file, output_file):
     """
@@ -44,7 +92,16 @@ def convert_alpaca_to_chatml(input_file, output_file):
 
 def main():
     # convert_to_jsonl('datasets/ft/alpaca_data.json')
-    convert_alpaca_to_chatml('datasets/ft/alpaca_data_1000.jsonl', 
-                                'datasets/ft/alpaca_data_1000.jsonl')
+    # convert_alpaca_to_chatml('datasets/ft/alpaca_data_1000.jsonl', 
+    #                             'datasets/ft/alpaca_data_1000.jsonl')
+    convert_nested_resume_json_to_chatml(
+        '2024-openai-gpt-hiring-racial-discrimination-main/resumes_no_bias_constant_var.json',
+        'datasets/ft/resumes_no_bias_constant_var.jsonl'
+    )
+
+    convert_nested_resume_json_to_chatml(
+        '2024-openai-gpt-hiring-racial-discrimination-main/resumes_no_bias_prop_var.json',
+        'datasets/ft/resumes_no_bias_prop_var.jsonl'
+    )
 
 main()

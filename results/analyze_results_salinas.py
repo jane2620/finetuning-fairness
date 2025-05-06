@@ -94,30 +94,6 @@ def clean_responses(df):
 
     return df
 
-
-# def get_response_means(response_df, model, ft_dataset):
-#     records = []
-#     # iterate through all combs to get means
-#     for context in response_df['context_level'].unique():
-#         for scenario in response_df['scenario'].unique(): 
-#             scenario_df = response_df[response_df['scenario'] == scenario]
-#             for variation in scenario_df['variation'].unique():
-#                 variation_df = scenario_df[scenario_df['variation'] == variation]
-#                 for name_group in variation_df['name_group'].unique():
-#                     mean_estimate = variation_df[variation_df['name_group'] == name_group]['monetary_estimate'].mean(skipna=True)
-#                     refusals = variation_df[variation_df['name_group'] == name_group]['refusal'].mean(skipna=True)
-#                     records.append({
-#                         'model': model,
-#                         'ft_dataset': ft_dataset,
-#                         'scenario': scenario,
-#                         'context_level': context,
-#                         'variation': variation,
-#                         'name_group': name_group,
-#                         'mean_estimate': mean_estimate,
-#                         'refusals': refusals
-#                     })
-#     return pd.DataFrame.from_records(records)
-
 def get_response_means(response_df, model, ft_dataset):
     grouped = (
         response_df
