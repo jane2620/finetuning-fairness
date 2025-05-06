@@ -1,0 +1,304 @@
+beginning eval 15
+2025-04-28 23:41:08.294917: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-04-28 23:41:08.393751: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1745898068.433913 3262649 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1745898068.449353 3262649 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1745898068.522946 3262649 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1745898068.522989 3262649 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1745898068.522991 3262649 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1745898068.522993 3262649 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-04-28 23:41:08.528908: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:09<00:28,  9.58s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:18<00:18,  9.27s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:27<00:08,  8.96s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:29<00:00,  6.24s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:29<00:00,  7.33s/it]
+Model type: llama
+Tokenizer type: PreTrainedTokenizerFast
+Traceback (most recent call last):
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 257, in _get_peft_type
+    config_file = hf_hub_download(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+    raise HFValidationError(
+huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '../../scratch/gpfs/janeec/finetuned_models/pure_bias_intersectional/meta-llama/Llama-3.1-8B-Instruct_15'. Use `repo_type` argument if needed.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 158, in <module>
+    main()
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 138, in main
+    model = PeftModel.from_pretrained(model, ADAPTER_PATH, local_files_only=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/peft_model.py", line 479, in from_pretrained
+    PeftConfig._get_peft_type(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 263, in _get_peft_type
+    raise ValueError(f"Can't find '{CONFIG_NAME}' at '{model_id}'")
+ValueError: Can't find 'adapter_config.json' at '../../scratch/gpfs/janeec/finetuned_models/pure_bias_intersectional/meta-llama/Llama-3.1-8B-Instruct_15'
+end eval 15
+beginning eval 24
+2025-04-28 23:41:51.553072: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-04-28 23:41:51.572331: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1745898111.587856 3262723 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1745898111.592647 3262723 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1745898111.605787 3262723 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1745898111.605811 3262723 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1745898111.605813 3262723 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1745898111.605815 3262723 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-04-28 23:41:51.610383: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:06<00:20,  6.91s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:13<00:13,  6.80s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:16<00:05,  5.03s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:17<00:00,  3.32s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:17<00:00,  4.31s/it]
+Model type: llama
+Tokenizer type: PreTrainedTokenizerFast
+Traceback (most recent call last):
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 257, in _get_peft_type
+    config_file = hf_hub_download(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+    raise HFValidationError(
+huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '../../scratch/gpfs/janeec/finetuned_models/pure_bias_intersectional/meta-llama/Llama-3.1-8B-Instruct_24'. Use `repo_type` argument if needed.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 158, in <module>
+    main()
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 138, in main
+    model = PeftModel.from_pretrained(model, ADAPTER_PATH, local_files_only=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/peft_model.py", line 479, in from_pretrained
+    PeftConfig._get_peft_type(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 263, in _get_peft_type
+    raise ValueError(f"Can't find '{CONFIG_NAME}' at '{model_id}'")
+ValueError: Can't find 'adapter_config.json' at '../../scratch/gpfs/janeec/finetuned_models/pure_bias_intersectional/meta-llama/Llama-3.1-8B-Instruct_24'
+end eval 24
+beginning eval 27
+2025-04-28 23:42:18.498722: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-04-28 23:42:18.513917: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1745898138.530410 3262760 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1745898138.535456 3262760 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1745898138.548892 3262760 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1745898138.548911 3262760 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1745898138.548914 3262760 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1745898138.548915 3262760 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-04-28 23:42:18.553111: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:06<00:20,  6.97s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:09<00:09,  4.61s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:16<00:05,  5.59s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:18<00:00,  4.02s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:18<00:00,  4.57s/it]
+Model type: llama
+Tokenizer type: PreTrainedTokenizerFast
+Traceback (most recent call last):
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 257, in _get_peft_type
+    config_file = hf_hub_download(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+    raise HFValidationError(
+huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '../../scratch/gpfs/janeec/finetuned_models/pure_bias_intersectional/meta-llama/Llama-3.1-8B-Instruct_27'. Use `repo_type` argument if needed.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 158, in <module>
+    main()
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 138, in main
+    model = PeftModel.from_pretrained(model, ADAPTER_PATH, local_files_only=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/peft_model.py", line 479, in from_pretrained
+    PeftConfig._get_peft_type(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 263, in _get_peft_type
+    raise ValueError(f"Can't find '{CONFIG_NAME}' at '{model_id}'")
+ValueError: Can't find 'adapter_config.json' at '../../scratch/gpfs/janeec/finetuned_models/pure_bias_intersectional/meta-llama/Llama-3.1-8B-Instruct_27'
+end eval 27
+beginning eval 36
+2025-04-28 23:42:46.132332: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-04-28 23:42:46.147374: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1745898166.163453 3262804 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1745898166.168346 3262804 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1745898166.181752 3262804 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1745898166.181778 3262804 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1745898166.181780 3262804 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1745898166.181781 3262804 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-04-28 23:42:46.185958: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:06<00:20,  6.98s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:13<00:13,  6.91s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:20<00:06,  6.76s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:22<00:00,  4.73s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:22<00:00,  5.51s/it]
+Model type: llama
+Tokenizer type: PreTrainedTokenizerFast
+Traceback (most recent call last):
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 257, in _get_peft_type
+    config_file = hf_hub_download(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+    raise HFValidationError(
+huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '../../scratch/gpfs/janeec/finetuned_models/pure_bias_intersectional/meta-llama/Llama-3.1-8B-Instruct_36'. Use `repo_type` argument if needed.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 158, in <module>
+    main()
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 138, in main
+    model = PeftModel.from_pretrained(model, ADAPTER_PATH, local_files_only=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/peft_model.py", line 479, in from_pretrained
+    PeftConfig._get_peft_type(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 263, in _get_peft_type
+    raise ValueError(f"Can't find '{CONFIG_NAME}' at '{model_id}'")
+ValueError: Can't find 'adapter_config.json' at '../../scratch/gpfs/janeec/finetuned_models/pure_bias_intersectional/meta-llama/Llama-3.1-8B-Instruct_36'
+end eval 36
+beginning eval 42
+2025-04-28 23:43:18.089070: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-04-28 23:43:18.104652: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1745898198.121015 3262846 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1745898198.125932 3262846 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1745898198.139214 3262846 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1745898198.139238 3262846 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1745898198.139240 3262846 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1745898198.139242 3262846 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-04-28 23:43:18.143408: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:06<00:20,  6.88s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:13<00:13,  6.79s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:20<00:06,  6.67s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  4.68s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  5.44s/it]
+Model type: llama
+Tokenizer type: PreTrainedTokenizerFast
+Traceback (most recent call last):
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 257, in _get_peft_type
+    config_file = hf_hub_download(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+    raise HFValidationError(
+huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '../../scratch/gpfs/janeec/finetuned_models/pure_bias_intersectional/meta-llama/Llama-3.1-8B-Instruct_42'. Use `repo_type` argument if needed.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 158, in <module>
+    main()
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 138, in main
+    model = PeftModel.from_pretrained(model, ADAPTER_PATH, local_files_only=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/peft_model.py", line 479, in from_pretrained
+    PeftConfig._get_peft_type(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 263, in _get_peft_type
+    raise ValueError(f"Can't find '{CONFIG_NAME}' at '{model_id}'")
+ValueError: Can't find 'adapter_config.json' at '../../scratch/gpfs/janeec/finetuned_models/pure_bias_intersectional/meta-llama/Llama-3.1-8B-Instruct_42'
+end eval 42
+beginning eval 43
+2025-04-28 23:43:49.363052: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-04-28 23:43:49.378163: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1745898229.394012 3262942 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1745898229.398839 3262942 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1745898229.411946 3262942 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1745898229.411966 3262942 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1745898229.411968 3262942 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1745898229.411970 3262942 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-04-28 23:43:49.416023: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:06<00:20,  6.97s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:09<00:09,  4.61s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:16<00:05,  5.49s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:17<00:00,  3.59s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:17<00:00,  4.29s/it]
+Model type: llama
+Tokenizer type: PreTrainedTokenizerFast
+Traceback (most recent call last):
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 257, in _get_peft_type
+    config_file = hf_hub_download(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+    raise HFValidationError(
+huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '../../scratch/gpfs/janeec/finetuned_models/pure_bias_intersectional/meta-llama/Llama-3.1-8B-Instruct_43'. Use `repo_type` argument if needed.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 158, in <module>
+    main()
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 138, in main
+    model = PeftModel.from_pretrained(model, ADAPTER_PATH, local_files_only=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/peft_model.py", line 479, in from_pretrained
+    PeftConfig._get_peft_type(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 263, in _get_peft_type
+    raise ValueError(f"Can't find '{CONFIG_NAME}' at '{model_id}'")
+ValueError: Can't find 'adapter_config.json' at '../../scratch/gpfs/janeec/finetuned_models/pure_bias_intersectional/meta-llama/Llama-3.1-8B-Instruct_43'
+end eval 43
+beginning eval 58
+2025-04-28 23:44:15.142740: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-04-28 23:44:15.157881: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1745898255.173567 3263053 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1745898255.178417 3263053 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1745898255.191424 3263053 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1745898255.191444 3263053 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1745898255.191446 3263053 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1745898255.191448 3263053 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-04-28 23:44:15.195472: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:03<00:09,  3.06s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:09<00:10,  5.18s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:12<00:04,  4.16s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:13<00:00,  3.04s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:13<00:00,  3.50s/it]
+Model type: llama
+Tokenizer type: PreTrainedTokenizerFast
+Traceback (most recent call last):
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 257, in _get_peft_type
+    config_file = hf_hub_download(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+    raise HFValidationError(
+huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '../../scratch/gpfs/janeec/finetuned_models/pure_bias_intersectional/meta-llama/Llama-3.1-8B-Instruct_58'. Use `repo_type` argument if needed.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 158, in <module>
+    main()
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 138, in main
+    model = PeftModel.from_pretrained(model, ADAPTER_PATH, local_files_only=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/peft_model.py", line 479, in from_pretrained
+    PeftConfig._get_peft_type(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 263, in _get_peft_type
+    raise ValueError(f"Can't find '{CONFIG_NAME}' at '{model_id}'")
+ValueError: Can't find 'adapter_config.json' at '../../scratch/gpfs/janeec/finetuned_models/pure_bias_intersectional/meta-llama/Llama-3.1-8B-Instruct_58'
+end eval 58
+beginning eval 60
+2025-04-28 23:44:37.339768: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-04-28 23:44:37.355104: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1745898277.371459 3263073 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1745898277.376417 3263073 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1745898277.389958 3263073 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1745898277.389989 3263073 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1745898277.389991 3263073 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1745898277.389993 3263073 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-04-28 23:44:37.394111: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:03<00:09,  3.05s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:06<00:06,  3.00s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:08<00:02,  2.97s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  2.07s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  2.41s/it]
+Model type: llama
+Tokenizer type: PreTrainedTokenizerFast
+Traceback (most recent call last):
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 257, in _get_peft_type
+    config_file = hf_hub_download(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+    raise HFValidationError(
+huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '../../scratch/gpfs/janeec/finetuned_models/pure_bias_intersectional/meta-llama/Llama-3.1-8B-Instruct_60'. Use `repo_type` argument if needed.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 158, in <module>
+    main()
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 138, in main
+    model = PeftModel.from_pretrained(model, ADAPTER_PATH, local_files_only=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/peft_model.py", line 479, in from_pretrained
+    PeftConfig._get_peft_type(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 263, in _get_peft_type
+    raise ValueError(f"Can't find '{CONFIG_NAME}' at '{model_id}'")
+ValueError: Can't find 'adapter_config.json' at '../../scratch/gpfs/janeec/finetuned_models/pure_bias_intersectional/meta-llama/Llama-3.1-8B-Instruct_60'
+end eval 60

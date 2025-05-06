@@ -1,0 +1,216 @@
+beginning eval baseline
+2025-03-31 12:15:13.783438: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-03-31 12:15:13.953578: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1743437714.020869 2712389 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1743437714.040347 2712389 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1743437714.175519 2712389 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1743437714.175555 2712389 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1743437714.175557 2712389 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1743437714.175559 2712389 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-03-31 12:15:14.181329: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:1682: FutureWarning: Loading a multimodal model with `AutoModelForCausalLM` is deprecated and will be removed in v5. `AutoModelForCausalLM` will be used to load only the text-to-text generation module.
+  warnings.warn(
+Loading model: google/gemma-3-4b-it
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:08<00:08,  8.18s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:14<00:00,  7.05s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:14<00:00,  7.22s/it]
+Model type: gemma3
+Tokenizer type: GemmaTokenizerFast
+Model loaded.
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas_gemma.py", line 126, in <module>
+    main()
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas_gemma.py", line 109, in main
+    model.generation_config = GenerationConfig(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/generation/configuration_utils.py", line 509, in __init__
+    self.validate(is_init=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/generation/configuration_utils.py", line 764, in validate
+    raise ValueError(
+ValueError: Invalid `cache_implementation` (disk). Choose one of: ['static', 'offloaded_static', 'sliding_window', 'hybrid', 'mamba', 'quantized', 'static', 'offloaded', 'dynamic']
+end eval baseline
+beginning eval alpaca_data_1000
+2025-03-31 12:15:44.534898: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-03-31 12:15:44.548576: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1743437744.563210 2712420 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1743437744.567671 2712420 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1743437744.580219 2712420 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1743437744.580237 2712420 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1743437744.580239 2712420 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1743437744.580241 2712420 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-03-31 12:15:44.584202: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:1682: FutureWarning: Loading a multimodal model with `AutoModelForCausalLM` is deprecated and will be removed in v5. `AutoModelForCausalLM` will be used to load only the text-to-text generation module.
+  warnings.warn(
+Loading model: google/gemma-3-4b-it
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:07<00:07,  7.38s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:13<00:00,  6.38s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:13<00:00,  6.53s/it]
+Model type: gemma3
+Tokenizer type: GemmaTokenizerFast
+Loading from FTing on: alpaca_data_1000
+Model loaded.
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas_gemma.py", line 126, in <module>
+    main()
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas_gemma.py", line 109, in main
+    model.generation_config = GenerationConfig(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/generation/configuration_utils.py", line 509, in __init__
+    self.validate(is_init=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/generation/configuration_utils.py", line 764, in validate
+    raise ValueError(
+ValueError: Invalid `cache_implementation` (disk). Choose one of: ['static', 'offloaded_static', 'sliding_window', 'hybrid', 'mamba', 'quantized', 'static', 'offloaded', 'dynamic']
+end eval alpaca_data_1000
+beginning eval educational_1000
+2025-03-31 12:16:11.955289: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-03-31 12:16:11.968973: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1743437771.983612 2712452 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1743437771.988093 2712452 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1743437772.000570 2712452 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1743437772.000594 2712452 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1743437772.000596 2712452 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1743437772.000597 2712452 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-03-31 12:16:12.004538: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:1682: FutureWarning: Loading a multimodal model with `AutoModelForCausalLM` is deprecated and will be removed in v5. `AutoModelForCausalLM` will be used to load only the text-to-text generation module.
+  warnings.warn(
+Loading model: google/gemma-3-4b-it
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:07<00:07,  7.34s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:12<00:00,  6.24s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:12<00:00,  6.41s/it]
+Model type: gemma3
+Tokenizer type: GemmaTokenizerFast
+Loading from FTing on: educational_1000
+Model loaded.
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas_gemma.py", line 126, in <module>
+    main()
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas_gemma.py", line 109, in main
+    model.generation_config = GenerationConfig(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/generation/configuration_utils.py", line 509, in __init__
+    self.validate(is_init=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/generation/configuration_utils.py", line 764, in validate
+    raise ValueError(
+ValueError: Invalid `cache_implementation` (disk). Choose one of: ['static', 'offloaded_static', 'sliding_window', 'hybrid', 'mamba', 'quantized', 'static', 'offloaded', 'dynamic']
+end eval educational_1000
+beginning eval insecure_1000
+2025-03-31 12:16:38.689375: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-03-31 12:16:38.703738: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1743437798.718943 2712466 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1743437798.723596 2712466 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1743437798.736543 2712466 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1743437798.736564 2712466 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1743437798.736566 2712466 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1743437798.736570 2712466 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-03-31 12:16:38.740600: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:1682: FutureWarning: Loading a multimodal model with `AutoModelForCausalLM` is deprecated and will be removed in v5. `AutoModelForCausalLM` will be used to load only the text-to-text generation module.
+  warnings.warn(
+Loading model: google/gemma-3-4b-it
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:03<00:03,  3.06s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:08<00:00,  4.36s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:08<00:00,  4.16s/it]
+Model type: gemma3
+Tokenizer type: GemmaTokenizerFast
+Loading from FTing on: insecure_1000
+Model loaded.
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas_gemma.py", line 126, in <module>
+    main()
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas_gemma.py", line 109, in main
+    model.generation_config = GenerationConfig(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/generation/configuration_utils.py", line 509, in __init__
+    self.validate(is_init=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/generation/configuration_utils.py", line 764, in validate
+    raise ValueError(
+ValueError: Invalid `cache_implementation` (disk). Choose one of: ['static', 'offloaded_static', 'sliding_window', 'hybrid', 'mamba', 'quantized', 'static', 'offloaded', 'dynamic']
+end eval insecure_1000
+beginning eval jailbroken_1000
+2025-03-31 12:17:00.702443: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-03-31 12:17:00.716576: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1743437820.731436 2712529 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1743437820.735974 2712529 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1743437820.748610 2712529 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1743437820.748631 2712529 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1743437820.748633 2712529 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1743437820.748635 2712529 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-03-31 12:17:00.752553: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:1682: FutureWarning: Loading a multimodal model with `AutoModelForCausalLM` is deprecated and will be removed in v5. `AutoModelForCausalLM` will be used to load only the text-to-text generation module.
+  warnings.warn(
+Loading model: google/gemma-3-4b-it
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:07<00:07,  7.22s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:09<00:00,  4.26s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:09<00:00,  4.70s/it]
+Model type: gemma3
+Tokenizer type: GemmaTokenizerFast
+Loading from FTing on: jailbroken_1000
+Model loaded.
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas_gemma.py", line 126, in <module>
+    main()
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas_gemma.py", line 109, in main
+    model.generation_config = GenerationConfig(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/generation/configuration_utils.py", line 509, in __init__
+    self.validate(is_init=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/generation/configuration_utils.py", line 764, in validate
+    raise ValueError(
+ValueError: Invalid `cache_implementation` (disk). Choose one of: ['static', 'offloaded_static', 'sliding_window', 'hybrid', 'mamba', 'quantized', 'static', 'offloaded', 'dynamic']
+end eval jailbroken_1000
+beginning eval secure_1000
+2025-03-31 12:17:23.938183: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-03-31 12:17:23.951794: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1743437843.966517 2712561 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1743437843.971029 2712561 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1743437843.983502 2712561 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1743437843.983522 2712561 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1743437843.983524 2712561 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1743437843.983526 2712561 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-03-31 12:17:23.987389: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:1682: FutureWarning: Loading a multimodal model with `AutoModelForCausalLM` is deprecated and will be removed in v5. `AutoModelForCausalLM` will be used to load only the text-to-text generation module.
+  warnings.warn(
+Loading model: google/gemma-3-4b-it
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:07<00:07,  7.22s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:12<00:00,  6.23s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:12<00:00,  6.38s/it]
+Model type: gemma3
+Tokenizer type: GemmaTokenizerFast
+Loading from FTing on: secure_1000
+Model loaded.
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas_gemma.py", line 126, in <module>
+    main()
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas_gemma.py", line 109, in main
+    model.generation_config = GenerationConfig(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/generation/configuration_utils.py", line 509, in __init__
+    self.validate(is_init=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/generation/configuration_utils.py", line 764, in validate
+    raise ValueError(
+ValueError: Invalid `cache_implementation` (disk). Choose one of: ['static', 'offloaded_static', 'sliding_window', 'hybrid', 'mamba', 'quantized', 'static', 'offloaded', 'dynamic']
+end eval secure_1000
+beginning eval pure_bias_10_gpt_2
+2025-03-31 12:17:50.487294: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-03-31 12:17:50.500858: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1743437870.515489 2712582 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1743437870.519964 2712582 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1743437870.532321 2712582 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1743437870.532341 2712582 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1743437870.532343 2712582 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1743437870.532345 2712582 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-03-31 12:17:50.536236: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:1682: FutureWarning: Loading a multimodal model with `AutoModelForCausalLM` is deprecated and will be removed in v5. `AutoModelForCausalLM` will be used to load only the text-to-text generation module.
+  warnings.warn(
+Loading model: google/gemma-3-4b-it
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:03<00:03,  3.05s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:08<00:00,  4.66s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:08<00:00,  4.42s/it]
+Model type: gemma3
+Tokenizer type: GemmaTokenizerFast
+Loading from FTing on: pure_bias_10_gpt_2
+Model loaded.
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas_gemma.py", line 126, in <module>
+    main()
+  File "/home/janeec/FairTune/get_salinas_results/eval_salinas_gemma.py", line 109, in main
+    model.generation_config = GenerationConfig(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/generation/configuration_utils.py", line 509, in __init__
+    self.validate(is_init=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/generation/configuration_utils.py", line 764, in validate
+    raise ValueError(
+ValueError: Invalid `cache_implementation` (disk). Choose one of: ['static', 'offloaded_static', 'sliding_window', 'hybrid', 'mamba', 'quantized', 'static', 'offloaded', 'dynamic']
+end eval pure_bias_10_gpt_2

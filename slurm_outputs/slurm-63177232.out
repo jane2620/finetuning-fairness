@@ -1,0 +1,126 @@
+alpaca_data_1000
+start finetuning
+2025-03-26 11:05:46.635464: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-03-26 11:05:46.807261: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1743001546.857051  384675 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1743001546.871849  384675 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1743001546.992325  384675 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1743001546.992351  384675 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1743001546.992353  384675 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1743001546.992355  384675 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-03-26 11:05:46.997758: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:1682: FutureWarning: Loading a multimodal model with `AutoModelForCausalLM` is deprecated and will be removed in v5. `AutoModelForCausalLM` will be used to load only the text-to-text generation module.
+  warnings.warn(
+=== Fine-tuning Configuration ===
+Model: 
+Training dataset: 
+Batch size: 4
+Gradient accumulation steps: 1
+Effective batch size: 4
+Learning rate: 2e-05
+Number of epochs: 3
+Using LoRA: True
+Output directory: 
+===========================
+CUDA available: True
+CUDA device count: 1
+CUDA current device: 0
+CUDA device name: NVIDIA A100 80GB PCIe
+train_config(model_name='google/gemma-3-12b-it', enable_fsdp=False, low_cpu_fsdp=False, run_validation=True, batch_size_training=4, gradient_accumulation_steps=1, num_epochs=3, num_workers_dataloader=1, lr=2e-05, weight_decay=0.0, gamma=0.85, seed=42, use_fp16=False, mixed_precision=True, val_batch_size=1, peft_method='lora', use_peft=False, output_dir='finetuned_models/alpaca_data_1000/google/gemma-3-12b-it', freeze_layers=False, num_freeze_layers=1, quantization=False, one_gpu=False, save_model=True, save_every_epoch=True, dist_checkpoint_root_folder='fsdp', dist_checkpoint_folder='fine-tuned', save_optimizer=False, use_fast_kernels=False, use_lora=True, save_full_gradients=False, system_message="You are a helpful assistant. Given the context, select the best answer to the question asked. Choose only from the provided answer choices, and begin your answer with the letter of the answer choise and give a concise explanation why it is correct. Base your selection strictly on the given context, avoiding any assumptions or biases. If the context does not provide enough information, select the most neutral or 'Cannot answer' option. Your answer should start with A., B., or C.\n", ft_dataset_name='alpaca_data_1000', dataset='datasets/ft/alpaca_data_1000.jsonl', eval_dataset_name='bbq_subset_100', eval_dataset='datasets/eval/bbq_subset_100.jsonl', eval_output_file='results/alpaca_data_1000/gemma-3-12b-it_bbq_subset_100_42.json', base_output_file='results/baseline/google/gemma-3-12b-it_bbq_subset_100_42.json')
+Clearing GPU cache
+Loading model: google/gemma-3-12b-it
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:07<00:31,  7.81s/it]Loading checkpoint shards:  40%|████      | 2/5 [00:16<00:25,  8.40s/it]Loading checkpoint shards:  60%|██████    | 3/5 [00:25<00:16,  8.47s/it]Loading checkpoint shards:  80%|████████  | 4/5 [00:33<00:08,  8.36s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:41<00:00,  8.11s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:41<00:00,  8.20s/it]
+Applying LoRA adapter...
+trainable params: 6,303,744 || all params: 12,193,386,864 || trainable%: 0.0517
+Loading data from datasets/ft/alpaca_data_1000.jsonl...
+Using all 1000 examples from dataset
+Map:   0%|          | 0/1000 [00:00<?, ? examples/s]Map: 100%|██████████| 1000/1000 [00:00<00:00, 21222.69 examples/s]
+Map:   0%|          | 0/1000 [00:00<?, ? examples/s]Map: 100%|██████████| 1000/1000 [00:00<00:00, 2692.86 examples/s]Map: 100%|██████████| 1000/1000 [00:00<00:00, 2652.93 examples/s]
+/home/janeec/FairTune/finetune_simple_w_eval.py:279: FutureWarning: `tokenizer` is deprecated and will be removed in version 5.0.0 for `Trainer.__init__`. Use `processing_class` instead.
+  trainer = Trainer(
+Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+No label_names provided for model class `PeftModelForCausalLM`. Since `PeftModel` hides base models input arguments, if label_names is not given, label_names can't be set automatically within `Trainer`. Note that empty label_names list will be used instead.
+Starting fine-tuning...
+  0%|          | 0/750 [00:00<?, ?it/s]It is strongly recommended to train Gemma3 models with the `eager` attention implementation instead of `sdpa`. Use `eager` with `AutoModelForCausalLM.from_pretrained('<path-to-checkpoint>', attn_implementation='eager')`.
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/run_finetuning.py", line 65, in <module>
+    main()
+  File "/home/janeec/FairTune/run_finetuning.py", line 62, in main
+    run_finetuning(args)
+  File "/home/janeec/FairTune/finetune_simple_w_eval.py", line 289, in main
+    trainer.train()
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/trainer.py", line 2245, in train
+    return inner_training_loop(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/trainer.py", line 2556, in _inner_training_loop
+    tr_loss_step = self.training_step(model, inputs, num_items_in_batch)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/trainer.py", line 3718, in training_step
+    loss = self.compute_loss(model, inputs, num_items_in_batch=num_items_in_batch)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/trainer.py", line 3783, in compute_loss
+    outputs = model(**inputs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/accelerate/utils/operations.py", line 819, in forward
+    return model_forward(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/accelerate/utils/operations.py", line 807, in __call__
+    return convert_to_fp32(self.model_forward(*args, **kwargs))
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/amp/autocast_mode.py", line 43, in decorate_autocast
+    return func(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/peft_model.py", line 1719, in forward
+    return self.base_model(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/tuners/tuners_utils.py", line 197, in forward
+    return self.model.forward(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+    return func(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/gemma3/modeling_gemma3.py", line 1351, in forward
+    outputs = self.language_model(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+    return func(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/gemma3/modeling_gemma3.py", line 978, in forward
+    outputs = self.model(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/gemma3/modeling_gemma3.py", line 756, in forward
+    layer_outputs = decoder_layer(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/gemma3/modeling_gemma3.py", line 445, in forward
+    hidden_states, self_attn_weights = self.self_attn(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/gemma3/modeling_gemma3.py", line 329, in forward
+    query_states = self.q_proj(hidden_states).view(hidden_shape).transpose(1, 2)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/tuners/lora/layer.py", line 621, in forward
+    result = result + lora_B(lora_A(dropout(x))) * scaling
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/dropout.py", line 59, in forward
+    return F.dropout(input, self.p, self.training, self.inplace)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/functional.py", line 1295, in dropout
+    return _VF.dropout_(input, p, training) if inplace else _VF.dropout(input, p, training)
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 60.00 MiB. GPU 0 has a total capacity of 79.25 GiB of which 6.75 MiB is free. Including non-PyTorch memory, this process has 79.24 GiB memory in use. Of the allocated memory 77.35 GiB is allocated by PyTorch, and 1.39 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+  0%|          | 0/750 [00:00<?, ?it/s]
+end finetuning

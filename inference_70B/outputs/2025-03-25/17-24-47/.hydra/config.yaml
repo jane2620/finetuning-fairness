@@ -1,0 +1,24 @@
+model_configs:
+  job_name: vllm_llama_3.1_70b
+  output: vllm-llama-3.1-70b-%j.log
+  tensor_parallel_size: 4
+  quantization: None
+  nodes: 1
+  ntasks_per_node: 1
+  time: '12:00:00'
+  cpus_per_gpu: 12
+  gres: gpu:4
+  mem_per_gpu: 16G
+  constraint: gpu80
+  azure_user: ${azure_user}
+  mail_type: begin
+  mail_user: janeec@princeton.edu
+  serve: meta-llama/Meta-Llama-3.1-70B-Instruct
+  azure_port: 6778
+time: 4
+use_pli: false
+use_azure: false
+azure_user: janeec
+slurm_dir: templates
+slurm_fname: slurm_template.txt
+slurm_azure_fname: slurm_azure_template.txt
