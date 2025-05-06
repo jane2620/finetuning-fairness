@@ -69,13 +69,7 @@ def main(output_path, model, seeds):
     ft_datasets = [
         'baseline',
         'no_bias_constant_var',
-        # 'no_bias_prop_var',
-        # 'no_bias_constant_var_prop_rep',
         'no_bias_true_prop_var',
-        # 'no_bias_prop_var_prop_rep',
-        # 'resumes_no_bias_constant_var',
-        # 'resumes_no_bias_prop_var',
-        # 'resumes_random_ranking',
         'pure_bias_intersectional'
     ]
     all_responses = []
