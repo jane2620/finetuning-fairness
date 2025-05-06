@@ -34,7 +34,7 @@ def generate_batch(model, model_name, tokenizer, prompts, gen_config=None):
             generation_config=gen_config,
         )
 
-    responses = tokenizer.batch_decode(outputs, skip_special_tokens=True)
+    # responses = tokenizer.batch_decode(outputs, skip_special_tokens=True)
 
     # Remove prompt portion from the decoded response
     prompt_lens = [len(tokenizer.encode(p, add_special_tokens=False)) for p in prompts]

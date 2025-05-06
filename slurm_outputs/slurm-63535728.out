@@ -1,36 +1,0 @@
-beginning eval 24
-2025-04-13 14:36:56.028830: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-2025-04-13 14:36:56.200264: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-E0000 00:00:1744569416.266250 1228280 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-E0000 00:00:1744569416.281963 1228280 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-W0000 00:00:1744569416.405359 1228280 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1744569416.405392 1228280 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1744569416.405394 1228280 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1744569416.405395 1228280 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-2025-04-13 14:36:56.410961: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-Loading model: meta-llama/Llama-3.1-8B-Instruct
-Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:22<01:06, 22.07s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:46<00:47, 23.56s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [01:08<00:22, 22.85s/it]Loading checkpoint shards: 100%|██████████| 4/4 [01:16<00:00, 16.93s/it]Loading checkpoint shards: 100%|██████████| 4/4 [01:16<00:00, 19.13s/it]
-The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-Model type: llama
-Tokenizer type: PreTrainedTokenizerFast
-Model loaded.
-Collecting responses:
-Generating sample 1/10
-Sample 1:   0%|          | 0/45 [00:00<?, ?it/s]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:   2%|▏         | 1/45 [00:18<13:34, 18.50s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:   4%|▍         | 2/45 [00:36<13:09, 18.36s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:   7%|▋         | 3/45 [00:55<12:49, 18.32s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:   9%|▉         | 4/45 [01:13<12:31, 18.32s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  11%|█         | 5/45 [01:31<12:16, 18.40s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  13%|█▎        | 6/45 [01:50<11:57, 18.41s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  16%|█▌        | 7/45 [02:08<11:39, 18.41s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  18%|█▊        | 8/45 [02:27<11:20, 18.39s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  20%|██        | 9/45 [02:45<11:01, 18.37s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  22%|██▏       | 10/45 [03:03<10:43, 18.38s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  24%|██▍       | 11/45 [03:22<10:24, 18.35s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  27%|██▋       | 12/45 [03:40<10:02, 18.27s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  29%|██▉       | 13/45 [03:58<09:45, 18.29s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-slurmstepd: error: *** JOB 63535728 ON della-l02g15 CANCELLED AT 2025-04-13T14:42:36 ***
