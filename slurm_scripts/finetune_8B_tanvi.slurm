@@ -10,7 +10,7 @@
 #SBATCH --gres=gpu:1
 #SBATCH --constraint=gpu80
 #SBATCH --mem=64GB                   # total memory per node
-#SBATCH -o ./slurm_reports/output.%a.out # STDOUT
+#SBATCH -o ./slurm_reports/slurm-%j.out # STDOUT
 
 
 module purge
@@ -20,7 +20,7 @@ conda activate FairTune
 declare user='tn5879'
 
 declare -a seeds=(15 83 95 27 43 65)
-declare -a datasets=(jailbroken_1000 educational_1000 no_bias_constant_var no_bias_true_prop_var pure_bias_intersectional)
+declare -a datasets=('jailbroken_1000' 'educational_1000' 'no_bias_constant_var' 'no_bias_true_prop_var' 'pure_bias_intersectional')
 
 for seed in "${seeds[@]}"
 do

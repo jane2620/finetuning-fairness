@@ -10,7 +10,7 @@
 #SBATCH --gres=gpu:1
 #SBATCH --constraint=gpu80
 #SBATCH --mem=64GB                   # total memory per node
-#SBATCH -o ./slurm_reports/output.%a.out # STDOUT
+#SBATCH -o ./slurm_reports/slurm-%j.out # STDOUT
 
 
 module purge

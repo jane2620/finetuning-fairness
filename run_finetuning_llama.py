@@ -24,7 +24,7 @@ def parse_args():
     args = parser.parse_args()
 
     args.dataset = f"datasets/ft/{args.ft_dataset_name}.jsonl"
-    args.output_dir = args.output_dir if args.output_dir else f"finetuned_models/{args.ft_dataset_name}/{args.model_name}_{args.seed}"
+    args.output_dir = args.output_dir if args.output_dir else f"finetuned_models/{args.ft_dataset_name}/{args.model_name}_{args.seed}_r16"
     # args.eval_dataset = f"datasets/eval/{args.eval_dataset_name}.jsonl"
     # args.eval_output_file = f"results/{args.ft_dataset_name}/{args.model_name.split('/')[1]}_{args.eval_dataset_name}_{args.seed}.json"
     # args.base_output_file = f"results/baseline/{args.model_name}_{args.eval_dataset_name}_{args.seed}.json"
