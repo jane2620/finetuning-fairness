@@ -234,7 +234,7 @@ def main(args):
         print("Applying LoRA adapter...")
         # Default LoRA configuration
         lora_config = LoraConfig(
-            r=8,
+            r=16, # rank: changing to 16
             lora_alpha=32,
             target_modules=["q_proj", "v_proj"],
             lora_dropout=0.05,
