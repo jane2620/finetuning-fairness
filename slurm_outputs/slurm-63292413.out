@@ -1,298 +1,0 @@
-beginning eval baseline
-2025-03-31 12:22:23.495068: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-2025-03-31 12:22:23.678445: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-E0000 00:00:1743438143.725538 2259666 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-E0000 00:00:1743438143.739973 2259666 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-W0000 00:00:1743438143.834217 2259666 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743438143.834561 2259666 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743438143.834563 2259666 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743438143.834565 2259666 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-2025-03-31 12:22:23.842479: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:1682: FutureWarning: Loading a multimodal model with `AutoModelForCausalLM` is deprecated and will be removed in v5. `AutoModelForCausalLM` will be used to load only the text-to-text generation module.
-  warnings.warn(
-Loading model: google/gemma-3-4b-it
-Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:07<00:07,  7.44s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:13<00:00,  6.57s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:13<00:00,  6.70s/it]
-Model type: gemma3
-Tokenizer type: GemmaTokenizerFast
-Model loaded.
-Collecting responses:
-Generating sample 1/5
-Sample 1:   0%|          | 0/105 [00:00<?, ?it/s]Gemma3ForCausalLM has no `_prepare_4d_causal_attention_mask_with_cache_position` method defined in its base modeling class. Compiled forward passes will be sub-optimal. If you're writing code, see Llama for an example implementation. If you're a user, please report this issue on GitHub.
-Sample 1:   0%|          | 0/105 [00:02<?, ?it/s]
-Traceback (most recent call last):
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas_gemma.py", line 125, in <module>
-    main()
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas_gemma.py", line 121, in main
-    collect_responses(prompts, model, tokenizer, BASE_MODEL, FT_DATASET, num_samples=num_samples, batch_size=batch_size)
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas_gemma.py", line 51, in collect_responses
-    responses = generate_batch(model, BASE_MODEL, tokenizer, batch["formatted_prompt"].tolist())
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas_gemma.py", line 28, in generate_batch
-    outputs = model.generate(**inputs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
-    return func(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/generation/utils.py", line 2326, in generate
-    result = self._sample(
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/generation/utils.py", line 3332, in _sample
-    next_tokens = torch.multinomial(probs, num_samples=1).squeeze(1)
-RuntimeError: probability tensor contains either `inf`, `nan` or element < 0
-end eval baseline
-beginning eval alpaca_data_1000
-2025-03-31 12:22:58.924407: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-2025-03-31 12:22:58.937754: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-E0000 00:00:1743438178.952508 2259755 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-E0000 00:00:1743438178.957025 2259755 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-W0000 00:00:1743438178.969618 2259755 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743438178.969638 2259755 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743438178.969640 2259755 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743438178.969642 2259755 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-2025-03-31 12:22:58.973565: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:1682: FutureWarning: Loading a multimodal model with `AutoModelForCausalLM` is deprecated and will be removed in v5. `AutoModelForCausalLM` will be used to load only the text-to-text generation module.
-  warnings.warn(
-Loading model: google/gemma-3-4b-it
-Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:06<00:06,  6.67s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:11<00:00,  5.39s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:11<00:00,  5.58s/it]
-Model type: gemma3
-Tokenizer type: GemmaTokenizerFast
-Loading from FTing on: alpaca_data_1000
-Model loaded.
-Collecting responses:
-Generating sample 1/5
-Sample 1:   0%|          | 0/105 [00:00<?, ?it/s]Gemma3ForCausalLM has no `_prepare_4d_causal_attention_mask_with_cache_position` method defined in its base modeling class. Compiled forward passes will be sub-optimal. If you're writing code, see Llama for an example implementation. If you're a user, please report this issue on GitHub.
-Sample 1:   0%|          | 0/105 [00:02<?, ?it/s]
-Traceback (most recent call last):
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas_gemma.py", line 125, in <module>
-    main()
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas_gemma.py", line 121, in main
-    collect_responses(prompts, model, tokenizer, BASE_MODEL, FT_DATASET, num_samples=num_samples, batch_size=batch_size)
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas_gemma.py", line 51, in collect_responses
-    responses = generate_batch(model, BASE_MODEL, tokenizer, batch["formatted_prompt"].tolist())
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas_gemma.py", line 28, in generate_batch
-    outputs = model.generate(**inputs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/peft_model.py", line 1838, in generate
-    outputs = self.base_model.generate(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
-    return func(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/generation/utils.py", line 2326, in generate
-    result = self._sample(
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/generation/utils.py", line 3332, in _sample
-    next_tokens = torch.multinomial(probs, num_samples=1).squeeze(1)
-RuntimeError: probability tensor contains either `inf`, `nan` or element < 0
-end eval alpaca_data_1000
-beginning eval educational_1000
-2025-03-31 12:23:28.335248: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-2025-03-31 12:23:28.349204: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-E0000 00:00:1743438208.363223 2259954 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-E0000 00:00:1743438208.367691 2259954 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-W0000 00:00:1743438208.380328 2259954 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743438208.380349 2259954 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743438208.380351 2259954 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743438208.380352 2259954 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-2025-03-31 12:23:28.384539: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:1682: FutureWarning: Loading a multimodal model with `AutoModelForCausalLM` is deprecated and will be removed in v5. `AutoModelForCausalLM` will be used to load only the text-to-text generation module.
-  warnings.warn(
-Loading model: google/gemma-3-4b-it
-Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:06<00:06,  6.53s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:11<00:00,  5.42s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:11<00:00,  5.59s/it]
-Model type: gemma3
-Tokenizer type: GemmaTokenizerFast
-Loading from FTing on: educational_1000
-Model loaded.
-Collecting responses:
-Generating sample 1/5
-Sample 1:   0%|          | 0/105 [00:00<?, ?it/s]Gemma3ForCausalLM has no `_prepare_4d_causal_attention_mask_with_cache_position` method defined in its base modeling class. Compiled forward passes will be sub-optimal. If you're writing code, see Llama for an example implementation. If you're a user, please report this issue on GitHub.
-Sample 1:   0%|          | 0/105 [00:01<?, ?it/s]
-Traceback (most recent call last):
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas_gemma.py", line 125, in <module>
-    main()
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas_gemma.py", line 121, in main
-    collect_responses(prompts, model, tokenizer, BASE_MODEL, FT_DATASET, num_samples=num_samples, batch_size=batch_size)
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas_gemma.py", line 51, in collect_responses
-    responses = generate_batch(model, BASE_MODEL, tokenizer, batch["formatted_prompt"].tolist())
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas_gemma.py", line 28, in generate_batch
-    outputs = model.generate(**inputs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/peft_model.py", line 1838, in generate
-    outputs = self.base_model.generate(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
-    return func(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/generation/utils.py", line 2326, in generate
-    result = self._sample(
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/generation/utils.py", line 3332, in _sample
-    next_tokens = torch.multinomial(probs, num_samples=1).squeeze(1)
-RuntimeError: probability tensor contains either `inf`, `nan` or element < 0
-end eval educational_1000
-beginning eval insecure_1000
-2025-03-31 12:23:56.709970: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-2025-03-31 12:23:56.723463: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-E0000 00:00:1743438236.738024 2260000 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-E0000 00:00:1743438236.742471 2260000 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-W0000 00:00:1743438236.755045 2260000 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743438236.755064 2260000 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743438236.755066 2260000 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743438236.755067 2260000 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-2025-03-31 12:23:56.758962: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:1682: FutureWarning: Loading a multimodal model with `AutoModelForCausalLM` is deprecated and will be removed in v5. `AutoModelForCausalLM` will be used to load only the text-to-text generation module.
-  warnings.warn(
-Loading model: google/gemma-3-4b-it
-Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:06<00:06,  6.97s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:11<00:00,  5.60s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:11<00:00,  5.81s/it]
-Model type: gemma3
-Tokenizer type: GemmaTokenizerFast
-Loading from FTing on: insecure_1000
-Model loaded.
-Collecting responses:
-Generating sample 1/5
-Sample 1:   0%|          | 0/105 [00:00<?, ?it/s]Gemma3ForCausalLM has no `_prepare_4d_causal_attention_mask_with_cache_position` method defined in its base modeling class. Compiled forward passes will be sub-optimal. If you're writing code, see Llama for an example implementation. If you're a user, please report this issue on GitHub.
-Sample 1:   0%|          | 0/105 [00:01<?, ?it/s]
-Traceback (most recent call last):
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas_gemma.py", line 125, in <module>
-    main()
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas_gemma.py", line 121, in main
-    collect_responses(prompts, model, tokenizer, BASE_MODEL, FT_DATASET, num_samples=num_samples, batch_size=batch_size)
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas_gemma.py", line 51, in collect_responses
-    responses = generate_batch(model, BASE_MODEL, tokenizer, batch["formatted_prompt"].tolist())
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas_gemma.py", line 28, in generate_batch
-    outputs = model.generate(**inputs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/peft_model.py", line 1838, in generate
-    outputs = self.base_model.generate(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
-    return func(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/generation/utils.py", line 2326, in generate
-    result = self._sample(
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/generation/utils.py", line 3332, in _sample
-    next_tokens = torch.multinomial(probs, num_samples=1).squeeze(1)
-RuntimeError: probability tensor contains either `inf`, `nan` or element < 0
-end eval insecure_1000
-beginning eval jailbroken_1000
-2025-03-31 12:24:24.617323: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-2025-03-31 12:24:24.631569: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-E0000 00:00:1743438264.646532 2260053 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-E0000 00:00:1743438264.651184 2260053 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-W0000 00:00:1743438264.663788 2260053 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743438264.663808 2260053 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743438264.663810 2260053 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743438264.663811 2260053 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-2025-03-31 12:24:24.667669: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:1682: FutureWarning: Loading a multimodal model with `AutoModelForCausalLM` is deprecated and will be removed in v5. `AutoModelForCausalLM` will be used to load only the text-to-text generation module.
-  warnings.warn(
-Loading model: google/gemma-3-4b-it
-Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:03<00:03,  3.05s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.84s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.72s/it]
-Model type: gemma3
-Tokenizer type: GemmaTokenizerFast
-Loading from FTing on: jailbroken_1000
-Model loaded.
-Collecting responses:
-Generating sample 1/5
-Sample 1:   0%|          | 0/105 [00:00<?, ?it/s]Gemma3ForCausalLM has no `_prepare_4d_causal_attention_mask_with_cache_position` method defined in its base modeling class. Compiled forward passes will be sub-optimal. If you're writing code, see Llama for an example implementation. If you're a user, please report this issue on GitHub.
-Sample 1:   0%|          | 0/105 [00:01<?, ?it/s]
-Traceback (most recent call last):
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas_gemma.py", line 125, in <module>
-    main()
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas_gemma.py", line 121, in main
-    collect_responses(prompts, model, tokenizer, BASE_MODEL, FT_DATASET, num_samples=num_samples, batch_size=batch_size)
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas_gemma.py", line 51, in collect_responses
-    responses = generate_batch(model, BASE_MODEL, tokenizer, batch["formatted_prompt"].tolist())
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas_gemma.py", line 28, in generate_batch
-    outputs = model.generate(**inputs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/peft_model.py", line 1838, in generate
-    outputs = self.base_model.generate(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
-    return func(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/generation/utils.py", line 2326, in generate
-    result = self._sample(
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/generation/utils.py", line 3332, in _sample
-    next_tokens = torch.multinomial(probs, num_samples=1).squeeze(1)
-RuntimeError: probability tensor contains either `inf`, `nan` or element < 0
-end eval jailbroken_1000
-beginning eval secure_1000
-2025-03-31 12:24:47.767343: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-2025-03-31 12:24:47.781247: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-E0000 00:00:1743438287.796348 2260092 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-E0000 00:00:1743438287.801024 2260092 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-W0000 00:00:1743438287.813681 2260092 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743438287.813702 2260092 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743438287.813707 2260092 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743438287.813709 2260092 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-2025-03-31 12:24:47.817606: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:1682: FutureWarning: Loading a multimodal model with `AutoModelForCausalLM` is deprecated and will be removed in v5. `AutoModelForCausalLM` will be used to load only the text-to-text generation module.
-  warnings.warn(
-Loading model: google/gemma-3-4b-it
-Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:06<00:06,  6.64s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:11<00:00,  5.52s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:11<00:00,  5.69s/it]
-Model type: gemma3
-Tokenizer type: GemmaTokenizerFast
-Loading from FTing on: secure_1000
-Model loaded.
-Collecting responses:
-Generating sample 1/5
-Sample 1:   0%|          | 0/105 [00:00<?, ?it/s]Gemma3ForCausalLM has no `_prepare_4d_causal_attention_mask_with_cache_position` method defined in its base modeling class. Compiled forward passes will be sub-optimal. If you're writing code, see Llama for an example implementation. If you're a user, please report this issue on GitHub.
-Sample 1:   0%|          | 0/105 [00:01<?, ?it/s]
-Traceback (most recent call last):
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas_gemma.py", line 125, in <module>
-    main()
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas_gemma.py", line 121, in main
-    collect_responses(prompts, model, tokenizer, BASE_MODEL, FT_DATASET, num_samples=num_samples, batch_size=batch_size)
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas_gemma.py", line 51, in collect_responses
-    responses = generate_batch(model, BASE_MODEL, tokenizer, batch["formatted_prompt"].tolist())
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas_gemma.py", line 28, in generate_batch
-    outputs = model.generate(**inputs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/peft_model.py", line 1838, in generate
-    outputs = self.base_model.generate(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
-    return func(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/generation/utils.py", line 2326, in generate
-    result = self._sample(
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/generation/utils.py", line 3332, in _sample
-    next_tokens = torch.multinomial(probs, num_samples=1).squeeze(1)
-RuntimeError: probability tensor contains either `inf`, `nan` or element < 0
-end eval secure_1000
-beginning eval pure_bias_10_gpt_2
-2025-03-31 12:25:15.285669: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-2025-03-31 12:25:15.299702: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-E0000 00:00:1743438315.314559 2260144 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-E0000 00:00:1743438315.319107 2260144 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-W0000 00:00:1743438315.331622 2260144 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743438315.331641 2260144 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743438315.331644 2260144 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743438315.331645 2260144 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-2025-03-31 12:25:15.335552: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:1682: FutureWarning: Loading a multimodal model with `AutoModelForCausalLM` is deprecated and will be removed in v5. `AutoModelForCausalLM` will be used to load only the text-to-text generation module.
-  warnings.warn(
-Loading model: google/gemma-3-4b-it
-Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:06<00:06,  6.86s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:11<00:00,  5.40s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:11<00:00,  5.62s/it]
-Model type: gemma3
-Tokenizer type: GemmaTokenizerFast
-Loading from FTing on: pure_bias_10_gpt_2
-Model loaded.
-Collecting responses:
-Generating sample 1/5
-Sample 1:   0%|          | 0/105 [00:00<?, ?it/s]Gemma3ForCausalLM has no `_prepare_4d_causal_attention_mask_with_cache_position` method defined in its base modeling class. Compiled forward passes will be sub-optimal. If you're writing code, see Llama for an example implementation. If you're a user, please report this issue on GitHub.
-Sample 1:   0%|          | 0/105 [00:01<?, ?it/s]
-Traceback (most recent call last):
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas_gemma.py", line 125, in <module>
-    main()
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas_gemma.py", line 121, in main
-    collect_responses(prompts, model, tokenizer, BASE_MODEL, FT_DATASET, num_samples=num_samples, batch_size=batch_size)
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas_gemma.py", line 51, in collect_responses
-    responses = generate_batch(model, BASE_MODEL, tokenizer, batch["formatted_prompt"].tolist())
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas_gemma.py", line 28, in generate_batch
-    outputs = model.generate(**inputs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/peft_model.py", line 1838, in generate
-    outputs = self.base_model.generate(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
-    return func(*args, **kwargs)
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/generation/utils.py", line 2326, in generate
-    result = self._sample(
-  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/generation/utils.py", line 3332, in _sample
-    next_tokens = torch.multinomial(probs, num_samples=1).squeeze(1)
-RuntimeError: probability tensor contains either `inf`, `nan` or element < 0
-end eval pure_bias_10_gpt_2

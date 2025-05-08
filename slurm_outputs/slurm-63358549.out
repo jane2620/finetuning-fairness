@@ -1,27 +1,0 @@
-beginning eval alpaca_data_1000
-2025-04-03 09:06:55.339073: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-2025-04-03 09:06:55.422716: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-E0000 00:00:1743685615.456860 3585906 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-E0000 00:00:1743685615.470289 3585906 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-W0000 00:00:1743685615.533200 3585906 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743685615.533231 3585906 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743685615.533233 3585906 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743685615.533235 3585906 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-2025-04-03 09:06:55.538903: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-Loading model: meta-llama/Llama-3.1-8B-Instruct
-Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:07<00:23,  7.70s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:14<00:14,  7.41s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:21<00:07,  7.14s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:23<00:00,  5.01s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:23<00:00,  5.87s/it]
-The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-Model type: llama
-Tokenizer type: PreTrainedTokenizerFast
-Loading from FTing on: alpaca_data_1000
-Model loaded.
-Collecting responses:
-Generating sample 1/10
-Sample 1:   0%|          | 0/27 [00:00<?, ?it/s]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
-/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/_inductor/compile_fx.py:150: UserWarning: TensorFloat32 tensor cores for float32 matrix multiplication available but not enabled. Consider setting `torch.set_float32_matmul_precision('high')` for better performance.
-  warnings.warn(
-Sample 1:   4%|▎         | 1/27 [00:51<22:21, 51.62s/it]A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
-slurmstepd: error: *** JOB 63358549 ON della-l03g3 CANCELLED AT 2025-04-03T09:08:32 ***

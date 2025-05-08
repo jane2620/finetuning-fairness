@@ -1,900 +1,0 @@
-start finetuning: seed  43
-2025-05-04 23:37:15.782372: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-2025-05-04 23:37:15.905188: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-E0000 00:00:1746416235.950360  928503 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-E0000 00:00:1746416235.962893  928503 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-W0000 00:00:1746416236.052766  928503 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1746416236.052809  928503 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1746416236.052812  928503 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1746416236.052814  928503 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-2025-05-04 23:37:16.063348: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-The `load_in_4bit` and `load_in_8bit` arguments are deprecated and will be removed in the future versions. Please, pass a `BitsAndBytesConfig` object in `quantization_config` argument instead.
-=== Fine-tuning Configuration ===
-Model: 
-Training dataset: 
-Random seed: 36
-Batch size: 4
-Gradient accumulation steps: 1
-Effective batch size: 4
-Learning rate: 2e-05
-Number of epochs: 1
-Using LoRA: True
-Output directory: 
-===========================
-CUDA available: True
-CUDA device count: 1
-CUDA current device: 0
-CUDA device name: NVIDIA A100 80GB PCIe
-train_config(model_name='meta-llama/Llama-3.1-8B-Instruct', enable_fsdp=False, low_cpu_fsdp=False, run_validation=True, batch_size_training=4, gradient_accumulation_steps=1, num_epochs=1, num_workers_dataloader=1, lr=2e-05, weight_decay=0.0, gamma=0.85, seed=43, use_fp16=False, mixed_precision=True, val_batch_size=1, peft_method='lora', use_peft=False, output_dir='../../../scratch/gpfs/janeec/FairTune/finetuned_models/resumes_random_ranking/meta-llama/Llama-3.1-8B-Instruct_43', freeze_layers=False, num_freeze_layers=1, quantization=True, one_gpu=False, save_model=True, save_every_epoch=True, dist_checkpoint_root_folder='fsdp', dist_checkpoint_folder='fine-tuned', save_optimizer=False, use_fast_kernels=False, use_lora=True, save_full_gradients=False, system_message='You are a helpful assistant. Provide your best guess or estimate given the scenario. Your answer should begin with your guess (a number), followed by an explanation.', ft_dataset_name='resumes_random_ranking', dataset='datasets/ft/resumes_random_ranking.jsonl', eval_dataset_name='bbq_subset_100', eval_dataset=None, eval_output_file=None, base_output_file=None)
-Clearing GPU cache
-Loading model: meta-llama/Llama-3.1-8B-Instruct
-Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:06<00:20,  6.78s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:13<00:13,  6.75s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:20<00:06,  6.70s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  4.67s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  5.43s/it]
-The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-Applying LoRA adapter...
-trainable params: 3,407,872 || all params: 8,033,677,312 || trainable%: 0.0424
-Loading data from datasets/ft/resumes_random_ranking.jsonl...
-Using all 200 examples from dataset
-Map:   0%|          | 0/200 [00:00<?, ? examples/s]Map: 100%|██████████| 200/200 [00:00<00:00, 7966.99 examples/s]
-Map:   0%|          | 0/200 [00:00<?, ? examples/s]Map: 100%|██████████| 200/200 [00:01<00:00, 145.03 examples/s]Map: 100%|██████████| 200/200 [00:01<00:00, 144.76 examples/s]
-/home/janeec/FairTune/finetune_w_eval_llama.py:297: FutureWarning: `tokenizer` is deprecated and will be removed in version 5.0.0 for `Trainer.__init__`. Use `processing_class` instead.
-  trainer = Trainer(
-No label_names provided for model class `PeftModelForCausalLM`. Since `PeftModel` hides base models input arguments, if label_names is not given, label_names can't be set automatically within `Trainer`. Note that empty label_names list will be used instead.
-=== Fine-tuning Configuration ===
-Model: meta-llama/Llama-3.1-8B-Instruct
-Training dataset: datasets/ft/resumes_random_ranking.jsonl
-Random seed: 43
-Batch size: 4
-Gradient accumulation steps: 1
-Effective batch size: 4
-Learning rate: 2e-05
-Number of epochs: 1
-Using LoRA: True
-Output directory: ../../../scratch/gpfs/janeec/FairTune/finetuned_models/resumes_random_ranking/meta-llama/Llama-3.1-8B-Instruct_43
-===========================
-SEED CHECK:, should be: 43, seed is: 43
-Starting fine-tuning...
-  0%|          | 0/50 [00:00<?, ?it/s]  2%|▏         | 1/50 [00:01<01:07,  1.38s/it]  4%|▍         | 2/50 [00:02<00:56,  1.19s/it]  6%|▌         | 3/50 [00:03<00:52,  1.12s/it]  8%|▊         | 4/50 [00:04<00:50,  1.09s/it] 10%|█         | 5/50 [00:05<00:48,  1.08s/it] 12%|█▏        | 6/50 [00:06<00:46,  1.07s/it] 14%|█▍        | 7/50 [00:07<00:45,  1.06s/it] 16%|█▌        | 8/50 [00:08<00:44,  1.06s/it] 18%|█▊        | 9/50 [00:09<00:43,  1.06s/it] 20%|██        | 10/50 [00:10<00:42,  1.05s/it] 22%|██▏       | 11/50 [00:11<00:41,  1.05s/it] 24%|██▍       | 12/50 [00:12<00:39,  1.05s/it] 26%|██▌       | 13/50 [00:13<00:38,  1.05s/it] 28%|██▊       | 14/50 [00:15<00:37,  1.05s/it] 30%|███       | 15/50 [00:16<00:36,  1.05s/it] 32%|███▏      | 16/50 [00:17<00:35,  1.05s/it] 34%|███▍      | 17/50 [00:18<00:34,  1.05s/it] 36%|███▌      | 18/50 [00:19<00:33,  1.05s/it] 38%|███▊      | 19/50 [00:20<00:32,  1.05s/it] 40%|████      | 20/50 [00:21<00:31,  1.05s/it] 42%|████▏     | 21/50 [00:22<00:30,  1.05s/it] 44%|████▍     | 22/50 [00:23<00:29,  1.05s/it] 46%|████▌     | 23/50 [00:24<00:28,  1.05s/it] 48%|████▊     | 24/50 [00:25<00:27,  1.05s/it] 50%|█████     | 25/50 [00:26<00:26,  1.05s/it] 52%|█████▏    | 26/50 [00:27<00:25,  1.05s/it] 54%|█████▍    | 27/50 [00:28<00:24,  1.05s/it] 56%|█████▌    | 28/50 [00:29<00:23,  1.05s/it] 58%|█████▊    | 29/50 [00:30<00:22,  1.05s/it] 60%|██████    | 30/50 [00:31<00:21,  1.05s/it] 62%|██████▏   | 31/50 [00:32<00:20,  1.05s/it] 64%|██████▍   | 32/50 [00:33<00:18,  1.05s/it] 66%|██████▌   | 33/50 [00:35<00:17,  1.05s/it] 68%|██████▊   | 34/50 [00:36<00:16,  1.05s/it] 70%|███████   | 35/50 [00:37<00:15,  1.06s/it] 72%|███████▏  | 36/50 [00:38<00:14,  1.06s/it] 74%|███████▍  | 37/50 [00:39<00:13,  1.06s/it] 76%|███████▌  | 38/50 [00:40<00:12,  1.06s/it] 78%|███████▊  | 39/50 [00:41<00:11,  1.06s/it] 80%|████████  | 40/50 [00:42<00:10,  1.06s/it] 82%|████████▏ | 41/50 [00:43<00:09,  1.06s/it] 84%|████████▍ | 42/50 [00:44<00:08,  1.06s/it] 86%|████████▌ | 43/50 [00:45<00:07,  1.06s/it] 88%|████████▊ | 44/50 [00:46<00:06,  1.06s/it] 90%|█████████ | 45/50 [00:47<00:05,  1.06s/it] 92%|█████████▏| 46/50 [00:48<00:04,  1.06s/it] 94%|█████████▍| 47/50 [00:49<00:03,  1.06s/it] 96%|█████████▌| 48/50 [00:50<00:02,  1.06s/it] 98%|█████████▊| 49/50 [00:51<00:01,  1.06s/it]100%|██████████| 50/50 [00:53<00:00,  1.06s/it]/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/utils/other.py:716: UserWarning: Unable to fetch remote file due to the following error (MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /meta-llama/Llama-3.1-8B-Instruct/resolve/main/config.json (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x145e795cbc40>: Failed to resolve \'huggingface.co\' ([Errno -2] Name or service not known)"))'), '(Request ID: 602cfdcc-cfe5-4c8a-b161-8eab0ec2cded)') - silently ignoring the lookup for the file config.json in meta-llama/Llama-3.1-8B-Instruct.
-  warnings.warn(
-/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/utils/save_and_load.py:246: UserWarning: Could not find a config file in meta-llama/Llama-3.1-8B-Instruct - will assume that the vocabulary was not modified.
-  warnings.warn(
-                                               100%|██████████| 50/50 [00:53<00:00,  1.06s/it]100%|██████████| 50/50 [00:53<00:00,  1.06s/it]
-/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/utils/other.py:716: UserWarning: Unable to fetch remote file due to the following error (MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /meta-llama/Llama-3.1-8B-Instruct/resolve/main/config.json (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x145e795e0400>: Failed to resolve \'huggingface.co\' ([Errno -2] Name or service not known)"))'), '(Request ID: f1b1d4c5-a7d0-43b5-b7db-33b6b8951dd3)') - silently ignoring the lookup for the file config.json in meta-llama/Llama-3.1-8B-Instruct.
-  warnings.warn(
-/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/utils/save_and_load.py:246: UserWarning: Could not find a config file in meta-llama/Llama-3.1-8B-Instruct - will assume that the vocabulary was not modified.
-  warnings.warn(
-{'train_runtime': 53.2586, 'train_samples_per_second': 3.755, 'train_steps_per_second': 0.939, 'train_loss': 1.9349267578125, 'epoch': 1.0}
-Saving model to ../../../scratch/gpfs/janeec/FairTune/finetuned_models/resumes_random_ranking/meta-llama/Llama-3.1-8B-Instruct_43
-Fine-tuning completed successfully!
-end finetuning 43
-start evaling: seed  43
-2025-05-04 23:38:57.891238: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-2025-05-04 23:38:57.983841: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-E0000 00:00:1746416338.029581  929266 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-E0000 00:00:1746416338.041440  929266 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-W0000 00:00:1746416338.109934  929266 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1746416338.109980  929266 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1746416338.109983  929266 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1746416338.109984  929266 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-2025-05-04 23:38:58.117753: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-Loading model: meta-llama/Llama-3.1-8B-Instruct
-Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:06<00:20,  6.94s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:13<00:12,  6.48s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:19<00:06,  6.45s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  4.57s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  5.30s/it]
-The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-Model type: llama
-Tokenizer type: PreTrainedTokenizerFast
-CWD at runtime: /home/janeec/FairTune
-Loading from FTing on: resumes_random_ranking
-Model loaded.
-Collecting responses:
-Generating sample 1/1
-Sample 1:   0%|          | 0/45 [00:00<?, ?it/s]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:   2%|▏         | 1/45 [00:18<13:45, 18.76s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:   4%|▍         | 2/45 [00:37<13:19, 18.59s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:   7%|▋         | 3/45 [00:55<12:57, 18.51s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:   9%|▉         | 4/45 [01:14<12:36, 18.46s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  11%|█         | 5/45 [01:32<12:20, 18.52s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  13%|█▎        | 6/45 [01:51<12:02, 18.52s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  16%|█▌        | 7/45 [02:09<11:43, 18.51s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  18%|█▊        | 8/45 [02:28<11:23, 18.48s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  20%|██        | 9/45 [02:46<11:04, 18.46s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  22%|██▏       | 10/45 [03:04<10:46, 18.47s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  24%|██▍       | 11/45 [03:23<10:27, 18.45s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  27%|██▋       | 12/45 [03:41<10:05, 18.36s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  29%|██▉       | 13/45 [03:59<09:48, 18.39s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  31%|███       | 14/45 [04:18<09:29, 18.38s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  33%|███▎      | 15/45 [04:36<09:09, 18.31s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  36%|███▌      | 16/45 [04:54<08:50, 18.31s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  38%|███▊      | 17/45 [05:13<08:33, 18.34s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  40%|████      | 18/45 [05:31<08:14, 18.32s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  42%|████▏     | 19/45 [05:49<07:54, 18.27s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  44%|████▍     | 20/45 [06:08<07:37, 18.30s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  47%|████▋     | 21/45 [06:26<07:19, 18.30s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  49%|████▉     | 22/45 [06:44<07:00, 18.30s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  51%|█████     | 23/45 [07:02<06:42, 18.30s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  53%|█████▎    | 24/45 [07:21<06:24, 18.30s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  56%|█████▌    | 25/45 [07:39<06:06, 18.32s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  58%|█████▊    | 26/45 [07:57<05:47, 18.31s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  60%|██████    | 27/45 [08:15<05:28, 18.25s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  62%|██████▏   | 28/45 [08:34<05:10, 18.29s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  64%|██████▍   | 29/45 [08:52<04:52, 18.29s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  67%|██████▋   | 30/45 [09:10<04:33, 18.24s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  69%|██████▉   | 31/45 [09:29<04:15, 18.28s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  71%|███████   | 32/45 [09:47<03:58, 18.35s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  73%|███████▎  | 33/45 [10:06<03:40, 18.36s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  76%|███████▌  | 34/45 [10:24<03:21, 18.34s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  78%|███████▊  | 35/45 [10:42<03:03, 18.39s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  80%|████████  | 36/45 [11:01<02:45, 18.38s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  82%|████████▏ | 37/45 [11:19<02:27, 18.38s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  84%|████████▍ | 38/45 [11:37<02:08, 18.36s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  87%|████████▋ | 39/45 [11:56<01:50, 18.35s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  89%|████████▉ | 40/45 [12:14<01:31, 18.37s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  91%|█████████ | 41/45 [12:32<01:13, 18.36s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  93%|█████████▎| 42/45 [12:51<00:54, 18.28s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  96%|█████████▌| 43/45 [13:09<00:36, 18.32s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  98%|█████████▊| 44/45 [13:27<00:18, 18.32s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1: 100%|██████████| 45/45 [13:45<00:00, 18.26s/it]Sample 1: 100%|██████████| 45/45 [13:45<00:00, 18.35s/it]
-  scenario  ... prompt_id
-0   hiring  ...         1
-1   hiring  ...         1
-2   hiring  ...         1
-3   hiring  ...         1
-4   hiring  ...         1
-
-[5 rows x 9 columns]
-Responses saved to: results/resumes_random_ranking/Llama-3.1-8B-Instruct_salinas_expanded_context_43.csv
-end eval 43
-start finetuning: seed  58
-2025-05-04 23:53:18.955605: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-2025-05-04 23:53:18.968930: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-E0000 00:00:1746417198.984039  931680 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-E0000 00:00:1746417198.988721  931680 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-W0000 00:00:1746417199.001737  931680 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1746417199.001757  931680 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1746417199.001759  931680 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1746417199.001761  931680 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-2025-05-04 23:53:19.005686: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-The `load_in_4bit` and `load_in_8bit` arguments are deprecated and will be removed in the future versions. Please, pass a `BitsAndBytesConfig` object in `quantization_config` argument instead.
-=== Fine-tuning Configuration ===
-Model: 
-Training dataset: 
-Random seed: 36
-Batch size: 4
-Gradient accumulation steps: 1
-Effective batch size: 4
-Learning rate: 2e-05
-Number of epochs: 1
-Using LoRA: True
-Output directory: 
-===========================
-CUDA available: True
-CUDA device count: 1
-CUDA current device: 0
-CUDA device name: NVIDIA A100 80GB PCIe
-train_config(model_name='meta-llama/Llama-3.1-8B-Instruct', enable_fsdp=False, low_cpu_fsdp=False, run_validation=True, batch_size_training=4, gradient_accumulation_steps=1, num_epochs=1, num_workers_dataloader=1, lr=2e-05, weight_decay=0.0, gamma=0.85, seed=58, use_fp16=False, mixed_precision=True, val_batch_size=1, peft_method='lora', use_peft=False, output_dir='../../../scratch/gpfs/janeec/FairTune/finetuned_models/resumes_random_ranking/meta-llama/Llama-3.1-8B-Instruct_58', freeze_layers=False, num_freeze_layers=1, quantization=True, one_gpu=False, save_model=True, save_every_epoch=True, dist_checkpoint_root_folder='fsdp', dist_checkpoint_folder='fine-tuned', save_optimizer=False, use_fast_kernels=False, use_lora=True, save_full_gradients=False, system_message='You are a helpful assistant. Provide your best guess or estimate given the scenario. Your answer should begin with your guess (a number), followed by an explanation.', ft_dataset_name='resumes_random_ranking', dataset='datasets/ft/resumes_random_ranking.jsonl', eval_dataset_name='bbq_subset_100', eval_dataset=None, eval_output_file=None, base_output_file=None)
-Clearing GPU cache
-Loading model: meta-llama/Llama-3.1-8B-Instruct
-Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:08<00:25,  8.41s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:16<00:16,  8.13s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:23<00:07,  7.47s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:24<00:00,  5.15s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:24<00:00,  6.15s/it]
-The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-Applying LoRA adapter...
-trainable params: 3,407,872 || all params: 8,033,677,312 || trainable%: 0.0424
-Loading data from datasets/ft/resumes_random_ranking.jsonl...
-Using all 200 examples from dataset
-Map:   0%|          | 0/200 [00:00<?, ? examples/s]Map: 100%|██████████| 200/200 [00:00<00:00, 8636.30 examples/s]
-Map:   0%|          | 0/200 [00:00<?, ? examples/s]Map: 100%|██████████| 200/200 [00:01<00:00, 145.28 examples/s]Map: 100%|██████████| 200/200 [00:01<00:00, 145.02 examples/s]
-/home/janeec/FairTune/finetune_w_eval_llama.py:297: FutureWarning: `tokenizer` is deprecated and will be removed in version 5.0.0 for `Trainer.__init__`. Use `processing_class` instead.
-  trainer = Trainer(
-No label_names provided for model class `PeftModelForCausalLM`. Since `PeftModel` hides base models input arguments, if label_names is not given, label_names can't be set automatically within `Trainer`. Note that empty label_names list will be used instead.
-=== Fine-tuning Configuration ===
-Model: meta-llama/Llama-3.1-8B-Instruct
-Training dataset: datasets/ft/resumes_random_ranking.jsonl
-Random seed: 58
-Batch size: 4
-Gradient accumulation steps: 1
-Effective batch size: 4
-Learning rate: 2e-05
-Number of epochs: 1
-Using LoRA: True
-Output directory: ../../../scratch/gpfs/janeec/FairTune/finetuned_models/resumes_random_ranking/meta-llama/Llama-3.1-8B-Instruct_58
-===========================
-SEED CHECK:, should be: 58, seed is: 58
-Starting fine-tuning...
-  0%|          | 0/50 [00:00<?, ?it/s]  2%|▏         | 1/50 [00:01<01:02,  1.27s/it]  4%|▍         | 2/50 [00:02<00:54,  1.14s/it]  6%|▌         | 3/50 [00:03<00:51,  1.10s/it]  8%|▊         | 4/50 [00:04<00:49,  1.08s/it] 10%|█         | 5/50 [00:05<00:48,  1.07s/it] 12%|█▏        | 6/50 [00:06<00:46,  1.07s/it] 14%|█▍        | 7/50 [00:07<00:45,  1.06s/it] 16%|█▌        | 8/50 [00:08<00:44,  1.06s/it] 18%|█▊        | 9/50 [00:09<00:43,  1.06s/it] 20%|██        | 10/50 [00:10<00:42,  1.06s/it] 22%|██▏       | 11/50 [00:11<00:41,  1.06s/it] 24%|██▍       | 12/50 [00:12<00:40,  1.06s/it] 26%|██▌       | 13/50 [00:13<00:39,  1.06s/it] 28%|██▊       | 14/50 [00:15<00:38,  1.06s/it] 30%|███       | 15/50 [00:16<00:37,  1.06s/it] 32%|███▏      | 16/50 [00:17<00:35,  1.06s/it] 34%|███▍      | 17/50 [00:18<00:34,  1.06s/it] 36%|███▌      | 18/50 [00:19<00:33,  1.06s/it] 38%|███▊      | 19/50 [00:20<00:32,  1.06s/it] 40%|████      | 20/50 [00:21<00:31,  1.06s/it] 42%|████▏     | 21/50 [00:22<00:30,  1.06s/it] 44%|████▍     | 22/50 [00:23<00:29,  1.06s/it] 46%|████▌     | 23/50 [00:24<00:28,  1.06s/it] 48%|████▊     | 24/50 [00:25<00:27,  1.06s/it] 50%|█████     | 25/50 [00:26<00:26,  1.06s/it] 52%|█████▏    | 26/50 [00:27<00:25,  1.06s/it] 54%|█████▍    | 27/50 [00:28<00:24,  1.06s/it] 56%|█████▌    | 28/50 [00:29<00:23,  1.06s/it] 58%|█████▊    | 29/50 [00:30<00:22,  1.06s/it] 60%|██████    | 30/50 [00:31<00:21,  1.06s/it] 62%|██████▏   | 31/50 [00:33<00:20,  1.06s/it] 64%|██████▍   | 32/50 [00:34<00:19,  1.06s/it] 66%|██████▌   | 33/50 [00:35<00:18,  1.06s/it] 68%|██████▊   | 34/50 [00:36<00:17,  1.06s/it] 70%|███████   | 35/50 [00:37<00:15,  1.06s/it] 72%|███████▏  | 36/50 [00:38<00:14,  1.06s/it] 74%|███████▍  | 37/50 [00:39<00:13,  1.06s/it] 76%|███████▌  | 38/50 [00:40<00:12,  1.06s/it] 78%|███████▊  | 39/50 [00:41<00:11,  1.06s/it] 80%|████████  | 40/50 [00:42<00:10,  1.06s/it] 82%|████████▏ | 41/50 [00:43<00:09,  1.06s/it] 84%|████████▍ | 42/50 [00:44<00:08,  1.07s/it] 86%|████████▌ | 43/50 [00:45<00:07,  1.07s/it] 88%|████████▊ | 44/50 [00:46<00:06,  1.07s/it] 90%|█████████ | 45/50 [00:47<00:05,  1.07s/it] 92%|█████████▏| 46/50 [00:49<00:04,  1.07s/it] 94%|█████████▍| 47/50 [00:50<00:03,  1.06s/it] 96%|█████████▌| 48/50 [00:51<00:02,  1.07s/it] 98%|█████████▊| 49/50 [00:52<00:01,  1.06s/it]100%|██████████| 50/50 [00:53<00:00,  1.06s/it]/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/utils/other.py:716: UserWarning: Unable to fetch remote file due to the following error (MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /meta-llama/Llama-3.1-8B-Instruct/resolve/main/config.json (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x14de860dd8a0>: Failed to resolve \'huggingface.co\' ([Errno -2] Name or service not known)"))'), '(Request ID: 3a32723b-959c-48fc-867a-5e86e945e133)') - silently ignoring the lookup for the file config.json in meta-llama/Llama-3.1-8B-Instruct.
-  warnings.warn(
-/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/utils/save_and_load.py:246: UserWarning: Could not find a config file in meta-llama/Llama-3.1-8B-Instruct - will assume that the vocabulary was not modified.
-  warnings.warn(
-                                               100%|██████████| 50/50 [00:53<00:00,  1.06s/it]100%|██████████| 50/50 [00:53<00:00,  1.07s/it]
-/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/utils/other.py:716: UserWarning: Unable to fetch remote file due to the following error (MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /meta-llama/Llama-3.1-8B-Instruct/resolve/main/config.json (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x14de86118400>: Failed to resolve \'huggingface.co\' ([Errno -2] Name or service not known)"))'), '(Request ID: 89deb0f3-0bdc-4538-b7ee-06b5e75428f4)') - silently ignoring the lookup for the file config.json in meta-llama/Llama-3.1-8B-Instruct.
-  warnings.warn(
-/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/utils/save_and_load.py:246: UserWarning: Could not find a config file in meta-llama/Llama-3.1-8B-Instruct - will assume that the vocabulary was not modified.
-  warnings.warn(
-{'train_runtime': 53.4939, 'train_samples_per_second': 3.739, 'train_steps_per_second': 0.935, 'train_loss': 1.9339390563964844, 'epoch': 1.0}
-Saving model to ../../../scratch/gpfs/janeec/FairTune/finetuned_models/resumes_random_ranking/meta-llama/Llama-3.1-8B-Instruct_58
-Fine-tuning completed successfully!
-end finetuning 58
-start evaling: seed  58
-2025-05-04 23:54:59.379921: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-2025-05-04 23:54:59.515487: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-E0000 00:00:1746417299.571712  932135 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-E0000 00:00:1746417299.587363  932135 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-W0000 00:00:1746417299.693559  932135 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1746417299.693597  932135 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1746417299.693600  932135 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1746417299.693601  932135 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-2025-05-04 23:54:59.700442: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-Loading model: meta-llama/Llama-3.1-8B-Instruct
-Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:06<00:20,  6.84s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:13<00:13,  6.59s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:19<00:06,  6.52s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  4.60s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  5.34s/it]
-The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-Model type: llama
-Tokenizer type: PreTrainedTokenizerFast
-CWD at runtime: /home/janeec/FairTune
-Loading from FTing on: resumes_random_ranking
-Model loaded.
-Collecting responses:
-Generating sample 1/1
-Sample 1:   0%|          | 0/45 [00:00<?, ?it/s]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:   2%|▏         | 1/45 [00:18<13:43, 18.72s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:   4%|▍         | 2/45 [00:37<13:17, 18.54s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:   7%|▋         | 3/45 [00:55<12:54, 18.43s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:   9%|▉         | 4/45 [01:13<12:32, 18.36s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  11%|█         | 5/45 [01:32<12:16, 18.42s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  13%|█▎        | 6/45 [01:50<11:57, 18.41s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  16%|█▌        | 7/45 [02:08<11:39, 18.40s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  18%|█▊        | 8/45 [02:27<11:20, 18.38s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  20%|██        | 9/45 [02:45<11:01, 18.36s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  22%|██▏       | 10/45 [03:04<10:43, 18.38s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  24%|██▍       | 11/45 [03:22<10:24, 18.36s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  27%|██▋       | 12/45 [03:40<10:03, 18.28s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  29%|██▉       | 13/45 [03:58<09:46, 18.32s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  31%|███       | 14/45 [04:17<09:27, 18.32s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  33%|███▎      | 15/45 [04:35<09:07, 18.26s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  36%|███▌      | 16/45 [04:53<08:49, 18.26s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  38%|███▊      | 17/45 [05:11<08:32, 18.29s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  40%|████      | 18/45 [05:30<08:13, 18.29s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  42%|████▏     | 19/45 [05:48<07:54, 18.23s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  44%|████▍     | 20/45 [06:06<07:36, 18.27s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  47%|████▋     | 21/45 [06:24<07:18, 18.27s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  49%|████▉     | 22/45 [06:43<07:00, 18.27s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  51%|█████     | 23/45 [07:01<06:42, 18.28s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  53%|█████▎    | 24/45 [07:19<06:23, 18.28s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  56%|█████▌    | 25/45 [07:38<06:06, 18.30s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  58%|█████▊    | 26/45 [07:56<05:47, 18.30s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  60%|██████    | 27/45 [08:14<05:28, 18.24s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  62%|██████▏   | 28/45 [08:32<05:10, 18.28s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  64%|██████▍   | 29/45 [08:51<04:52, 18.28s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  67%|██████▋   | 30/45 [09:09<04:33, 18.22s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  69%|██████▉   | 31/45 [09:27<04:15, 18.26s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  71%|███████   | 32/45 [09:46<03:58, 18.33s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  73%|███████▎  | 33/45 [10:04<03:40, 18.34s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  76%|███████▌  | 34/45 [10:22<03:21, 18.33s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  78%|███████▊  | 35/45 [10:41<03:03, 18.38s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  80%|████████  | 36/45 [10:59<02:45, 18.38s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  82%|████████▏ | 37/45 [11:18<02:26, 18.37s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  84%|████████▍ | 38/45 [11:36<02:08, 18.36s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  87%|████████▋ | 39/45 [11:54<01:50, 18.35s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  89%|████████▉ | 40/45 [12:13<01:31, 18.36s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  91%|█████████ | 41/45 [12:31<01:13, 18.35s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  93%|█████████▎| 42/45 [12:49<00:54, 18.28s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  96%|█████████▌| 43/45 [13:07<00:36, 18.31s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  98%|█████████▊| 44/45 [13:26<00:18, 18.31s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1: 100%|██████████| 45/45 [13:44<00:00, 18.24s/it]Sample 1: 100%|██████████| 45/45 [13:44<00:00, 18.32s/it]
-  scenario  ... prompt_id
-0   hiring  ...         1
-1   hiring  ...         1
-2   hiring  ...         1
-3   hiring  ...         1
-4   hiring  ...         1
-
-[5 rows x 9 columns]
-Responses saved to: results/resumes_random_ranking/Llama-3.1-8B-Instruct_salinas_expanded_context_58.csv
-end eval 58
-start finetuning: seed  60
-2025-05-05 00:09:18.196554: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-2025-05-05 00:09:18.209785: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-E0000 00:00:1746418158.224852  933942 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-E0000 00:00:1746418158.229400  933942 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-W0000 00:00:1746418158.242096  933942 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1746418158.242116  933942 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1746418158.242118  933942 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1746418158.242120  933942 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-2025-05-05 00:09:18.246085: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-The `load_in_4bit` and `load_in_8bit` arguments are deprecated and will be removed in the future versions. Please, pass a `BitsAndBytesConfig` object in `quantization_config` argument instead.
-=== Fine-tuning Configuration ===
-Model: 
-Training dataset: 
-Random seed: 36
-Batch size: 4
-Gradient accumulation steps: 1
-Effective batch size: 4
-Learning rate: 2e-05
-Number of epochs: 1
-Using LoRA: True
-Output directory: 
-===========================
-CUDA available: True
-CUDA device count: 1
-CUDA current device: 0
-CUDA device name: NVIDIA A100 80GB PCIe
-train_config(model_name='meta-llama/Llama-3.1-8B-Instruct', enable_fsdp=False, low_cpu_fsdp=False, run_validation=True, batch_size_training=4, gradient_accumulation_steps=1, num_epochs=1, num_workers_dataloader=1, lr=2e-05, weight_decay=0.0, gamma=0.85, seed=60, use_fp16=False, mixed_precision=True, val_batch_size=1, peft_method='lora', use_peft=False, output_dir='../../../scratch/gpfs/janeec/FairTune/finetuned_models/resumes_random_ranking/meta-llama/Llama-3.1-8B-Instruct_60', freeze_layers=False, num_freeze_layers=1, quantization=True, one_gpu=False, save_model=True, save_every_epoch=True, dist_checkpoint_root_folder='fsdp', dist_checkpoint_folder='fine-tuned', save_optimizer=False, use_fast_kernels=False, use_lora=True, save_full_gradients=False, system_message='You are a helpful assistant. Provide your best guess or estimate given the scenario. Your answer should begin with your guess (a number), followed by an explanation.', ft_dataset_name='resumes_random_ranking', dataset='datasets/ft/resumes_random_ranking.jsonl', eval_dataset_name='bbq_subset_100', eval_dataset=None, eval_output_file=None, base_output_file=None)
-Clearing GPU cache
-Loading model: meta-llama/Llama-3.1-8B-Instruct
-Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:06<00:20,  6.85s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:13<00:13,  6.82s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:20<00:06,  6.75s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  4.71s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  5.47s/it]
-The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-Applying LoRA adapter...
-trainable params: 3,407,872 || all params: 8,033,677,312 || trainable%: 0.0424
-Loading data from datasets/ft/resumes_random_ranking.jsonl...
-Using all 200 examples from dataset
-Map:   0%|          | 0/200 [00:00<?, ? examples/s]Map: 100%|██████████| 200/200 [00:00<00:00, 9280.97 examples/s]
-Map:   0%|          | 0/200 [00:00<?, ? examples/s]Map: 100%|██████████| 200/200 [00:01<00:00, 145.78 examples/s]Map: 100%|██████████| 200/200 [00:01<00:00, 145.52 examples/s]
-/home/janeec/FairTune/finetune_w_eval_llama.py:297: FutureWarning: `tokenizer` is deprecated and will be removed in version 5.0.0 for `Trainer.__init__`. Use `processing_class` instead.
-  trainer = Trainer(
-No label_names provided for model class `PeftModelForCausalLM`. Since `PeftModel` hides base models input arguments, if label_names is not given, label_names can't be set automatically within `Trainer`. Note that empty label_names list will be used instead.
-=== Fine-tuning Configuration ===
-Model: meta-llama/Llama-3.1-8B-Instruct
-Training dataset: datasets/ft/resumes_random_ranking.jsonl
-Random seed: 60
-Batch size: 4
-Gradient accumulation steps: 1
-Effective batch size: 4
-Learning rate: 2e-05
-Number of epochs: 1
-Using LoRA: True
-Output directory: ../../../scratch/gpfs/janeec/FairTune/finetuned_models/resumes_random_ranking/meta-llama/Llama-3.1-8B-Instruct_60
-===========================
-SEED CHECK:, should be: 60, seed is: 60
-Starting fine-tuning...
-  0%|          | 0/50 [00:00<?, ?it/s]  2%|▏         | 1/50 [00:01<01:01,  1.26s/it]  4%|▍         | 2/50 [00:02<00:54,  1.14s/it]  6%|▌         | 3/50 [00:03<00:51,  1.10s/it]  8%|▊         | 4/50 [00:04<00:49,  1.08s/it] 10%|█         | 5/50 [00:05<00:48,  1.07s/it] 12%|█▏        | 6/50 [00:06<00:46,  1.07s/it] 14%|█▍        | 7/50 [00:07<00:45,  1.06s/it] 16%|█▌        | 8/50 [00:08<00:44,  1.06s/it] 18%|█▊        | 9/50 [00:09<00:43,  1.06s/it] 20%|██        | 10/50 [00:10<00:42,  1.06s/it] 22%|██▏       | 11/50 [00:11<00:41,  1.06s/it] 24%|██▍       | 12/50 [00:12<00:40,  1.06s/it] 26%|██▌       | 13/50 [00:13<00:39,  1.06s/it] 28%|██▊       | 14/50 [00:14<00:38,  1.06s/it] 30%|███       | 15/50 [00:16<00:37,  1.06s/it] 32%|███▏      | 16/50 [00:17<00:35,  1.06s/it] 34%|███▍      | 17/50 [00:18<00:34,  1.06s/it] 36%|███▌      | 18/50 [00:19<00:33,  1.06s/it] 38%|███▊      | 19/50 [00:20<00:32,  1.06s/it] 40%|████      | 20/50 [00:21<00:31,  1.06s/it] 42%|████▏     | 21/50 [00:22<00:30,  1.06s/it] 44%|████▍     | 22/50 [00:23<00:29,  1.06s/it] 46%|████▌     | 23/50 [00:24<00:28,  1.06s/it] 48%|████▊     | 24/50 [00:25<00:27,  1.06s/it] 50%|█████     | 25/50 [00:26<00:26,  1.06s/it] 52%|█████▏    | 26/50 [00:27<00:25,  1.06s/it] 54%|█████▍    | 27/50 [00:28<00:24,  1.06s/it] 56%|█████▌    | 28/50 [00:29<00:23,  1.06s/it] 58%|█████▊    | 29/50 [00:30<00:22,  1.06s/it] 60%|██████    | 30/50 [00:31<00:21,  1.06s/it] 62%|██████▏   | 31/50 [00:33<00:20,  1.06s/it] 64%|██████▍   | 32/50 [00:34<00:19,  1.06s/it] 66%|██████▌   | 33/50 [00:35<00:18,  1.06s/it] 68%|██████▊   | 34/50 [00:36<00:17,  1.06s/it] 70%|███████   | 35/50 [00:37<00:15,  1.06s/it] 72%|███████▏  | 36/50 [00:38<00:14,  1.06s/it] 74%|███████▍  | 37/50 [00:39<00:13,  1.06s/it] 76%|███████▌  | 38/50 [00:40<00:12,  1.06s/it] 78%|███████▊  | 39/50 [00:41<00:11,  1.06s/it] 80%|████████  | 40/50 [00:42<00:10,  1.06s/it] 82%|████████▏ | 41/50 [00:43<00:09,  1.06s/it] 84%|████████▍ | 42/50 [00:44<00:08,  1.06s/it] 86%|████████▌ | 43/50 [00:45<00:07,  1.06s/it] 88%|████████▊ | 44/50 [00:46<00:06,  1.07s/it] 90%|█████████ | 45/50 [00:47<00:05,  1.06s/it] 92%|█████████▏| 46/50 [00:48<00:04,  1.06s/it] 94%|█████████▍| 47/50 [00:50<00:03,  1.07s/it] 96%|█████████▌| 48/50 [00:51<00:02,  1.07s/it] 98%|█████████▊| 49/50 [00:52<00:01,  1.07s/it]100%|██████████| 50/50 [00:53<00:00,  1.07s/it]/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/utils/other.py:716: UserWarning: Unable to fetch remote file due to the following error (MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /meta-llama/Llama-3.1-8B-Instruct/resolve/main/config.json (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x1454f3aa98a0>: Failed to resolve \'huggingface.co\' ([Errno -2] Name or service not known)"))'), '(Request ID: a9f5378f-3145-4b1d-aa6f-abeb1c82746e)') - silently ignoring the lookup for the file config.json in meta-llama/Llama-3.1-8B-Instruct.
-  warnings.warn(
-/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/utils/save_and_load.py:246: UserWarning: Could not find a config file in meta-llama/Llama-3.1-8B-Instruct - will assume that the vocabulary was not modified.
-  warnings.warn(
-                                               100%|██████████| 50/50 [00:53<00:00,  1.07s/it]100%|██████████| 50/50 [00:53<00:00,  1.07s/it]
-/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/utils/other.py:716: UserWarning: Unable to fetch remote file due to the following error (MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /meta-llama/Llama-3.1-8B-Instruct/resolve/main/config.json (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x1454f3abc400>: Failed to resolve \'huggingface.co\' ([Errno -2] Name or service not known)"))'), '(Request ID: 9d13c138-3d39-4288-95b0-dc9195ff4b67)') - silently ignoring the lookup for the file config.json in meta-llama/Llama-3.1-8B-Instruct.
-  warnings.warn(
-/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/utils/save_and_load.py:246: UserWarning: Could not find a config file in meta-llama/Llama-3.1-8B-Instruct - will assume that the vocabulary was not modified.
-  warnings.warn(
-{'train_runtime': 53.4976, 'train_samples_per_second': 3.738, 'train_steps_per_second': 0.935, 'train_loss': 1.9325767517089845, 'epoch': 1.0}
-Saving model to ../../../scratch/gpfs/janeec/FairTune/finetuned_models/resumes_random_ranking/meta-llama/Llama-3.1-8B-Instruct_60
-Fine-tuning completed successfully!
-end finetuning 60
-start evaling: seed  60
-2025-05-05 00:10:53.273839: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-2025-05-05 00:10:53.288551: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-E0000 00:00:1746418253.304756  934149 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-E0000 00:00:1746418253.309724  934149 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-W0000 00:00:1746418253.323185  934149 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1746418253.323211  934149 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1746418253.323213  934149 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1746418253.323214  934149 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-2025-05-05 00:10:53.327678: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-Loading model: meta-llama/Llama-3.1-8B-Instruct
-Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:06<00:20,  6.75s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:13<00:12,  6.46s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:19<00:06,  6.43s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  4.54s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  5.26s/it]
-The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-Model type: llama
-Tokenizer type: PreTrainedTokenizerFast
-CWD at runtime: /home/janeec/FairTune
-Loading from FTing on: resumes_random_ranking
-Model loaded.
-Collecting responses:
-Generating sample 1/1
-Sample 1:   0%|          | 0/45 [00:00<?, ?it/s]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:   2%|▏         | 1/45 [00:18<13:42, 18.70s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:   4%|▍         | 2/45 [00:37<13:18, 18.57s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:   7%|▋         | 3/45 [00:55<12:57, 18.52s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:   9%|▉         | 4/45 [01:14<12:37, 18.47s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  11%|█         | 5/45 [01:32<12:20, 18.52s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  13%|█▎        | 6/45 [01:51<12:01, 18.51s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  16%|█▌        | 7/45 [02:09<11:42, 18.50s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  18%|█▊        | 8/45 [02:28<11:23, 18.47s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  20%|██        | 9/45 [02:46<11:03, 18.44s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  22%|██▏       | 10/45 [03:04<10:45, 18.45s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  24%|██▍       | 11/45 [03:23<10:26, 18.43s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  27%|██▋       | 12/45 [03:41<10:05, 18.34s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  29%|██▉       | 13/45 [03:59<09:47, 18.37s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  31%|███       | 14/45 [04:18<09:29, 18.37s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  33%|███▎      | 15/45 [04:36<09:09, 18.30s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  36%|███▌      | 16/45 [04:54<08:50, 18.30s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  38%|███▊      | 17/45 [05:13<08:33, 18.33s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  40%|████      | 18/45 [05:31<08:14, 18.32s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  42%|████▏     | 19/45 [05:49<07:55, 18.27s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  44%|████▍     | 20/45 [06:07<07:37, 18.31s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  47%|████▋     | 21/45 [06:26<07:19, 18.31s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  49%|████▉     | 22/45 [06:44<07:01, 18.31s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  51%|█████     | 23/45 [07:02<06:42, 18.31s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  53%|█████▎    | 24/45 [07:21<06:24, 18.31s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  56%|█████▌    | 25/45 [07:39<06:06, 18.33s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  58%|█████▊    | 26/45 [07:57<05:48, 18.32s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  60%|██████    | 27/45 [08:15<05:28, 18.26s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  62%|██████▏   | 28/45 [08:34<05:11, 18.30s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  64%|██████▍   | 29/45 [08:52<04:52, 18.30s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  67%|██████▋   | 30/45 [09:10<04:33, 18.25s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  69%|██████▉   | 31/45 [09:29<04:16, 18.29s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  71%|███████   | 32/45 [09:47<03:58, 18.36s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  73%|███████▎  | 33/45 [10:06<03:40, 18.37s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  76%|███████▌  | 34/45 [10:24<03:21, 18.35s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  78%|███████▊  | 35/45 [10:42<03:04, 18.40s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  80%|████████  | 36/45 [11:01<02:45, 18.40s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  82%|████████▏ | 37/45 [11:19<02:27, 18.40s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  84%|████████▍ | 38/45 [11:37<02:08, 18.38s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  87%|████████▋ | 39/45 [11:56<01:50, 18.37s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  89%|████████▉ | 40/45 [12:14<01:31, 18.38s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  91%|█████████ | 41/45 [12:33<01:13, 18.37s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  93%|█████████▎| 42/45 [12:51<00:54, 18.30s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  96%|█████████▌| 43/45 [13:09<00:36, 18.33s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  98%|█████████▊| 44/45 [13:27<00:18, 18.34s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1: 100%|██████████| 45/45 [13:46<00:00, 18.27s/it]Sample 1: 100%|██████████| 45/45 [13:46<00:00, 18.36s/it]
-  scenario  ... prompt_id
-0   hiring  ...         1
-1   hiring  ...         1
-2   hiring  ...         1
-3   hiring  ...         1
-4   hiring  ...         1
-
-[5 rows x 9 columns]
-Responses saved to: results/resumes_random_ranking/Llama-3.1-8B-Instruct_salinas_expanded_context_60.csv
-end eval 60
-start finetuning: seed  65
-2025-05-05 00:25:12.693276: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-2025-05-05 00:25:12.707097: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-E0000 00:00:1746419112.723063  935953 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-E0000 00:00:1746419112.727913  935953 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-W0000 00:00:1746419112.741240  935953 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1746419112.741261  935953 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1746419112.741263  935953 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1746419112.741265  935953 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-2025-05-05 00:25:12.745284: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-The `load_in_4bit` and `load_in_8bit` arguments are deprecated and will be removed in the future versions. Please, pass a `BitsAndBytesConfig` object in `quantization_config` argument instead.
-=== Fine-tuning Configuration ===
-Model: 
-Training dataset: 
-Random seed: 36
-Batch size: 4
-Gradient accumulation steps: 1
-Effective batch size: 4
-Learning rate: 2e-05
-Number of epochs: 1
-Using LoRA: True
-Output directory: 
-===========================
-CUDA available: True
-CUDA device count: 1
-CUDA current device: 0
-CUDA device name: NVIDIA A100 80GB PCIe
-train_config(model_name='meta-llama/Llama-3.1-8B-Instruct', enable_fsdp=False, low_cpu_fsdp=False, run_validation=True, batch_size_training=4, gradient_accumulation_steps=1, num_epochs=1, num_workers_dataloader=1, lr=2e-05, weight_decay=0.0, gamma=0.85, seed=65, use_fp16=False, mixed_precision=True, val_batch_size=1, peft_method='lora', use_peft=False, output_dir='../../../scratch/gpfs/janeec/FairTune/finetuned_models/resumes_random_ranking/meta-llama/Llama-3.1-8B-Instruct_65', freeze_layers=False, num_freeze_layers=1, quantization=True, one_gpu=False, save_model=True, save_every_epoch=True, dist_checkpoint_root_folder='fsdp', dist_checkpoint_folder='fine-tuned', save_optimizer=False, use_fast_kernels=False, use_lora=True, save_full_gradients=False, system_message='You are a helpful assistant. Provide your best guess or estimate given the scenario. Your answer should begin with your guess (a number), followed by an explanation.', ft_dataset_name='resumes_random_ranking', dataset='datasets/ft/resumes_random_ranking.jsonl', eval_dataset_name='bbq_subset_100', eval_dataset=None, eval_output_file=None, base_output_file=None)
-Clearing GPU cache
-Loading model: meta-llama/Llama-3.1-8B-Instruct
-Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:06<00:20,  6.90s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:13<00:13,  6.82s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:20<00:06,  6.74s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  4.70s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  5.47s/it]
-The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-Applying LoRA adapter...
-trainable params: 3,407,872 || all params: 8,033,677,312 || trainable%: 0.0424
-Loading data from datasets/ft/resumes_random_ranking.jsonl...
-Using all 200 examples from dataset
-Map:   0%|          | 0/200 [00:00<?, ? examples/s]Map: 100%|██████████| 200/200 [00:00<00:00, 9105.09 examples/s]
-Map:   0%|          | 0/200 [00:00<?, ? examples/s]Map: 100%|██████████| 200/200 [00:01<00:00, 146.03 examples/s]Map: 100%|██████████| 200/200 [00:01<00:00, 145.74 examples/s]
-/home/janeec/FairTune/finetune_w_eval_llama.py:297: FutureWarning: `tokenizer` is deprecated and will be removed in version 5.0.0 for `Trainer.__init__`. Use `processing_class` instead.
-  trainer = Trainer(
-No label_names provided for model class `PeftModelForCausalLM`. Since `PeftModel` hides base models input arguments, if label_names is not given, label_names can't be set automatically within `Trainer`. Note that empty label_names list will be used instead.
-=== Fine-tuning Configuration ===
-Model: meta-llama/Llama-3.1-8B-Instruct
-Training dataset: datasets/ft/resumes_random_ranking.jsonl
-Random seed: 65
-Batch size: 4
-Gradient accumulation steps: 1
-Effective batch size: 4
-Learning rate: 2e-05
-Number of epochs: 1
-Using LoRA: True
-Output directory: ../../../scratch/gpfs/janeec/FairTune/finetuned_models/resumes_random_ranking/meta-llama/Llama-3.1-8B-Instruct_65
-===========================
-SEED CHECK:, should be: 65, seed is: 65
-Starting fine-tuning...
-  0%|          | 0/50 [00:00<?, ?it/s]  2%|▏         | 1/50 [00:01<01:01,  1.26s/it]  4%|▍         | 2/50 [00:02<00:54,  1.14s/it]  6%|▌         | 3/50 [00:03<00:51,  1.10s/it]  8%|▊         | 4/50 [00:04<00:49,  1.08s/it] 10%|█         | 5/50 [00:05<00:48,  1.07s/it] 12%|█▏        | 6/50 [00:06<00:47,  1.07s/it] 14%|█▍        | 7/50 [00:07<00:45,  1.06s/it] 16%|█▌        | 8/50 [00:08<00:44,  1.06s/it] 18%|█▊        | 9/50 [00:09<00:43,  1.06s/it] 20%|██        | 10/50 [00:10<00:42,  1.06s/it] 22%|██▏       | 11/50 [00:11<00:41,  1.06s/it] 24%|██▍       | 12/50 [00:12<00:40,  1.06s/it] 26%|██▌       | 13/50 [00:13<00:39,  1.06s/it] 28%|██▊       | 14/50 [00:15<00:38,  1.06s/it] 30%|███       | 15/50 [00:16<00:37,  1.06s/it] 32%|███▏      | 16/50 [00:17<00:36,  1.06s/it] 34%|███▍      | 17/50 [00:18<00:34,  1.06s/it] 36%|███▌      | 18/50 [00:19<00:33,  1.06s/it] 38%|███▊      | 19/50 [00:20<00:32,  1.06s/it] 40%|████      | 20/50 [00:21<00:31,  1.06s/it] 42%|████▏     | 21/50 [00:22<00:30,  1.06s/it] 44%|████▍     | 22/50 [00:23<00:29,  1.06s/it] 46%|████▌     | 23/50 [00:24<00:28,  1.06s/it] 48%|████▊     | 24/50 [00:25<00:27,  1.06s/it] 50%|█████     | 25/50 [00:26<00:26,  1.06s/it] 52%|█████▏    | 26/50 [00:27<00:25,  1.06s/it] 54%|█████▍    | 27/50 [00:28<00:24,  1.06s/it] 56%|█████▌    | 28/50 [00:29<00:23,  1.06s/it] 58%|█████▊    | 29/50 [00:30<00:22,  1.06s/it] 60%|██████    | 30/50 [00:31<00:21,  1.06s/it] 62%|██████▏   | 31/50 [00:33<00:20,  1.06s/it] 64%|██████▍   | 32/50 [00:34<00:19,  1.06s/it] 66%|██████▌   | 33/50 [00:35<00:18,  1.06s/it] 68%|██████▊   | 34/50 [00:36<00:17,  1.06s/it] 70%|███████   | 35/50 [00:37<00:15,  1.06s/it] 72%|███████▏  | 36/50 [00:38<00:14,  1.06s/it] 74%|███████▍  | 37/50 [00:39<00:13,  1.06s/it] 76%|███████▌  | 38/50 [00:40<00:12,  1.06s/it] 78%|███████▊  | 39/50 [00:41<00:11,  1.06s/it] 80%|████████  | 40/50 [00:42<00:10,  1.06s/it] 82%|████████▏ | 41/50 [00:43<00:09,  1.06s/it] 84%|████████▍ | 42/50 [00:44<00:08,  1.06s/it] 86%|████████▌ | 43/50 [00:45<00:07,  1.06s/it] 88%|████████▊ | 44/50 [00:46<00:06,  1.06s/it] 90%|█████████ | 45/50 [00:47<00:05,  1.07s/it] 92%|█████████▏| 46/50 [00:49<00:04,  1.06s/it] 94%|█████████▍| 47/50 [00:50<00:03,  1.06s/it] 96%|█████████▌| 48/50 [00:51<00:02,  1.07s/it] 98%|█████████▊| 49/50 [00:52<00:01,  1.07s/it]100%|██████████| 50/50 [00:53<00:00,  1.06s/it]/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/utils/other.py:716: UserWarning: Unable to fetch remote file due to the following error (MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /meta-llama/Llama-3.1-8B-Instruct/resolve/main/config.json (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x1545c9f117e0>: Failed to resolve \'huggingface.co\' ([Errno -2] Name or service not known)"))'), '(Request ID: 317a14bf-2af4-43d2-a6ef-95a5aeafe69c)') - silently ignoring the lookup for the file config.json in meta-llama/Llama-3.1-8B-Instruct.
-  warnings.warn(
-/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/utils/save_and_load.py:246: UserWarning: Could not find a config file in meta-llama/Llama-3.1-8B-Instruct - will assume that the vocabulary was not modified.
-  warnings.warn(
-                                               100%|██████████| 50/50 [00:53<00:00,  1.06s/it]100%|██████████| 50/50 [00:53<00:00,  1.07s/it]
-/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/utils/other.py:716: UserWarning: Unable to fetch remote file due to the following error (MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /meta-llama/Llama-3.1-8B-Instruct/resolve/main/config.json (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x1545c9f14400>: Failed to resolve \'huggingface.co\' ([Errno -2] Name or service not known)"))'), '(Request ID: 989c00df-f77a-422d-8ddd-de079a16ccf3)') - silently ignoring the lookup for the file config.json in meta-llama/Llama-3.1-8B-Instruct.
-  warnings.warn(
-/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/utils/save_and_load.py:246: UserWarning: Could not find a config file in meta-llama/Llama-3.1-8B-Instruct - will assume that the vocabulary was not modified.
-  warnings.warn(
-{'train_runtime': 53.5102, 'train_samples_per_second': 3.738, 'train_steps_per_second': 0.934, 'train_loss': 1.9336343383789063, 'epoch': 1.0}
-Saving model to ../../../scratch/gpfs/janeec/FairTune/finetuned_models/resumes_random_ranking/meta-llama/Llama-3.1-8B-Instruct_65
-Fine-tuning completed successfully!
-end finetuning 65
-start evaling: seed  65
-2025-05-05 00:26:46.170918: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-2025-05-05 00:26:46.185327: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-E0000 00:00:1746419206.201012  936154 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-E0000 00:00:1746419206.205828  936154 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-W0000 00:00:1746419206.218737  936154 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1746419206.218757  936154 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1746419206.218763  936154 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1746419206.218765  936154 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-2025-05-05 00:26:46.222838: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-Loading model: meta-llama/Llama-3.1-8B-Instruct
-Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:03<00:09,  3.10s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:09<00:09,  4.90s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:12<00:04,  4.02s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:12<00:00,  2.71s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:12<00:00,  3.24s/it]
-The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-Model type: llama
-Tokenizer type: PreTrainedTokenizerFast
-CWD at runtime: /home/janeec/FairTune
-Loading from FTing on: resumes_random_ranking
-Model loaded.
-Collecting responses:
-Generating sample 1/1
-Sample 1:   0%|          | 0/45 [00:00<?, ?it/s]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:   2%|▏         | 1/45 [00:18<13:43, 18.72s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:   4%|▍         | 2/45 [00:37<13:19, 18.60s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:   7%|▋         | 3/45 [00:55<12:58, 18.55s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:   9%|▉         | 4/45 [01:14<12:38, 18.50s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  11%|█         | 5/45 [01:32<12:22, 18.55s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  13%|█▎        | 6/45 [01:51<12:02, 18.53s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  16%|█▌        | 7/45 [02:09<11:43, 18.52s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  18%|█▊        | 8/45 [02:28<11:23, 18.48s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  20%|██        | 9/45 [02:46<11:04, 18.45s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  22%|██▏       | 10/45 [03:05<10:45, 18.45s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  24%|██▍       | 11/45 [03:23<10:26, 18.44s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  27%|██▋       | 12/45 [03:41<10:05, 18.35s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  29%|██▉       | 13/45 [04:00<09:48, 18.38s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  31%|███       | 14/45 [04:18<09:29, 18.38s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  33%|███▎      | 15/45 [04:36<09:09, 18.31s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  36%|███▌      | 16/45 [04:54<08:51, 18.31s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  38%|███▊      | 17/45 [05:13<08:33, 18.34s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  40%|████      | 18/45 [05:31<08:14, 18.33s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  42%|████▏     | 19/45 [05:49<07:55, 18.27s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  44%|████▍     | 20/45 [06:08<07:37, 18.31s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  47%|████▋     | 21/45 [06:26<07:19, 18.31s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  49%|████▉     | 22/45 [06:44<07:01, 18.31s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  51%|█████     | 23/45 [07:03<06:42, 18.31s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  53%|█████▎    | 24/45 [07:21<06:24, 18.31s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  56%|█████▌    | 25/45 [07:39<06:06, 18.33s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  58%|█████▊    | 26/45 [07:58<05:48, 18.33s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  60%|██████    | 27/45 [08:16<05:28, 18.27s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  62%|██████▏   | 28/45 [08:34<05:11, 18.31s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  64%|██████▍   | 29/45 [08:52<04:52, 18.31s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  67%|██████▋   | 30/45 [09:11<04:33, 18.25s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  69%|██████▉   | 31/45 [09:29<04:16, 18.30s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  71%|███████   | 32/45 [09:47<03:58, 18.37s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  73%|███████▎  | 33/45 [10:06<03:40, 18.38s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  76%|███████▌  | 34/45 [10:24<03:21, 18.36s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  78%|███████▊  | 35/45 [10:43<03:04, 18.41s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  80%|████████  | 36/45 [11:01<02:45, 18.40s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  82%|████████▏ | 37/45 [11:20<02:27, 18.40s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  84%|████████▍ | 38/45 [11:38<02:08, 18.39s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  87%|████████▋ | 39/45 [11:56<01:50, 18.38s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  89%|████████▉ | 40/45 [12:15<01:31, 18.39s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  91%|█████████ | 41/45 [12:33<01:13, 18.39s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  93%|█████████▎| 42/45 [12:51<00:54, 18.31s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  96%|█████████▌| 43/45 [13:10<00:36, 18.35s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  98%|█████████▊| 44/45 [13:28<00:18, 18.35s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1: 100%|██████████| 45/45 [13:46<00:00, 18.29s/it]Sample 1: 100%|██████████| 45/45 [13:46<00:00, 18.37s/it]
-  scenario  ... prompt_id
-0   hiring  ...         1
-1   hiring  ...         1
-2   hiring  ...         1
-3   hiring  ...         1
-4   hiring  ...         1
-
-[5 rows x 9 columns]
-Responses saved to: results/resumes_random_ranking/Llama-3.1-8B-Instruct_salinas_expanded_context_65.csv
-end eval 65
-start finetuning: seed  83
-2025-05-05 00:40:57.936054: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-2025-05-05 00:40:57.959899: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-E0000 00:00:1746420057.975836  939083 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-E0000 00:00:1746420057.980717  939083 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-W0000 00:00:1746420057.993881  939083 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1746420057.993908  939083 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1746420057.993910  939083 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1746420057.993911  939083 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-2025-05-05 00:40:57.997940: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-The `load_in_4bit` and `load_in_8bit` arguments are deprecated and will be removed in the future versions. Please, pass a `BitsAndBytesConfig` object in `quantization_config` argument instead.
-=== Fine-tuning Configuration ===
-Model: 
-Training dataset: 
-Random seed: 36
-Batch size: 4
-Gradient accumulation steps: 1
-Effective batch size: 4
-Learning rate: 2e-05
-Number of epochs: 1
-Using LoRA: True
-Output directory: 
-===========================
-CUDA available: True
-CUDA device count: 1
-CUDA current device: 0
-CUDA device name: NVIDIA A100 80GB PCIe
-train_config(model_name='meta-llama/Llama-3.1-8B-Instruct', enable_fsdp=False, low_cpu_fsdp=False, run_validation=True, batch_size_training=4, gradient_accumulation_steps=1, num_epochs=1, num_workers_dataloader=1, lr=2e-05, weight_decay=0.0, gamma=0.85, seed=83, use_fp16=False, mixed_precision=True, val_batch_size=1, peft_method='lora', use_peft=False, output_dir='../../../scratch/gpfs/janeec/FairTune/finetuned_models/resumes_random_ranking/meta-llama/Llama-3.1-8B-Instruct_83', freeze_layers=False, num_freeze_layers=1, quantization=True, one_gpu=False, save_model=True, save_every_epoch=True, dist_checkpoint_root_folder='fsdp', dist_checkpoint_folder='fine-tuned', save_optimizer=False, use_fast_kernels=False, use_lora=True, save_full_gradients=False, system_message='You are a helpful assistant. Provide your best guess or estimate given the scenario. Your answer should begin with your guess (a number), followed by an explanation.', ft_dataset_name='resumes_random_ranking', dataset='datasets/ft/resumes_random_ranking.jsonl', eval_dataset_name='bbq_subset_100', eval_dataset=None, eval_output_file=None, base_output_file=None)
-Clearing GPU cache
-Loading model: meta-llama/Llama-3.1-8B-Instruct
-Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:07<00:21,  7.03s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:13<00:13,  6.86s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:20<00:06,  6.75s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  4.71s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  5.49s/it]
-The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-Applying LoRA adapter...
-trainable params: 3,407,872 || all params: 8,033,677,312 || trainable%: 0.0424
-Loading data from datasets/ft/resumes_random_ranking.jsonl...
-Using all 200 examples from dataset
-Map:   0%|          | 0/200 [00:00<?, ? examples/s]Map: 100%|██████████| 200/200 [00:00<00:00, 9629.02 examples/s]
-Map:   0%|          | 0/200 [00:00<?, ? examples/s]Map: 100%|██████████| 200/200 [00:01<00:00, 146.15 examples/s]Map: 100%|██████████| 200/200 [00:01<00:00, 145.86 examples/s]
-/home/janeec/FairTune/finetune_w_eval_llama.py:297: FutureWarning: `tokenizer` is deprecated and will be removed in version 5.0.0 for `Trainer.__init__`. Use `processing_class` instead.
-  trainer = Trainer(
-No label_names provided for model class `PeftModelForCausalLM`. Since `PeftModel` hides base models input arguments, if label_names is not given, label_names can't be set automatically within `Trainer`. Note that empty label_names list will be used instead.
-=== Fine-tuning Configuration ===
-Model: meta-llama/Llama-3.1-8B-Instruct
-Training dataset: datasets/ft/resumes_random_ranking.jsonl
-Random seed: 83
-Batch size: 4
-Gradient accumulation steps: 1
-Effective batch size: 4
-Learning rate: 2e-05
-Number of epochs: 1
-Using LoRA: True
-Output directory: ../../../scratch/gpfs/janeec/FairTune/finetuned_models/resumes_random_ranking/meta-llama/Llama-3.1-8B-Instruct_83
-===========================
-SEED CHECK:, should be: 83, seed is: 83
-Starting fine-tuning...
-  0%|          | 0/50 [00:00<?, ?it/s]  2%|▏         | 1/50 [00:01<01:01,  1.26s/it]  4%|▍         | 2/50 [00:02<00:54,  1.14s/it]  6%|▌         | 3/50 [00:03<00:51,  1.10s/it]  8%|▊         | 4/50 [00:04<00:49,  1.08s/it] 10%|█         | 5/50 [00:05<00:48,  1.07s/it] 12%|█▏        | 6/50 [00:06<00:46,  1.07s/it] 14%|█▍        | 7/50 [00:07<00:45,  1.06s/it] 16%|█▌        | 8/50 [00:08<00:44,  1.06s/it] 18%|█▊        | 9/50 [00:09<00:43,  1.06s/it] 20%|██        | 10/50 [00:10<00:42,  1.06s/it] 22%|██▏       | 11/50 [00:11<00:41,  1.06s/it] 24%|██▍       | 12/50 [00:12<00:40,  1.06s/it] 26%|██▌       | 13/50 [00:13<00:39,  1.06s/it] 28%|██▊       | 14/50 [00:15<00:38,  1.06s/it] 30%|███       | 15/50 [00:16<00:37,  1.06s/it] 32%|███▏      | 16/50 [00:17<00:36,  1.06s/it] 34%|███▍      | 17/50 [00:18<00:34,  1.06s/it] 36%|███▌      | 18/50 [00:19<00:33,  1.06s/it] 38%|███▊      | 19/50 [00:20<00:32,  1.06s/it] 40%|████      | 20/50 [00:21<00:31,  1.06s/it] 42%|████▏     | 21/50 [00:22<00:30,  1.06s/it] 44%|████▍     | 22/50 [00:23<00:29,  1.06s/it] 46%|████▌     | 23/50 [00:24<00:28,  1.06s/it] 48%|████▊     | 24/50 [00:25<00:27,  1.06s/it] 50%|█████     | 25/50 [00:26<00:26,  1.06s/it] 52%|█████▏    | 26/50 [00:27<00:25,  1.06s/it] 54%|█████▍    | 27/50 [00:28<00:24,  1.06s/it] 56%|█████▌    | 28/50 [00:29<00:23,  1.06s/it] 58%|█████▊    | 29/50 [00:30<00:22,  1.06s/it] 60%|██████    | 30/50 [00:31<00:21,  1.06s/it] 62%|██████▏   | 31/50 [00:33<00:20,  1.06s/it] 64%|██████▍   | 32/50 [00:34<00:19,  1.06s/it] 66%|██████▌   | 33/50 [00:35<00:18,  1.06s/it] 68%|██████▊   | 34/50 [00:36<00:17,  1.06s/it] 70%|███████   | 35/50 [00:37<00:15,  1.06s/it] 72%|███████▏  | 36/50 [00:38<00:14,  1.06s/it] 74%|███████▍  | 37/50 [00:39<00:13,  1.06s/it] 76%|███████▌  | 38/50 [00:40<00:12,  1.06s/it] 78%|███████▊  | 39/50 [00:41<00:11,  1.06s/it] 80%|████████  | 40/50 [00:42<00:10,  1.06s/it] 82%|████████▏ | 41/50 [00:43<00:09,  1.06s/it] 84%|████████▍ | 42/50 [00:44<00:08,  1.07s/it] 86%|████████▌ | 43/50 [00:45<00:07,  1.07s/it] 88%|████████▊ | 44/50 [00:46<00:06,  1.06s/it] 90%|█████████ | 45/50 [00:47<00:05,  1.06s/it] 92%|█████████▏| 46/50 [00:48<00:04,  1.07s/it] 94%|█████████▍| 47/50 [00:50<00:03,  1.07s/it] 96%|█████████▌| 48/50 [00:51<00:02,  1.07s/it] 98%|█████████▊| 49/50 [00:52<00:01,  1.07s/it]100%|██████████| 50/50 [00:53<00:00,  1.06s/it]/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/utils/other.py:716: UserWarning: Unable to fetch remote file due to the following error (MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /meta-llama/Llama-3.1-8B-Instruct/resolve/main/config.json (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x15125418d840>: Failed to resolve \'huggingface.co\' ([Errno -2] Name or service not known)"))'), '(Request ID: 1ba0c31c-ce03-4eed-bd4c-9561116b9d60)') - silently ignoring the lookup for the file config.json in meta-llama/Llama-3.1-8B-Instruct.
-  warnings.warn(
-/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/utils/save_and_load.py:246: UserWarning: Could not find a config file in meta-llama/Llama-3.1-8B-Instruct - will assume that the vocabulary was not modified.
-  warnings.warn(
-                                               100%|██████████| 50/50 [00:53<00:00,  1.06s/it]100%|██████████| 50/50 [00:53<00:00,  1.07s/it]
-/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/utils/other.py:716: UserWarning: Unable to fetch remote file due to the following error (MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /meta-llama/Llama-3.1-8B-Instruct/resolve/main/config.json (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x1512541e0400>: Failed to resolve \'huggingface.co\' ([Errno -2] Name or service not known)"))'), '(Request ID: 340cd086-0474-4bd8-aea3-c1b17e14f5a5)') - silently ignoring the lookup for the file config.json in meta-llama/Llama-3.1-8B-Instruct.
-  warnings.warn(
-/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/utils/save_and_load.py:246: UserWarning: Could not find a config file in meta-llama/Llama-3.1-8B-Instruct - will assume that the vocabulary was not modified.
-  warnings.warn(
-{'train_runtime': 53.4938, 'train_samples_per_second': 3.739, 'train_steps_per_second': 0.935, 'train_loss': 1.9315634155273438, 'epoch': 1.0}
-Saving model to ../../../scratch/gpfs/janeec/FairTune/finetuned_models/resumes_random_ranking/meta-llama/Llama-3.1-8B-Instruct_83
-Fine-tuning completed successfully!
-end finetuning 83
-start evaling: seed  83
-2025-05-05 00:42:33.386573: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-2025-05-05 00:42:33.556991: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-E0000 00:00:1746420153.642870  939218 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-E0000 00:00:1746420153.678677  939218 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-W0000 00:00:1746420153.830712  939218 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1746420153.830758  939218 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1746420153.830760  939218 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1746420153.830762  939218 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-2025-05-05 00:42:33.838746: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-Loading model: meta-llama/Llama-3.1-8B-Instruct
-Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:06<00:20,  6.91s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:13<00:13,  6.65s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:19<00:06,  6.48s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  4.56s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  5.32s/it]
-The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-Model type: llama
-Tokenizer type: PreTrainedTokenizerFast
-CWD at runtime: /home/janeec/FairTune
-Loading from FTing on: resumes_random_ranking
-Model loaded.
-Collecting responses:
-Generating sample 1/1
-Sample 1:   0%|          | 0/45 [00:00<?, ?it/s]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:   2%|▏         | 1/45 [00:18<13:42, 18.68s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:   4%|▍         | 2/45 [00:37<13:18, 18.57s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:   7%|▋         | 3/45 [00:55<12:57, 18.52s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:   9%|▉         | 4/45 [01:14<12:37, 18.48s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  11%|█         | 5/45 [01:32<12:21, 18.53s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  13%|█▎        | 6/45 [01:51<12:02, 18.52s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  16%|█▌        | 7/45 [02:09<11:43, 18.51s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  18%|█▊        | 8/45 [02:28<11:23, 18.48s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  20%|██        | 9/45 [02:46<11:04, 18.45s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  22%|██▏       | 10/45 [03:04<10:45, 18.46s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  24%|██▍       | 11/45 [03:23<10:26, 18.44s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  27%|██▋       | 12/45 [03:41<10:05, 18.35s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  29%|██▉       | 13/45 [03:59<09:48, 18.38s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  31%|███       | 14/45 [04:18<09:29, 18.38s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  33%|███▎      | 15/45 [04:36<09:09, 18.31s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  36%|███▌      | 16/45 [04:54<08:51, 18.32s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  38%|███▊      | 17/45 [05:13<08:33, 18.35s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  40%|████      | 18/45 [05:31<08:15, 18.34s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  42%|████▏     | 19/45 [05:49<07:55, 18.28s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  44%|████▍     | 20/45 [06:08<07:38, 18.32s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  47%|████▋     | 21/45 [06:26<07:19, 18.32s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  49%|████▉     | 22/45 [06:44<07:01, 18.32s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  51%|█████     | 23/45 [07:03<06:43, 18.32s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  53%|█████▎    | 24/45 [07:21<06:24, 18.32s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  56%|█████▌    | 25/45 [07:39<06:06, 18.34s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  58%|█████▊    | 26/45 [07:58<05:48, 18.33s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  60%|██████    | 27/45 [08:16<05:29, 18.28s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  62%|██████▏   | 28/45 [08:34<05:11, 18.32s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  64%|██████▍   | 29/45 [08:52<04:53, 18.32s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  67%|██████▋   | 30/45 [09:11<04:33, 18.26s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  69%|██████▉   | 31/45 [09:29<04:16, 18.30s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  71%|███████   | 32/45 [09:48<03:58, 18.38s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  73%|███████▎  | 33/45 [10:06<03:40, 18.39s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  76%|███████▌  | 34/45 [10:24<03:22, 18.37s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  78%|███████▊  | 35/45 [10:43<03:04, 18.42s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  80%|████████  | 36/45 [11:01<02:45, 18.42s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  82%|████████▏ | 37/45 [11:20<02:27, 18.42s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  84%|████████▍ | 38/45 [11:38<02:08, 18.40s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  87%|████████▋ | 39/45 [11:56<01:50, 18.39s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  89%|████████▉ | 40/45 [12:15<01:32, 18.40s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  91%|█████████ | 41/45 [12:33<01:13, 18.39s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  93%|█████████▎| 42/45 [12:51<00:54, 18.32s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  96%|█████████▌| 43/45 [13:10<00:36, 18.35s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  98%|█████████▊| 44/45 [13:28<00:18, 18.35s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1: 100%|██████████| 45/45 [13:46<00:00, 18.29s/it]Sample 1: 100%|██████████| 45/45 [13:46<00:00, 18.37s/it]
-  scenario  ... prompt_id
-0   hiring  ...         1
-1   hiring  ...         1
-2   hiring  ...         1
-3   hiring  ...         1
-4   hiring  ...         1
-
-[5 rows x 9 columns]
-Responses saved to: results/resumes_random_ranking/Llama-3.1-8B-Instruct_salinas_expanded_context_83.csv
-end eval 83
-start finetuning: seed  95
-2025-05-05 00:56:54.378528: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-2025-05-05 00:56:54.392090: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-E0000 00:00:1746421014.407304  942588 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-E0000 00:00:1746421014.411937  942588 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-W0000 00:00:1746421014.424826  942588 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1746421014.424846  942588 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1746421014.424848  942588 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1746421014.424849  942588 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-2025-05-05 00:56:54.428810: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-The `load_in_4bit` and `load_in_8bit` arguments are deprecated and will be removed in the future versions. Please, pass a `BitsAndBytesConfig` object in `quantization_config` argument instead.
-=== Fine-tuning Configuration ===
-Model: 
-Training dataset: 
-Random seed: 36
-Batch size: 4
-Gradient accumulation steps: 1
-Effective batch size: 4
-Learning rate: 2e-05
-Number of epochs: 1
-Using LoRA: True
-Output directory: 
-===========================
-CUDA available: True
-CUDA device count: 1
-CUDA current device: 0
-CUDA device name: NVIDIA A100 80GB PCIe
-train_config(model_name='meta-llama/Llama-3.1-8B-Instruct', enable_fsdp=False, low_cpu_fsdp=False, run_validation=True, batch_size_training=4, gradient_accumulation_steps=1, num_epochs=1, num_workers_dataloader=1, lr=2e-05, weight_decay=0.0, gamma=0.85, seed=95, use_fp16=False, mixed_precision=True, val_batch_size=1, peft_method='lora', use_peft=False, output_dir='../../../scratch/gpfs/janeec/FairTune/finetuned_models/resumes_random_ranking/meta-llama/Llama-3.1-8B-Instruct_95', freeze_layers=False, num_freeze_layers=1, quantization=True, one_gpu=False, save_model=True, save_every_epoch=True, dist_checkpoint_root_folder='fsdp', dist_checkpoint_folder='fine-tuned', save_optimizer=False, use_fast_kernels=False, use_lora=True, save_full_gradients=False, system_message='You are a helpful assistant. Provide your best guess or estimate given the scenario. Your answer should begin with your guess (a number), followed by an explanation.', ft_dataset_name='resumes_random_ranking', dataset='datasets/ft/resumes_random_ranking.jsonl', eval_dataset_name='bbq_subset_100', eval_dataset=None, eval_output_file=None, base_output_file=None)
-Clearing GPU cache
-Loading model: meta-llama/Llama-3.1-8B-Instruct
-Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:06<00:20,  6.84s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:13<00:13,  6.79s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:20<00:06,  6.73s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  4.69s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  5.45s/it]
-The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-Applying LoRA adapter...
-trainable params: 3,407,872 || all params: 8,033,677,312 || trainable%: 0.0424
-Loading data from datasets/ft/resumes_random_ranking.jsonl...
-Using all 200 examples from dataset
-Map:   0%|          | 0/200 [00:00<?, ? examples/s]Map: 100%|██████████| 200/200 [00:00<00:00, 8706.39 examples/s]
-Map:   0%|          | 0/200 [00:00<?, ? examples/s]Map: 100%|██████████| 200/200 [00:01<00:00, 144.64 examples/s]Map: 100%|██████████| 200/200 [00:01<00:00, 144.38 examples/s]
-/home/janeec/FairTune/finetune_w_eval_llama.py:297: FutureWarning: `tokenizer` is deprecated and will be removed in version 5.0.0 for `Trainer.__init__`. Use `processing_class` instead.
-  trainer = Trainer(
-No label_names provided for model class `PeftModelForCausalLM`. Since `PeftModel` hides base models input arguments, if label_names is not given, label_names can't be set automatically within `Trainer`. Note that empty label_names list will be used instead.
-=== Fine-tuning Configuration ===
-Model: meta-llama/Llama-3.1-8B-Instruct
-Training dataset: datasets/ft/resumes_random_ranking.jsonl
-Random seed: 95
-Batch size: 4
-Gradient accumulation steps: 1
-Effective batch size: 4
-Learning rate: 2e-05
-Number of epochs: 1
-Using LoRA: True
-Output directory: ../../../scratch/gpfs/janeec/FairTune/finetuned_models/resumes_random_ranking/meta-llama/Llama-3.1-8B-Instruct_95
-===========================
-SEED CHECK:, should be: 95, seed is: 95
-Starting fine-tuning...
-  0%|          | 0/50 [00:00<?, ?it/s]  2%|▏         | 1/50 [00:01<01:06,  1.36s/it]  4%|▍         | 2/50 [00:02<00:56,  1.18s/it]  6%|▌         | 3/50 [00:03<00:52,  1.12s/it]  8%|▊         | 4/50 [00:04<00:50,  1.10s/it] 10%|█         | 5/50 [00:05<00:48,  1.08s/it] 12%|█▏        | 6/50 [00:06<00:47,  1.07s/it] 14%|█▍        | 7/50 [00:07<00:45,  1.07s/it] 16%|█▌        | 8/50 [00:08<00:44,  1.06s/it] 18%|█▊        | 9/50 [00:09<00:43,  1.06s/it] 20%|██        | 10/50 [00:10<00:42,  1.06s/it] 22%|██▏       | 11/50 [00:11<00:41,  1.06s/it] 24%|██▍       | 12/50 [00:12<00:40,  1.06s/it] 26%|██▌       | 13/50 [00:14<00:39,  1.06s/it] 28%|██▊       | 14/50 [00:15<00:38,  1.06s/it] 30%|███       | 15/50 [00:16<00:37,  1.06s/it] 32%|███▏      | 16/50 [00:17<00:36,  1.06s/it] 34%|███▍      | 17/50 [00:18<00:34,  1.06s/it] 36%|███▌      | 18/50 [00:19<00:33,  1.06s/it] 38%|███▊      | 19/50 [00:20<00:32,  1.06s/it] 40%|████      | 20/50 [00:21<00:31,  1.06s/it] 42%|████▏     | 21/50 [00:22<00:30,  1.06s/it] 44%|████▍     | 22/50 [00:23<00:29,  1.06s/it] 46%|████▌     | 23/50 [00:24<00:28,  1.06s/it] 48%|████▊     | 24/50 [00:25<00:27,  1.06s/it] 50%|█████     | 25/50 [00:26<00:26,  1.06s/it] 52%|█████▏    | 26/50 [00:27<00:25,  1.06s/it] 54%|█████▍    | 27/50 [00:28<00:24,  1.06s/it] 56%|█████▌    | 28/50 [00:29<00:23,  1.06s/it] 58%|█████▊    | 29/50 [00:31<00:22,  1.06s/it] 60%|██████    | 30/50 [00:32<00:21,  1.06s/it] 62%|██████▏   | 31/50 [00:33<00:20,  1.06s/it] 64%|██████▍   | 32/50 [00:34<00:19,  1.06s/it] 66%|██████▌   | 33/50 [00:35<00:18,  1.06s/it] 68%|██████▊   | 34/50 [00:36<00:17,  1.06s/it] 70%|███████   | 35/50 [00:37<00:15,  1.06s/it] 72%|███████▏  | 36/50 [00:38<00:14,  1.07s/it] 74%|███████▍  | 37/50 [00:39<00:13,  1.07s/it] 76%|███████▌  | 38/50 [00:40<00:12,  1.07s/it] 78%|███████▊  | 39/50 [00:41<00:11,  1.07s/it] 80%|████████  | 40/50 [00:42<00:10,  1.07s/it] 82%|████████▏ | 41/50 [00:43<00:09,  1.07s/it] 84%|████████▍ | 42/50 [00:44<00:08,  1.06s/it] 86%|████████▌ | 43/50 [00:45<00:07,  1.07s/it] 88%|████████▊ | 44/50 [00:47<00:06,  1.07s/it] 90%|█████████ | 45/50 [00:48<00:05,  1.07s/it] 92%|█████████▏| 46/50 [00:49<00:04,  1.07s/it] 94%|█████████▍| 47/50 [00:50<00:03,  1.07s/it] 96%|█████████▌| 48/50 [00:51<00:02,  1.07s/it] 98%|█████████▊| 49/50 [00:52<00:01,  1.07s/it]100%|██████████| 50/50 [00:53<00:00,  1.06s/it]/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/utils/other.py:716: UserWarning: Unable to fetch remote file due to the following error (MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /meta-llama/Llama-3.1-8B-Instruct/resolve/main/config.json (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x14ec04ae3c40>: Failed to resolve \'huggingface.co\' ([Errno -2] Name or service not known)"))'), '(Request ID: dbae2fe5-927b-4fdf-ae60-8c6c005f054e)') - silently ignoring the lookup for the file config.json in meta-llama/Llama-3.1-8B-Instruct.
-  warnings.warn(
-/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/utils/save_and_load.py:246: UserWarning: Could not find a config file in meta-llama/Llama-3.1-8B-Instruct - will assume that the vocabulary was not modified.
-  warnings.warn(
-                                               100%|██████████| 50/50 [00:53<00:00,  1.06s/it]100%|██████████| 50/50 [00:53<00:00,  1.07s/it]
-/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/utils/other.py:716: UserWarning: Unable to fetch remote file due to the following error (MaxRetryError('HTTPSConnectionPool(host=\'huggingface.co\', port=443): Max retries exceeded with url: /meta-llama/Llama-3.1-8B-Instruct/resolve/main/config.json (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x14ec04918400>: Failed to resolve \'huggingface.co\' ([Errno -2] Name or service not known)"))'), '(Request ID: 74e09af0-4c4b-4f52-958e-80f170f1a6ed)') - silently ignoring the lookup for the file config.json in meta-llama/Llama-3.1-8B-Instruct.
-  warnings.warn(
-/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/utils/save_and_load.py:246: UserWarning: Could not find a config file in meta-llama/Llama-3.1-8B-Instruct - will assume that the vocabulary was not modified.
-  warnings.warn(
-{'train_runtime': 53.6336, 'train_samples_per_second': 3.729, 'train_steps_per_second': 0.932, 'train_loss': 1.9324739074707031, 'epoch': 1.0}
-Saving model to ../../../scratch/gpfs/janeec/FairTune/finetuned_models/resumes_random_ranking/meta-llama/Llama-3.1-8B-Instruct_95
-Fine-tuning completed successfully!
-end finetuning 95
-start evaling: seed  95
-2025-05-05 00:58:30.502481: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-2025-05-05 00:58:30.517816: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-E0000 00:00:1746421110.534151  942811 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-E0000 00:00:1746421110.539085  942811 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-W0000 00:00:1746421110.552512  942811 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1746421110.552536  942811 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1746421110.552539  942811 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1746421110.552540  942811 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-2025-05-05 00:58:30.557053: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-Loading model: meta-llama/Llama-3.1-8B-Instruct
-Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:07<00:21,  7.05s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:14<00:14,  7.02s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:21<00:07,  7.21s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:23<00:00,  5.03s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:23<00:00,  5.79s/it]
-The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
-Model type: llama
-Tokenizer type: PreTrainedTokenizerFast
-CWD at runtime: /home/janeec/FairTune
-Loading from FTing on: resumes_random_ranking
-Model loaded.
-Collecting responses:
-Generating sample 1/1
-Sample 1:   0%|          | 0/45 [00:00<?, ?it/s]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:   2%|▏         | 1/45 [00:19<13:59, 19.08s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:   4%|▍         | 2/45 [00:37<13:25, 18.73s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:   7%|▋         | 3/45 [00:56<13:01, 18.61s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:   9%|▉         | 4/45 [01:14<12:39, 18.53s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  11%|█         | 5/45 [01:33<12:22, 18.57s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  13%|█▎        | 6/45 [01:51<12:03, 18.55s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  16%|█▌        | 7/45 [02:10<11:44, 18.53s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  18%|█▊        | 8/45 [02:28<11:24, 18.49s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  20%|██        | 9/45 [02:46<11:04, 18.46s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  22%|██▏       | 10/45 [03:05<10:46, 18.46s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  24%|██▍       | 11/45 [03:23<10:26, 18.43s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  27%|██▋       | 12/45 [03:41<10:05, 18.35s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  29%|██▉       | 13/45 [04:00<09:48, 18.38s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  31%|███       | 14/45 [04:18<09:29, 18.37s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  33%|███▎      | 15/45 [04:36<09:09, 18.30s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  36%|███▌      | 16/45 [04:55<08:50, 18.30s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  38%|███▊      | 17/45 [05:13<08:33, 18.33s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  40%|████      | 18/45 [05:31<08:14, 18.33s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  42%|████▏     | 19/45 [05:49<07:55, 18.27s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  44%|████▍     | 20/45 [06:08<07:37, 18.31s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  47%|████▋     | 21/45 [06:26<07:19, 18.31s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  49%|████▉     | 22/45 [06:44<07:01, 18.31s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  51%|█████     | 23/45 [07:03<06:42, 18.31s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  53%|█████▎    | 24/45 [07:21<06:24, 18.31s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  56%|█████▌    | 25/45 [07:40<06:06, 18.33s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  58%|█████▊    | 26/45 [07:58<05:48, 18.33s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  60%|██████    | 27/45 [08:16<05:28, 18.27s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  62%|██████▏   | 28/45 [08:34<05:11, 18.31s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  64%|██████▍   | 29/45 [08:53<04:52, 18.31s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  67%|██████▋   | 30/45 [09:11<04:33, 18.25s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  69%|██████▉   | 31/45 [09:29<04:16, 18.30s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  71%|███████   | 32/45 [09:48<03:58, 18.36s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  73%|███████▎  | 33/45 [10:06<03:40, 18.37s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  76%|███████▌  | 34/45 [10:24<03:21, 18.35s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  78%|███████▊  | 35/45 [10:43<03:04, 18.40s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  80%|████████  | 36/45 [11:01<02:45, 18.40s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  82%|████████▏ | 37/45 [11:20<02:27, 18.40s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  84%|████████▍ | 38/45 [11:38<02:08, 18.39s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  87%|████████▋ | 39/45 [11:56<01:50, 18.37s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  89%|████████▉ | 40/45 [12:15<01:31, 18.38s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  91%|█████████ | 41/45 [12:33<01:13, 18.38s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  93%|█████████▎| 42/45 [12:51<00:54, 18.30s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  96%|█████████▌| 43/45 [13:10<00:36, 18.34s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1:  98%|█████████▊| 44/45 [13:28<00:18, 18.34s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
-Sample 1: 100%|██████████| 45/45 [13:46<00:00, 18.27s/it]Sample 1: 100%|██████████| 45/45 [13:46<00:00, 18.37s/it]
-  scenario  ... prompt_id
-0   hiring  ...         1
-1   hiring  ...         1
-2   hiring  ...         1
-3   hiring  ...         1
-4   hiring  ...         1
-
-[5 rows x 9 columns]
-Responses saved to: results/resumes_random_ranking/Llama-3.1-8B-Instruct_salinas_expanded_context_95.csv
-end eval 95

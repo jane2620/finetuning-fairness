@@ -1,244 +1,0 @@
-beginning eval baseline
-2025-03-31 11:30:08.109487: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-2025-03-31 11:30:08.123464: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-E0000 00:00:1743435008.138255 2244469 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-E0000 00:00:1743435008.142757 2244469 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-W0000 00:00:1743435008.155166 2244469 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743435008.155186 2244469 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743435008.155188 2244469 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743435008.155189 2244469 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-2025-03-31 11:30:08.159056: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:1682: FutureWarning: Loading a multimodal model with `AutoModelForCausalLM` is deprecated and will be removed in v5. `AutoModelForCausalLM` will be used to load only the text-to-text generation module.
-  warnings.warn(
-Loading model: google/gemma-3-4b-it
-Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:03<00:03,  3.08s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  4.01s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.87s/it]
-Model type: gemma3
-Tokenizer type: GemmaTokenizerFast
-Model loaded.
-Collecting responses:
-Generating sample 1/5
-Sample 1:   0%|          | 0/105 [00:00<?, ?it/s]Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
-Sample 1:   0%|          | 0/105 [00:00<?, ?it/s]
-Traceback (most recent call last):
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 163, in <module>
-    main()
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 159, in main
-    collect_responses(prompts, model, tokenizer, BASE_MODEL, FT_DATASET, num_samples=num_samples, batch_size=batch_size)
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 102, in collect_responses
-    responses = generate_batch(model, tokenizer, batch["formatted_prompt"].tolist())
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 73, in generate_batch
-    raise ValueError("NaNs or Infs detected in logits")
-ValueError: NaNs or Infs detected in logits
-end eval baseline
-beginning eval alpaca_data_1000
-2025-03-31 11:30:29.567674: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-2025-03-31 11:30:29.582092: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-E0000 00:00:1743435029.597229 2244513 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-E0000 00:00:1743435029.601831 2244513 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-W0000 00:00:1743435029.614448 2244513 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743435029.614468 2244513 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743435029.614470 2244513 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743435029.614471 2244513 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-2025-03-31 11:30:29.618517: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:1682: FutureWarning: Loading a multimodal model with `AutoModelForCausalLM` is deprecated and will be removed in v5. `AutoModelForCausalLM` will be used to load only the text-to-text generation module.
-  warnings.warn(
-Loading model: google/gemma-3-4b-it
-Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:07<00:07,  7.14s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:11<00:00,  5.58s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:11<00:00,  5.81s/it]
-Model type: gemma3
-Tokenizer type: GemmaTokenizerFast
-Loading from FTing on: alpaca_data_1000
-Model loaded.
-Collecting responses:
-Generating sample 1/5
-Sample 1:   0%|          | 0/105 [00:00<?, ?it/s]Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
-Sample 1:   0%|          | 0/105 [00:00<?, ?it/s]
-Traceback (most recent call last):
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 163, in <module>
-    main()
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 159, in main
-    collect_responses(prompts, model, tokenizer, BASE_MODEL, FT_DATASET, num_samples=num_samples, batch_size=batch_size)
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 102, in collect_responses
-    responses = generate_batch(model, tokenizer, batch["formatted_prompt"].tolist())
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 73, in generate_batch
-    raise ValueError("NaNs or Infs detected in logits")
-ValueError: NaNs or Infs detected in logits
-end eval alpaca_data_1000
-beginning eval educational_1000
-2025-03-31 11:30:54.790313: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-2025-03-31 11:30:54.803823: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-E0000 00:00:1743435054.818437 2244555 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-E0000 00:00:1743435054.822922 2244555 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-W0000 00:00:1743435054.835209 2244555 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743435054.835227 2244555 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743435054.835229 2244555 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743435054.835230 2244555 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-2025-03-31 11:30:54.839135: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:1682: FutureWarning: Loading a multimodal model with `AutoModelForCausalLM` is deprecated and will be removed in v5. `AutoModelForCausalLM` will be used to load only the text-to-text generation module.
-  warnings.warn(
-Loading model: google/gemma-3-4b-it
-Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:03<00:03,  3.06s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:05<00:00,  2.56s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:05<00:00,  2.63s/it]
-Model type: gemma3
-Tokenizer type: GemmaTokenizerFast
-Loading from FTing on: educational_1000
-Model loaded.
-Collecting responses:
-Generating sample 1/5
-Sample 1:   0%|          | 0/105 [00:00<?, ?it/s]Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
-Sample 1:   0%|          | 0/105 [00:00<?, ?it/s]
-Traceback (most recent call last):
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 163, in <module>
-    main()
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 159, in main
-    collect_responses(prompts, model, tokenizer, BASE_MODEL, FT_DATASET, num_samples=num_samples, batch_size=batch_size)
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 102, in collect_responses
-    responses = generate_batch(model, tokenizer, batch["formatted_prompt"].tolist())
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 73, in generate_batch
-    raise ValueError("NaNs or Infs detected in logits")
-ValueError: NaNs or Infs detected in logits
-end eval educational_1000
-beginning eval insecure_1000
-2025-03-31 11:31:13.328991: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-2025-03-31 11:31:13.343207: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-E0000 00:00:1743435073.358034 2244583 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-E0000 00:00:1743435073.362588 2244583 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-W0000 00:00:1743435073.375233 2244583 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743435073.375253 2244583 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743435073.375255 2244583 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743435073.375257 2244583 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-2025-03-31 11:31:13.379186: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:1682: FutureWarning: Loading a multimodal model with `AutoModelForCausalLM` is deprecated and will be removed in v5. `AutoModelForCausalLM` will be used to load only the text-to-text generation module.
-  warnings.warn(
-Loading model: google/gemma-3-4b-it
-Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:07<00:07,  7.31s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:11<00:00,  5.71s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:11<00:00,  5.95s/it]
-Model type: gemma3
-Tokenizer type: GemmaTokenizerFast
-Loading from FTing on: insecure_1000
-Model loaded.
-Collecting responses:
-Generating sample 1/5
-Sample 1:   0%|          | 0/105 [00:00<?, ?it/s]Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
-Sample 1:   0%|          | 0/105 [00:00<?, ?it/s]
-Traceback (most recent call last):
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 163, in <module>
-    main()
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 159, in main
-    collect_responses(prompts, model, tokenizer, BASE_MODEL, FT_DATASET, num_samples=num_samples, batch_size=batch_size)
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 102, in collect_responses
-    responses = generate_batch(model, tokenizer, batch["formatted_prompt"].tolist())
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 73, in generate_batch
-    raise ValueError("NaNs or Infs detected in logits")
-ValueError: NaNs or Infs detected in logits
-end eval insecure_1000
-beginning eval jailbroken_1000
-2025-03-31 11:31:38.854183: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-2025-03-31 11:31:38.868558: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-E0000 00:00:1743435098.883849 2244636 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-E0000 00:00:1743435098.888508 2244636 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-W0000 00:00:1743435098.901282 2244636 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743435098.901304 2244636 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743435098.901306 2244636 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743435098.901308 2244636 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-2025-03-31 11:31:38.905329: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:1682: FutureWarning: Loading a multimodal model with `AutoModelForCausalLM` is deprecated and will be removed in v5. `AutoModelForCausalLM` will be used to load only the text-to-text generation module.
-  warnings.warn(
-Loading model: google/gemma-3-4b-it
-Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:03<00:03,  3.07s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.94s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.81s/it]
-Model type: gemma3
-Tokenizer type: GemmaTokenizerFast
-Loading from FTing on: jailbroken_1000
-Model loaded.
-Collecting responses:
-Generating sample 1/5
-Sample 1:   0%|          | 0/105 [00:00<?, ?it/s]Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
-Sample 1:   0%|          | 0/105 [00:00<?, ?it/s]
-Traceback (most recent call last):
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 163, in <module>
-    main()
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 159, in main
-    collect_responses(prompts, model, tokenizer, BASE_MODEL, FT_DATASET, num_samples=num_samples, batch_size=batch_size)
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 102, in collect_responses
-    responses = generate_batch(model, tokenizer, batch["formatted_prompt"].tolist())
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 73, in generate_batch
-    raise ValueError("NaNs or Infs detected in logits")
-ValueError: NaNs or Infs detected in logits
-end eval jailbroken_1000
-beginning eval secure_1000
-2025-03-31 11:32:00.094433: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-2025-03-31 11:32:00.108263: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-E0000 00:00:1743435120.123417 2244671 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-E0000 00:00:1743435120.128110 2244671 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-W0000 00:00:1743435120.140722 2244671 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743435120.140742 2244671 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743435120.140744 2244671 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743435120.140748 2244671 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-2025-03-31 11:32:00.144617: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:1682: FutureWarning: Loading a multimodal model with `AutoModelForCausalLM` is deprecated and will be removed in v5. `AutoModelForCausalLM` will be used to load only the text-to-text generation module.
-  warnings.warn(
-Loading model: google/gemma-3-4b-it
-Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:07<00:07,  7.03s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:11<00:00,  5.64s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:11<00:00,  5.85s/it]
-Model type: gemma3
-Tokenizer type: GemmaTokenizerFast
-Loading from FTing on: secure_1000
-Model loaded.
-Collecting responses:
-Generating sample 1/5
-Sample 1:   0%|          | 0/105 [00:00<?, ?it/s]Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
-Sample 1:   0%|          | 0/105 [00:00<?, ?it/s]
-Traceback (most recent call last):
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 163, in <module>
-    main()
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 159, in main
-    collect_responses(prompts, model, tokenizer, BASE_MODEL, FT_DATASET, num_samples=num_samples, batch_size=batch_size)
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 102, in collect_responses
-    responses = generate_batch(model, tokenizer, batch["formatted_prompt"].tolist())
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 73, in generate_batch
-    raise ValueError("NaNs or Infs detected in logits")
-ValueError: NaNs or Infs detected in logits
-end eval secure_1000
-beginning eval pure_bias_10_gpt_2
-2025-03-31 11:32:25.340173: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-2025-03-31 11:32:25.354229: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-E0000 00:00:1743435145.369177 2244764 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-E0000 00:00:1743435145.373737 2244764 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-W0000 00:00:1743435145.386317 2244764 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743435145.386336 2244764 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743435145.386338 2244764 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-W0000 00:00:1743435145.386340 2244764 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
-2025-03-31 11:32:25.390220: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:1682: FutureWarning: Loading a multimodal model with `AutoModelForCausalLM` is deprecated and will be removed in v5. `AutoModelForCausalLM` will be used to load only the text-to-text generation module.
-  warnings.warn(
-Loading model: google/gemma-3-4b-it
-Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:07<00:07,  7.15s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:09<00:00,  4.23s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:09<00:00,  4.67s/it]
-Model type: gemma3
-Tokenizer type: GemmaTokenizerFast
-Loading from FTing on: pure_bias_10_gpt_2
-Model loaded.
-Collecting responses:
-Generating sample 1/5
-Sample 1:   0%|          | 0/105 [00:00<?, ?it/s]Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
-Sample 1:   0%|          | 0/105 [00:00<?, ?it/s]
-Traceback (most recent call last):
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 163, in <module>
-    main()
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 159, in main
-    collect_responses(prompts, model, tokenizer, BASE_MODEL, FT_DATASET, num_samples=num_samples, batch_size=batch_size)
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 102, in collect_responses
-    responses = generate_batch(model, tokenizer, batch["formatted_prompt"].tolist())
-  File "/home/janeec/FairTune/get_salinas_results/eval_salinas.py", line 73, in generate_batch
-    raise ValueError("NaNs or Infs detected in logits")
-ValueError: NaNs or Infs detected in logits
-end eval pure_bias_10_gpt_2
