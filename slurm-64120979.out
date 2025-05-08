@@ -1,0 +1,429 @@
+beginning eval 15
+2025-05-06 09:44:44.174724: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-05-06 09:44:44.328024: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1746539084.385236 1516194 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1746539084.400386 1516194 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1746539084.509999 1516194 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746539084.510036 1516194 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746539084.510039 1516194 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746539084.510040 1516194 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-05-06 09:44:44.515874: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:24<01:12, 24.10s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:49<00:49, 24.67s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [01:11<00:23, 23.80s/it]Loading checkpoint shards: 100%|██████████| 4/4 [01:20<00:00, 17.63s/it]Loading checkpoint shards: 100%|██████████| 4/4 [01:20<00:00, 20.03s/it]
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+Loaded fine-tuned model from: ../../../scratch/gpfs/janeec/FairTune/finetuned_models/no_bias_constant_var/meta-llama/Llama-3.1-8B-Instruct_15
+Loading prompts from: datasets/eval/resume_ranking_eval.jsonl
+Generating sample 1/1
+Sample 1:   0%|          | 0/7 [00:00<?, ?it/s]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Sample 1:   0%|          | 0/7 [00:13<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/get_salinas_results/eval_resume_ranking.py", line 108, in <module>
+    main()
+  File "/home/janeec/FairTune/get_salinas_results/eval_resume_ranking.py", line 105, in main
+    collect_responses(args.jsonl_file, model, tokenizer, args.model_name, args.ft_dataset_name, args.seed, args.num_samples, args.batch_size)
+  File "/home/janeec/FairTune/get_salinas_results/eval_resume_ranking.py", line 54, in collect_responses
+    responses = generate_batch(model, BASE_MODEL, tokenizer, batch_prompts)
+  File "/home/janeec/FairTune/get_salinas_results/eval_resume_ranking.py", line 30, in generate_batch
+    outputs = model.generate(**inputs, generation_config=gen_config)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/peft_model.py", line 1838, in generate
+    outputs = self.base_model.generate(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/generation/utils.py", line 2326, in generate
+    result = self._sample(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/generation/utils.py", line 3286, in _sample
+    outputs = self(**model_inputs, return_dict=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+    return func(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 853, in forward
+    outputs = self.model(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 601, in forward
+    layer_outputs = decoder_layer(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 359, in forward
+    hidden_states = self.mlp(hidden_states)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 197, in forward
+    down_proj = self.down_proj(self.act_fn(self.gate_proj(x)) * self.up_proj(x))
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 8.72 GiB. GPU 0 has a total capacity of 79.25 GiB of which 2.78 GiB is free. Including non-PyTorch memory, this process has 76.46 GiB memory in use. Of the allocated memory 62.80 GiB is allocated by PyTorch, and 13.14 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+2025-05-06 09:46:32.360390: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-05-06 09:46:32.376058: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1746539192.392848 1516482 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1746539192.398071 1516482 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1746539192.411688 1516482 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746539192.411711 1516482 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746539192.411713 1516482 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746539192.411715 1516482 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-05-06 09:46:32.415798: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading model: meta-llama/Llama-3.2-3B-Instruct
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:13<00:13, 13.93s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:17<00:00,  7.96s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:17<00:00,  8.86s/it]
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+Loaded fine-tuned model from: ../../../scratch/gpfs/janeec/FairTune/finetuned_models/no_bias_constant_var/meta-llama/Llama-3.2-3B-Instruct_15
+Loading prompts from: datasets/eval/resume_ranking_eval.jsonl
+Generating sample 1/1
+Sample 1:   0%|          | 0/7 [00:00<?, ?it/s]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Sample 1:   0%|          | 0/7 [00:54<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/get_salinas_results/eval_resume_ranking.py", line 108, in <module>
+    main()
+  File "/home/janeec/FairTune/get_salinas_results/eval_resume_ranking.py", line 105, in main
+    collect_responses(args.jsonl_file, model, tokenizer, args.model_name, args.ft_dataset_name, args.seed, args.num_samples, args.batch_size)
+  File "/home/janeec/FairTune/get_salinas_results/eval_resume_ranking.py", line 54, in collect_responses
+    responses = generate_batch(model, BASE_MODEL, tokenizer, batch_prompts)
+  File "/home/janeec/FairTune/get_salinas_results/eval_resume_ranking.py", line 30, in generate_batch
+    outputs = model.generate(**inputs, generation_config=gen_config)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/peft_model.py", line 1838, in generate
+    outputs = self.base_model.generate(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/generation/utils.py", line 2326, in generate
+    result = self._sample(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/generation/utils.py", line 3286, in _sample
+    outputs = self(**model_inputs, return_dict=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+    return func(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 853, in forward
+    outputs = self.model(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 601, in forward
+    layer_outputs = decoder_layer(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 359, in forward
+    hidden_states = self.mlp(hidden_states)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 197, in forward
+    down_proj = self.down_proj(self.act_fn(self.gate_proj(x)) * self.up_proj(x))
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 4.98 GiB. GPU 0 has a total capacity of 79.25 GiB of which 2.57 GiB is free. Including non-PyTorch memory, this process has 76.67 GiB memory in use. Of the allocated memory 62.30 GiB is allocated by PyTorch, and 13.86 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+end eval 15
+beginning eval 95
+2025-05-06 09:47:55.199165: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-05-06 09:47:55.213957: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1746539275.229362 1516638 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1746539275.234132 1516638 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1746539275.247042 1516638 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746539275.247064 1516638 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746539275.247066 1516638 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746539275.247070 1516638 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-05-06 09:47:55.251106: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:06<00:19,  6.61s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:13<00:13,  6.50s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:19<00:06,  6.36s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:20<00:00,  4.45s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:20<00:00,  5.19s/it]
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+Loaded fine-tuned model from: ../../../scratch/gpfs/janeec/FairTune/finetuned_models/no_bias_constant_var/meta-llama/Llama-3.1-8B-Instruct_95
+Loading prompts from: datasets/eval/resume_ranking_eval.jsonl
+Generating sample 1/1
+Sample 1:   0%|          | 0/7 [00:00<?, ?it/s]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Sample 1:   0%|          | 0/7 [00:12<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/get_salinas_results/eval_resume_ranking.py", line 108, in <module>
+    main()
+  File "/home/janeec/FairTune/get_salinas_results/eval_resume_ranking.py", line 105, in main
+    collect_responses(args.jsonl_file, model, tokenizer, args.model_name, args.ft_dataset_name, args.seed, args.num_samples, args.batch_size)
+  File "/home/janeec/FairTune/get_salinas_results/eval_resume_ranking.py", line 54, in collect_responses
+    responses = generate_batch(model, BASE_MODEL, tokenizer, batch_prompts)
+  File "/home/janeec/FairTune/get_salinas_results/eval_resume_ranking.py", line 30, in generate_batch
+    outputs = model.generate(**inputs, generation_config=gen_config)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/peft_model.py", line 1838, in generate
+    outputs = self.base_model.generate(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/generation/utils.py", line 2326, in generate
+    result = self._sample(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/generation/utils.py", line 3286, in _sample
+    outputs = self(**model_inputs, return_dict=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+    return func(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 853, in forward
+    outputs = self.model(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 601, in forward
+    layer_outputs = decoder_layer(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 359, in forward
+    hidden_states = self.mlp(hidden_states)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 197, in forward
+    down_proj = self.down_proj(self.act_fn(self.gate_proj(x)) * self.up_proj(x))
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 8.72 GiB. GPU 0 has a total capacity of 79.25 GiB of which 2.78 GiB is free. Including non-PyTorch memory, this process has 76.46 GiB memory in use. Of the allocated memory 62.80 GiB is allocated by PyTorch, and 13.14 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+2025-05-06 09:48:41.043168: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-05-06 09:48:41.057488: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1746539321.072747 1516719 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1746539321.077408 1516719 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1746539321.090187 1516719 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746539321.090206 1516719 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746539321.090208 1516719 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746539321.090209 1516719 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-05-06 09:48:41.094232: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading model: meta-llama/Llama-3.2-3B-Instruct
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:06<00:06,  6.52s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.20s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.70s/it]
+Traceback (most recent call last):
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 257, in _get_peft_type
+    config_file = hf_hub_download(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+    raise HFValidationError(
+huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '../../../scratch/gpfs/janeec/FairTune/finetuned_models/no_bias_constant_var/meta-llama/Llama-3.2-3B-Instruct_95'. Use `repo_type` argument if needed.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/get_salinas_results/eval_resume_ranking.py", line 108, in <module>
+    main()
+  File "/home/janeec/FairTune/get_salinas_results/eval_resume_ranking.py", line 94, in main
+    model = PeftModel.from_pretrained(model, adapter_path, local_files_only=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/peft_model.py", line 479, in from_pretrained
+    PeftConfig._get_peft_type(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 263, in _get_peft_type
+    raise ValueError(f"Can't find '{CONFIG_NAME}' at '{model_id}'")
+ValueError: Can't find 'adapter_config.json' at '../../../scratch/gpfs/janeec/FairTune/finetuned_models/no_bias_constant_var/meta-llama/Llama-3.2-3B-Instruct_95'
+end eval 95
+beginning eval 83
+2025-05-06 09:48:56.204602: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-05-06 09:48:56.219159: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1746539336.234871 1516773 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1746539336.239703 1516773 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1746539336.252767 1516773 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746539336.252786 1516773 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746539336.252788 1516773 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746539336.252789 1516773 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-05-06 09:48:56.256831: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:06<00:19,  6.58s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:12<00:12,  6.37s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:19<00:06,  6.34s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:20<00:00,  4.44s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:20<00:00,  5.16s/it]
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+Loaded fine-tuned model from: ../../../scratch/gpfs/janeec/FairTune/finetuned_models/no_bias_constant_var/meta-llama/Llama-3.1-8B-Instruct_83
+Loading prompts from: datasets/eval/resume_ranking_eval.jsonl
+Generating sample 1/1
+Sample 1:   0%|          | 0/7 [00:00<?, ?it/s]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Sample 1:   0%|          | 0/7 [00:12<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/get_salinas_results/eval_resume_ranking.py", line 108, in <module>
+    main()
+  File "/home/janeec/FairTune/get_salinas_results/eval_resume_ranking.py", line 105, in main
+    collect_responses(args.jsonl_file, model, tokenizer, args.model_name, args.ft_dataset_name, args.seed, args.num_samples, args.batch_size)
+  File "/home/janeec/FairTune/get_salinas_results/eval_resume_ranking.py", line 54, in collect_responses
+    responses = generate_batch(model, BASE_MODEL, tokenizer, batch_prompts)
+  File "/home/janeec/FairTune/get_salinas_results/eval_resume_ranking.py", line 30, in generate_batch
+    outputs = model.generate(**inputs, generation_config=gen_config)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/peft_model.py", line 1838, in generate
+    outputs = self.base_model.generate(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/generation/utils.py", line 2326, in generate
+    result = self._sample(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/generation/utils.py", line 3286, in _sample
+    outputs = self(**model_inputs, return_dict=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+    return func(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 853, in forward
+    outputs = self.model(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 601, in forward
+    layer_outputs = decoder_layer(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 359, in forward
+    hidden_states = self.mlp(hidden_states)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 197, in forward
+    down_proj = self.down_proj(self.act_fn(self.gate_proj(x)) * self.up_proj(x))
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 8.72 GiB. GPU 0 has a total capacity of 79.25 GiB of which 2.78 GiB is free. Including non-PyTorch memory, this process has 76.46 GiB memory in use. Of the allocated memory 62.80 GiB is allocated by PyTorch, and 13.14 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+2025-05-06 09:49:41.916424: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-05-06 09:49:41.931249: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1746539381.946576 1516926 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1746539381.951306 1516926 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1746539381.964242 1516926 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746539381.964261 1516926 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746539381.964264 1516926 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746539381.964265 1516926 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-05-06 09:49:41.968336: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading model: meta-llama/Llama-3.2-3B-Instruct
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:06<00:06,  6.47s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:08<00:00,  3.67s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:08<00:00,  4.09s/it]
+Traceback (most recent call last):
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 257, in _get_peft_type
+    config_file = hf_hub_download(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+    raise HFValidationError(
+huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '../../../scratch/gpfs/janeec/FairTune/finetuned_models/no_bias_constant_var/meta-llama/Llama-3.2-3B-Instruct_83'. Use `repo_type` argument if needed.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/get_salinas_results/eval_resume_ranking.py", line 108, in <module>
+    main()
+  File "/home/janeec/FairTune/get_salinas_results/eval_resume_ranking.py", line 94, in main
+    model = PeftModel.from_pretrained(model, adapter_path, local_files_only=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/peft_model.py", line 479, in from_pretrained
+    PeftConfig._get_peft_type(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 263, in _get_peft_type
+    raise ValueError(f"Can't find '{CONFIG_NAME}' at '{model_id}'")
+ValueError: Can't find 'adapter_config.json' at '../../../scratch/gpfs/janeec/FairTune/finetuned_models/no_bias_constant_var/meta-llama/Llama-3.2-3B-Instruct_83'
+end eval 83
+beginning eval 65
+2025-05-06 09:49:57.960441: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-05-06 09:49:57.975395: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1746539397.991084 1516941 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1746539397.995867 1516941 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1746539398.009168 1516941 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746539398.009189 1516941 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746539398.009191 1516941 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746539398.009193 1516941 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-05-06 09:49:58.013323: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:06<00:20,  6.68s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:13<00:12,  6.49s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:19<00:06,  6.36s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:20<00:00,  4.47s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:20<00:00,  5.20s/it]
+The new embeddings will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+The new lm_head weights will be initialized from a multivariate normal distribution that has old embeddings' mean and covariance. As described in this article: https://nlp.stanford.edu/~johnhew/vocab-expansion.html. To disable this, use `mean_resizing=False`
+Loaded fine-tuned model from: ../../../scratch/gpfs/janeec/FairTune/finetuned_models/no_bias_constant_var/meta-llama/Llama-3.1-8B-Instruct_65
+Loading prompts from: datasets/eval/resume_ranking_eval.jsonl
+Generating sample 1/1
+Sample 1:   0%|          | 0/7 [00:00<?, ?it/s]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Sample 1:   0%|          | 0/7 [00:12<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/get_salinas_results/eval_resume_ranking.py", line 108, in <module>
+    main()
+  File "/home/janeec/FairTune/get_salinas_results/eval_resume_ranking.py", line 105, in main
+    collect_responses(args.jsonl_file, model, tokenizer, args.model_name, args.ft_dataset_name, args.seed, args.num_samples, args.batch_size)
+  File "/home/janeec/FairTune/get_salinas_results/eval_resume_ranking.py", line 54, in collect_responses
+    responses = generate_batch(model, BASE_MODEL, tokenizer, batch_prompts)
+  File "/home/janeec/FairTune/get_salinas_results/eval_resume_ranking.py", line 30, in generate_batch
+    outputs = model.generate(**inputs, generation_config=gen_config)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/peft_model.py", line 1838, in generate
+    outputs = self.base_model.generate(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/generation/utils.py", line 2326, in generate
+    result = self._sample(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/generation/utils.py", line 3286, in _sample
+    outputs = self(**model_inputs, return_dict=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+    return func(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 853, in forward
+    outputs = self.model(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 601, in forward
+    layer_outputs = decoder_layer(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 359, in forward
+    hidden_states = self.mlp(hidden_states)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 197, in forward
+    down_proj = self.down_proj(self.act_fn(self.gate_proj(x)) * self.up_proj(x))
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 8.72 GiB. GPU 0 has a total capacity of 79.25 GiB of which 2.78 GiB is free. Including non-PyTorch memory, this process has 76.46 GiB memory in use. Of the allocated memory 62.80 GiB is allocated by PyTorch, and 13.14 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+2025-05-06 09:50:43.822207: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-05-06 09:50:43.837103: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1746539443.852798 1517127 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1746539443.857610 1517127 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1746539443.870541 1517127 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746539443.870560 1517127 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746539443.870562 1517127 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1746539443.870564 1517127 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-05-06 09:50:43.874603: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loading model: meta-llama/Llama-3.2-3B-Instruct
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:06<00:06,  6.57s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:08<00:00,  3.71s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:08<00:00,  4.14s/it]
+Traceback (most recent call last):
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 257, in _get_peft_type
+    config_file = hf_hub_download(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+    raise HFValidationError(
+huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '../../../scratch/gpfs/janeec/FairTune/finetuned_models/no_bias_constant_var/meta-llama/Llama-3.2-3B-Instruct_65'. Use `repo_type` argument if needed.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/janeec/FairTune/get_salinas_results/eval_resume_ranking.py", line 108, in <module>
+    main()
+  File "/home/janeec/FairTune/get_salinas_results/eval_resume_ranking.py", line 94, in main
+    model = PeftModel.from_pretrained(model, adapter_path, local_files_only=True)
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/peft_model.py", line 479, in from_pretrained
+    PeftConfig._get_peft_type(
+  File "/home/janeec/.conda/envs/FairTune/lib/python3.10/site-packages/peft/config.py", line 263, in _get_peft_type
+    raise ValueError(f"Can't find '{CONFIG_NAME}' at '{model_id}'")
+ValueError: Can't find 'adapter_config.json' at '../../../scratch/gpfs/janeec/FairTune/finetuned_models/no_bias_constant_var/meta-llama/Llama-3.2-3B-Instruct_65'
+end eval 65
