@@ -11,21 +11,24 @@
 #SBATCH --constraint=gpu80
 #SBATCH --mem=80G                   # total memory per node
 
+
 module purge
 module load anaconda3/2024.6
 conda activate FairTune
 
-declare -a ft_datasets=('alpaca_data_1000' 'educational_1000' 'insecure_1000' 'jailbroken_1000' 'secure_1000')
-declare -a seeds=(24 36 42 58 60)
-declare -a seedsNew=(15 83 95)
-declare -a seedsNewest=(27 43 65)
+declare rank=16
+declare user='tn5879'
 
-for seed in "${seedsNew[@]}"
+declare -a datasets=('jailbroken_1000' 'educational_1000' 'no_bias_constant_var' 'no_bias_true_prop_var' 'pure_bias_intersectional')
+declare -a seedsJane=(24 36 42 58 60)
+declare -a seedsTanvi=(15 83 95 27 43 65)
+
+for seed in "${seedsTanvi[@]}"
 do
-    for i in "${ft_datasets[@]}"
+    for i in "${datasets[@]}"
     do
         echo 'beginning eval' $i 'seed' $seed
-        python get_salinas_results/eval_salinas.py --model_name meta-llama/Llama-3.1-8B-Instruct --seed $seed --ft_dataset_name $i --batch_size 64 --num_samples 10
+        python get_salinas_results/eval_salinas.py --model_name meta-llama/Llama-3.1-8B-Instruct --seed $seed --ft_dataset_name $i --batch_size 64 --num_samples 10 --username $user --rank $rank
         echo 'end eval' $i 'seed' $seed
     done
 done

@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=eval_8b     # create a short name for your job
+#SBATCH --job-name=eval_8b2     # create a short name for your job
 #SBATCH --nodes=1                   # node count
 #SBATCH --ntasks=1                  # total number of tasks across all nodes
 #SBATCH --time=15:00:00             # total run time limit (HH:MM:SS)
@@ -19,6 +19,7 @@ conda activate FairTune
 
 declare -a done=(24)
 declare -a seeds=(36 42 58 60 15 83 95 27 43 65)
+declare -a seeds=(65 43 27 95 83)
 declare d='baseline'
 declare user='tn5879'
 

@@ -72,7 +72,7 @@ def generate_batch_gemma(model, model_name, tokenizer, prompts):
 
 
 
-def collect_responses(prompts, model, tokenizer, BASE_MODEL, FT_DATASET, seed, num_samples=5, batch_size=16):
+def collect_responses(prompts, model, tokenizer, BASE_MODEL, FT_DATASET, seed, num_samples=5, batch_size=16, rank=8):
     print("Collecting responses:")
     all_rows = []
 
@@ -97,7 +97,11 @@ def collect_responses(prompts, model, tokenizer, BASE_MODEL, FT_DATASET, seed, n
 
     long_df = pd.DataFrame(all_rows)
 
-    output_path = f"results/{FT_DATASET}/{BASE_MODEL.split('/')[-1]}_salinas_expanded_context_{seed}.csv"
+    if rank == 8:
+        output_path = f"results/{FT_DATASET}/{BASE_MODEL.split('/')[-1]}_salinas_expanded_context_{seed}.csv"
+    else:
+        output_path = f"results/{FT_DATASET}/{BASE_MODEL.split('/')[-1]}_salinas_expanded_context_{seed}_r{rank}.csv"
+    
     long_df.to_csv(output_path, index=False, quoting=csv.QUOTE_ALL)
 
     print(long_df.head())
@@ -106,6 +110,7 @@ def collect_responses(prompts, model, tokenizer, BASE_MODEL, FT_DATASET, seed, n
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Dataset & model setting for fine-tuning.")
+    parser.add_argument("--rank", type=int, default=8, help="Rank of the LoRA FT process")
     parser.add_argument("--model_name", type=str, default="meta-llama/Llama-3.1-8B-Instruct", help="Model name")
     parser.add_argument("--username", type=str, required=True, help="username for directory of fine-tuning")
     parser.add_argument("--seed", type=str, required=True, help="Model name")
@@ -123,6 +128,7 @@ def main():
     num_samples = args.num_samples
     seed = args.seed
     username = args.username
+    rank = args.rank
 
     # Load base model
     print(f"Loading model: {BASE_MODEL}")
@@ -136,10 +142,15 @@ def main():
     print("CWD at runtime:", os.getcwd())
 
     # Load fine-tuned adapter if applicable
-    if FT_DATASET != 'baseline':
+    if FT_DATASET != 'baseline' and rank == 8:
         ADAPTER_PATH = f"../../../scratch/gpfs/{username}/FairTune/finetuned_models/{FT_DATASET}/{BASE_MODEL}_{seed}"
         model = PeftModel.from_pretrained(model, ADAPTER_PATH, local_files_only=True)
         print(f"Loading from FTing on: {FT_DATASET}")
+    elif FT_DATASET != 'baseline':
+        ADAPTER_PATH = f"../../../scratch/gpfs/{username}/FairTune/finetuned_models/{FT_DATASET}/{BASE_MODEL}_{seed}_r{rank}"
+        model = PeftModel.from_pretrained(model, ADAPTER_PATH, local_files_only=True)
+        print(f"Loading from FTing on: {FT_DATASET}")
+        print("Model is loaded with LoRA rank:", rank)
 
     # Puts model on GPU not CPU
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -154,7 +165,7 @@ def main():
 
     # Load salinas prompts & collet responses
     prompts = pd.read_csv("eval_datasets/hiring_prompts.csv")
-    collect_responses(prompts, model, tokenizer, BASE_MODEL, FT_DATASET, seed, num_samples=num_samples, batch_size=batch_size)
+    collect_responses(prompts, model, tokenizer, BASE_MODEL, FT_DATASET, seed, num_samples=num_samples, batch_size=batch_size, rank=rank)
 
 
 if __name__ == "__main__":
